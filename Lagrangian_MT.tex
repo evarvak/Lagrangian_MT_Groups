@@ -1,0 +1,1577 @@
+\documentclass[12pt]{amsart}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{mathrsfs}
+\usepackage{array}
+\usepackage{amssymb}
+% \usepackage{mathabx}
+\usepackage{tikz-cd}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage[nameinlink, capitalize]{cleveref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=green,      
+    urlcolor=cyan,
+    citecolor=magenta,
+    pdftitle={Notes of my current research},
+    pdfpagemode=FullScreen,
+}
+\urlstyle{same}
+\usepackage{caption} 
+\captionsetup[table]{skip=10pt}
+% \usepackage{subfiles}
+
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\sph}{\mathbb{S}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\id}{\mathrm{id}}
+
+\newcommand{\bbA}{\mathbb{A}}
+\newcommand{\bbH}{\mathbb{H}}
+\newcommand{\bbP}{\mathbb{P}}
+
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cU}{\mathcal{U}}
+
+\newcommand{\IH}{\mathrm{IH}}
+
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\U}{\mathrm{U}}
+\newcommand{\gr}{\mathrm{gr}}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\wt}{\widetilde}
+\newcommand{\wh}{\widehat}
+\newcommand{\codim}{\mathrm{codim}}
+
+\newcommand{\rightQ}[2]{\left.\raisebox{.2em}{$#1$}\middle/\raisebox{-.2em}{$#2$}\right.}
+\newcommand{\leftQ}[2]{\left.\raisebox{-.2em}{$#2$}\middle\backslash\raisebox{.2em}{$#1$}\right.}
+
+\DeclareMathOperator{\im}{\mathrm{im}}
+
+
+\NewDocumentCommand{\ltranspose}{m}{
+    \ensuremath{\prescript{\mathsf{T}}{}{{#1}}}
+}
+
+\NewDocumentCommand{\transpose}{m}{
+    \ensuremath{{#1}^{\mathsf{T}}}
+}
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+\numberwithin{equation}{section}
+
+
+
+
+\title{The Mumford--Tate group of a very general Lagrangian fiber}
+\author{Edward Varvak}
+\address{\parbox{\linewidth}{
+Department of Mathematics \\
+University of Chicago \\
+5734 S University Ave \\
+Chicago, IL 60637 \\}}
+
+\email{varvak@uchicago.edu}
+
+
+\begin{document}
+
+\maketitle
+
+
+
+\section{Introduction}
+
+
+
+\begin{theorem}[=\Cref{mt-classification}]
+    Let \(X\) be a primitive symplectic variety of dimension \(2g\), and let 
+    \(f: X \to B\) be a Lagrangian fibration. Let \(\wt{G}\) be the Mumford--Tate 
+    group of \(f\). 
+    \begin{equation}
+        \wt{G} = \begin{cases}
+            (\mathbb{G}_m \times \Sp_{2g/k}^k) / \{\pm 1\} & : f \text{ varies maximally,} \\
+            \GL_2 & : f \text{ is isotrivial with Hodge--generic fiber,} \\
+            \mathbb{G}_m & : f \text { is isotrivial with CM fiber.}
+        \end{cases}
+    \end{equation}
+\end{theorem}
+
+
+
+\begin{theorem}[=\Cref{general-mt-classification}]
+    Let \(f: X \to B\) be a general member of a given deformation class of hyper-K\"ahler 
+    manifolds admitting a Lagrangian fibration (in the sense of Matsushita--Voisin***). 
+    Then the Mumford--Tate group of the very general fiber \(X_b\) is \(\mathrm{GSp}_{2g}\).
+\end{theorem}
+
+
+
+
+
+
+\subsection{The period matrix of a Lagrangian fibration}
+
+Our original motivation for this paper began with the following question of 
+Valentino Tosatti, conveyed to us through Ben Bakker:
+
+\begin{question} \label{constant-diagonal-entry}
+    Let \(X\) be a hyper-K\"ahler manifold, \(f: X \to B\) a Lagrangian fibration. 
+    Let \(\cP: B^\circ \to \cA_g\) be its period map, with period matrix 
+    \begin{equation}
+        \cP(b) = \begin{pmatrix}
+            \mathbf{T}(b) \\ I_g
+        \end{pmatrix},\qquad \mathbf{T} = \begin{pmatrix}
+            \tau_{11} & \cdots & \tau_{1g} \\ 
+            \vdots & \ddots & \vdots \\ 
+            \tau_{1g} & \cdots & \tau_{gg}
+        \end{pmatrix}
+    \end{equation}
+    Then the following are equivalent:
+    \begin{enumerate}
+        \item \(\cP\) is the constant map.
+        \item \(\tau_{11}\) is constant.
+    \end{enumerate}
+\end{question}
+
+While the statement seems ad hoc, if not outright false, \Cref{constant-diagonal-entry}
+has a positive answer under the assumption that the very general fiber of \(f\)
+is Hodge-generic. 
+
+\begin{proposition}
+    Suppose that the Mumford--Tate group of the very general fiber \(X_b\) is simple.
+    If \(\tau_{11}\) is constant, then \(\cP\) is the constant map.
+\end{proposition}
+
+\begin{proof}
+A result of Donagi--Markman \cite{donagi-markman94} shows that the partial derivatives 
+of the \(\tau_{ij}\) obey a cubic symmetry condition: there exist \(z_1, \cdots, z_g\) 
+local coordinates on \(B^\circ\) for which
+\begin{equation}
+    \frac{\partial \tau_{ij}}{\partial z_k} = \frac{\partial \tau_{ik}}{\partial z_j}, 
+    \quad 1 \leq i, j, k \leq g.
+\end{equation}
+Thus, the condition that \(\tau_{11}\) is constant in all directions implies that 
+\begin{equation*}
+    \frac{\partial \tau_{11}}{\partial z_1} = \frac{\partial \tau_{12}}{\partial z_1} = 
+    \cdots = \frac{\partial \tau_{1k}}{\partial z_1} = 0.
+\end{equation*}
+
+Let \(V\) be the \(\Z\)-VHS underlying \(f\) on the locus of smooth fibers \(B^\circ\).
+Choose a very general point \(p \in B^\circ\), and let \(C_p\) be a 
+(locally defined) complex curve given by integrating \(\partial/\partial z_1\) 
+through \(p\). We get a real Hodge substructure
+\begin{equation}
+    E = \begin{pmatrix}
+        \tau_{11} \\ \tau_{21}\\ \vdots \\ \tau_{g1} \\ \\ | \\ e_1 \\ |
+    \end{pmatrix} \oplus
+    \begin{pmatrix}
+        \overline{\tau}_{11} \\ \overline{\tau}_{21} \\ \vdots \\ \overline{\tau}_{g1} \\
+        \\ | \\ e_1 \\ |
+    \end{pmatrix} \subseteq V_{\R,p},
+\end{equation}
+which is preserved by moving along \(C_p\). In other words, \(E\) is contained in 
+the fixed part of \(V_\R|_{C_p}\).
+
+We can interpret \(C_p\) more moduli-theoretically. Recall that we have 
+\(\cP: B^\circ \to \cA_g\); let \(\wt{\cP}: U \to \bbH_g\) be a local lift of \(\cP\) to 
+the universal cover of \(\cA_g\). Then \(\wt{\cP}(U)\) meets the locus 
+\(\{E\} \times \bbH_{g-1}\) along the curve \(\wt{\cP}(C_p)\). Observe that this is 
+an atypical intersection: the image of \(\wt{\cP}\) is \(g\)-dimensional,
+while the codimension of \(\{E\} \times \bbH_{g-1}\) is also
+\(\binom{g+1}{2} - \binom{g}{2} = g\), so the expected dimension of the intersection 
+is \(g - g = 0\). As a result,
+we can apply the functional transcendence result of Bakker--Tsimerman 
+\cite[Theorem 1.3]{bakker-tsimerman25}: because \(\wt{\cP}(U) \cap (\bbH_{g-1} \times \{E\})\) 
+is atypical, \(\cP(C_p)\) is contained in a weakly special subvariety of \(\cA_g\).
+
+However, recall that \(p\) was a very general point. Hence there is a 
+weakly special subvariety \(Z \subsetneq \cA_g\) containing \(\cP(B^\circ)\). 
+Such a subvariety necessarily arises from a normal subgroup \(H\) of the 
+Mumford--Tate group \(G = \mathrm{MT}(Z)\) of the very general point of \(Z\).
+But by assumption, \(G\) is simple. Since \(Z\) is strictly contained in \(\cA_g\),
+\(H\) is a strict normal subgroup of \(G\) which contains the Hodge torus, so that 
+\(H = \mathbb{G}_m\). Therefore \(Z = \{\cP(p)\}\), so that \(\cP\) is the constant map.
+\end{proof}
+
+
+By applying \Cref{general-mt-classification}, 
+we now see that if \(X\) is a hyper-K\"ahler manifold chosen generally from its 
+deformation class, the diagonal entries of its period matrix are not constant.
+However, knowing \Cref{mt-classification}, we claim that \Cref{constant-diagonal-entry}
+has a positive answer for all Lagrangian fibrations coming from any primitive symplectic 
+variety \(X\).
+
+\begin{theorem}
+    Let \(X\) be primitive symplectic, and \(f: X \to B\) be a Lagrangian fibration 
+    with period map \(\cP: B^\circ \to \cA_g\) and period matrix \(\mathbf{T}\). 
+    Suppose there exists a vector \(\mathbf{v}\) for which the function
+    \begin{equation*}
+        \transpose{\mathbf{v}} \mathbf{T} \mathbf{v}: B^\circ \to \cA_g
+    \end{equation*}
+    is constant in an analytic neighborhood \(U \subseteq B^\circ\). Then 
+    \(f\) is isotrivial.
+\end{theorem}
+
+\begin{proof}
+***
+
+\end{proof}
+
+
+
+
+
+\section{Preliminaries}
+
+\subsection{Lagrangian fibrations coming from primitive symplectic varieties}
+
+We begin with the relevant definitions of symplectic varieties which appear in this 
+paper.
+
+\begin{definition}
+    Let \(X\) and \(B\) be normal analytic varieties, and \(f: X \to B\) a non-trivial 
+    surjective morphism with connected fibers.
+    \begin{enumerate}
+        \item We say that \(X\) is {\bf holomorphic symplectic} if it admits a 
+        non-degenerate 2-form \(\sigma \in H^0(X^\mathrm{sm}, \Omega_{X^\mathrm{sm}}^2)\) 
+        which extends holomorphically onto a resolution of singularities \(Y \to X\).
+        \item We say that a subvariety \(Z \subseteq X\) is {\bf Lagrangian} if 
+        \(\sigma|_Z = 0\) and \(\dim Z = \frac{1}{2} \dim X\). We say that 
+        \(f: X \to B\) is a Lagrangian fibration if every fiber of \(f\) is Lagrangian.
+        \item Suppose that \(X\) is compact, \(\Q\)-factorial, and log-terminal. 
+        We say that \(X\) is {\bf primitive symplectic} if \(H^1(X, \mathcal{O}_X) = 0\) 
+        and the symplectic form \(\sigma\) is unique up to scaling.
+        \item If \(X\) is compact, smooth, and simply connected with a symplectic form 
+        \(\sigma\) unique up to scaling, we say that \(X\) is {\bf hyper-K\"ahler}.
+    \end{enumerate}
+\end{definition}
+
+By the Beauville--Bogomolov decomposition theorem, any smooth compact symplectic variety
+is isogenous to a product of hyper-K\"ahler manifolds and complex tori. Their work has 
+more recently been generalized to compact symplectic varieties, which are isogenous to 
+products of complex tori and special classes of primitive symplectic varieties (see, 
+for instance, \cite[Theorem 1.5]{horing-peternell19}).
+
+***Deformation/moduli theory?
+
+When \(X\) is hyper-K\"ahler, much is understood. For instance, any non-trivial surjective
+morphism \(f: X \to B\) with connected fibers is Lagrangian, and \(B\) is smooth if 
+and only if \(B \simeq \bbP^n\) \cite{greb-lehn14}. A conjecture of Matsushita 
+predicts that this is always the case.
+
+More generally, suppose \(X\) is any primitive symplectic variety admitting a 
+Lagrangian fibration \(f: X \to B\). We abuse notation to denote \(f: X^\circ \to B^\circ\) 
+the restriction of \(f\) to the preimage of the regular values, over which the fibers 
+of \(f\) are smooth. It turns out that every smooth fiber \(X_b\) is an Abelian 
+variety, due to Matusushita \cite{matsushita99} when \(X\) is projective hyper-K\"ahler 
+and \cite{campana06} in more general settings.
+
+Take \(X\) to have dimension \(2g\), so that both the base \(B\) and the fibers \(X_b\)
+are \(g\)-dimensional. We denote by \(\cP: B^\circ \to \cA_{g, \eta}\) the period map 
+associated to \(f\),where \(\cA_{g, \eta}\) is a moduli space for appropriately-polarized 
+Abelian varieties. If \(\cP\) is non-constant, i.e. \(f\) is not an isotrivial fibration,
+then \(\cP\) is generically injective; this is due to \cite{geemen-voisin16} for 
+\(X\) a very general hyper-K\"ahler and \cite{bakker25} for primitive symplectic \(X\).
+In the non-isotrivial case, we say that \(f\) varies maximally.
+
+
+
+
+
+
+
+
+\subsection{Deligne's canonical extension}
+
+Let \(f: X \to B\) be a family of Abelian varieties, \(D \subseteq B\) the discriminant 
+locus of \(f\), \(B^\circ = B \smallsetminus D\), and \(f: X^\circ \to B^\circ\) the 
+smooth part of \(f\), as above. We may consider the underlying \(\Z\)-variation of Hodge 
+structures \(V = R^1 f_* \Z_{X^\circ}\). Let \(\cV = V \otimes_{\Z} \mathcal{O}_{B^\circ}\) 
+be the underlying flat bundle, equipped with the flat connection 
+\(\nabla: \cV \to \cV \otimes \Omega_{B^\circ}^1\).
+
+Extending \(\cV\) to all of \(B\) as a flat bundle is impractical, since the VHS 
+degenerates along \(D\). However, Deligne constructs a vector bundle \(\ol{\cV}\) 
+extending \(\cV\) to \(D^\mathrm{ls}\) the log-smooth part of \(D\), 
+along with a logarithmic connection 
+\begin{equation*}
+    \ol{\nabla}: \ol{\cV} \to \ol{\cV} \otimes \Omega_{B^\mathrm{ls}}^1(\log D^\mathrm{ls})
+\end{equation*}
+extending \(\nabla\). 
+We will outline the local construction of \(\ol{\cV}\) on the smooth part of the 
+discriminant \(D^\mathrm{sm}\); this will be enough for the purposes of this paper,
+but the general case of \(D^\mathrm{ls}\) is completely analogous, albiet with more 
+variables. 
+
+Let \(U \simeq \Delta^{g} \subseteq B^\circ\) be a polydisk which only meets 
+\(D^\mathrm{sm} \subseteq D\), and let \(U^\circ \simeq \Delta^* \times \Delta^{g-1}\) be 
+the complement of the discriminant in \(U\). Denote the restriction of \(\cV\) to 
+\(U^\circ\) by \(\cV_U\). The monodromy group of the restricted VHS is generated 
+by a single element, which we will denote by \(T \in \Aut(V_b)\) for some 
+\(b \in U^\circ\). Let \(t_1, t_2, \cdots, t_g\) be the natural coordinates 
+on \(U\), so that \(U^\circ\) is defined by the non-vanishing of \(t_1\). 
+
+By the classical Monodromy Theorem, \(T\) is quasi-unipotent, so that we can write 
+\(T = T_s \cdot T_u\), where \(T_s^m = I_g\) and \(T_u\) is unipotent. In particular, 
+\(T\) admits a formal logarithm 
+\begin{equation*}
+    N = \log T = \log T_s + \log T_u = N_s + N_u,
+\end{equation*}
+where \(N_u\) is nilpotent, uniquely defined by 
+\begin{equation*}
+    N_u = (T_u - I_g) - \frac{1}{2} (T_u - I_g)^2 + \cdots
+\end{equation*}
+and \(N_s\) is a matrix satisfying the property 
+\begin{equation*}
+    \exp(-2\pi i N_s) = T_s.
+\end{equation*}
+
+Since \(N_s\) is produced by diagonalizing \(T_s\) and applying 
+\(z \mapsto \frac{\log z}{2\pi i}\), it depends only on a choice of logarithm branch cut.
+As such, \(N_s\) is unique upon choosing a half-open unit interval \(I \subseteq \R\) 
+in which the eigenvalues of \(N_s\) lie. We construct sections for the bundle 
+\(\ol{\cV}_U\) as follows.
+
+Let \(v = v(t_1, t_2, \cdots, t_g) \in V_\C|_U \subseteq \cV_U\) be a flat multi-section of 
+\(\cV_U\), i.e. a multi-section of the underlying \(\C\)-local system \(V_\C|_U\). We allow it 
+to be multivalued because moving around \(D\) sends \(v\) to \(T.v\). Define 
+\begin{equation*}
+    \wt{v}(t_1, t_2, \cdots, t_g) = 
+    \exp\left(\frac{\log(t_1) N}{2\pi i}\right).v(t_1, \cdots, t_g).
+\end{equation*}
+It is not hard to see that this new section is single-valued on \(U^\circ\), and 
+one readily checks that \(\wt{v}\) has a removable singularity along \(D\). For a 
+detailed overview, refer to refer to \cite{cattani16}.
+
+Finally, for a frame of flat multisections \(v_1, \cdots, v_r \in \cV_U\), we define 
+the canonical extension \(\ol{\cV}_U = \bigoplus_{i=1}^r \mathcal{O}_U \wt{v}_i\).
+It comes with an induced logarithmic connection 
+\begin{equation*}
+    \nabla: \wt{v}_j \mapsto \nabla \left(\exp\left(\frac{\log(t_1) N}{2\pi i}\right). v_j\right)
+    = \frac{N}{2\pi i} \wt{v}_j \otimes \frac{dz}{z}.
+\end{equation*}
+It is a highly non-trivial, but nevertheless true fact that this construction 
+globalizes to all of \(B^\mathrm{ls}\), i.e. one glues \(\ol{\cV}_U\) along all the 
+analytic neighborhoods \(U\) of \(D^\mathrm{ls}\) the log-smooth locus of the 
+discriminant to canonically produce an extension \(\ol{\cV}\) of \(\cV\)
+
+
+
+Next, we turn our attention to the special case where \(V\) is a variation of Hodge 
+structures coming from a Lagrangian fibration \(f: X \to B\). In this setting, we can describe 
+Deligne's canonical extension in another way. Generalizing a result of Matsushita, 
+Schnell \cite[\S 4]{schnell23} proves that the natural isomorphism 
+\begin{equation*}
+    \iota_{\sigma}: \cT_{B^\circ} \xrightarrow{\sim} F^1 \cV, \quad 
+    w \mapsto \sigma(w, -)
+\end{equation*}
+extends to an isomorphism 
+\begin{equation*}
+    \iota_{\sigma}: \cT_{B^\mathrm{ls}} \xrightarrow{\sim} F^1 \ol{\cV},
+\end{equation*}
+where \(F^1 \ol{\cV} := \ol{\cV} \cap j_*(F^1 \cV)\), and \(\ol{\cV}\) is 
+Deligne's canonical extension for which \(N_s\) has eigenvalues 
+in \((-1, 0]\). Since the locus of \(D\) which fails to be log-smooth 
+has codimension at least 2 in \(B\), we may further reflexivize both sheaves 
+to produce an isomorphism \(\cT_B \simeq (F^1 \ol{\cV})^{\vee \vee}\); in 
+abuse of notation, we will often drop the reflexivization on the right.
+
+
+
+\subsection{Mumford--Tate groups of weight one Hodge structures}
+
+Recall that the Deligne torus is the real algebraic group 
+\(\mathbb{S} = \mathrm{Res}_{\C/\R} \mathbb{G}_{m, \C}\); the data of a 
+weight one \(\Q\)-Hodge structure is the data of a vector space 
+\(H_\Q\) together with a representation \(h: \mathbb{S} \to \GL(H_\R)\) 
+such that the underlying weight representation 
+\begin{equation*}
+    \mathbb{G}_{m, \R} \xrightarrow{w} \mathbb{S} \xrightarrow{h} \GL(H_\R)
+\end{equation*}
+is defined over \(\Q\).
+
+\begin{definition}
+    The {\bf Mumford--Tate group} of a \(\Q\)-Hodge structure \(H_\Q\) is the 
+    smallest algrebraic subgroup \(G \subseteq \GL(H_\Q)\) whose real points 
+    contain the image of \(h\).
+\end{definition}
+
+For a brief introduction to Mumford--Tate groups and Mumford--Tate domains, we 
+recommend \cite[Chapter 15]{CMP}. However, we will summarize the necessary basic 
+results below.
+
+If \(V\) is a \(\Q\)-VHS on a quasi-projective variety \(B^\circ\), there is 
+a countable collection \(\{Z_j\}\) of closed subvarieties of \(B^\circ\) such that 
+for any \(b, b' \in B^\circ \smallsetminus \bigcup_{j=1}^\infty Z_j\) 
+we have \(\mathbf{MT}(V_b) = \mathbf{MT}(V_{b'})\). For this reason, we will abuse 
+notation and write \(\mathbf{MT}(V)\) to denote the Mumford--Tate group of the 
+Hodge structure \(V_b\) over the very general point \(b \in B^\circ\).
+
+We note that if \(Z \subseteq B^\circ\) is a closed subvariety, then 
+\(\mathbf{MT}(V|_Z) \leq \mathbf{MT}(V)\). A weight one polarized VHS admits a period map 
+to a period domain \(\cP: B^\circ \to \cA_{g, \eta}\). Since the Mumford--Tate 
+group only shrinks under specialization, we can make the following definition.
+
+\begin{definition}
+    Let \(H\) be a weight one polarized \(\Q\)-Hodge structure. We say that \(H\) is 
+    {\bf Hodge-generic} if \(H\) has a maximal Mumford--Tate group in \(\cA_{g, \eta}\),
+    i.e. \(\mathbf{MT}(H) = \mathrm{GSp_{2g, \Q}}\).
+\end{definition}
+
+Notice that the VHS \(V\) naturally gives rise to two representations:
+the Mumford--Tate group \(\mathbf{MT}(V_b)\) and the fundamental group \(\pi_1(B^\circ, b)\)
+both act on the very general fiber \(V_b\). One can ask if these two representations 
+are related. A theorem of Yves Andr\'e provides an affirmitive answer.
+
+\begin{theorem}[Andr\'e]
+    Let \(V\) be a polarized \(\Q\)-VHS on a quasi-projective variety \(B^\circ\), 
+    and let \(\rho: \pi_1(B^\circ, b) \to \GL(V_b)\) be the monodromy action on a 
+    very general fiber. Take \(M\) to be the Zariski closure of the monodromy group 
+    \(\im(\rho) \leq \GL(V_b)\), and let \(M^\circ \leq M\) be its identity component.
+    Then \[M^\circ \trianglelefteq [\mathbf{MT}(V_b), \mathbf{MT}(V_b)].\]
+\end{theorem}
+
+
+On the other hand, the group \(\mathbf{MT}(V_b)\) admits an action on \(\cA_{g, \eta}\). 
+We refer to the orbit of \(V_b\) under this action as a Mumford--Tate subdomain. It 
+can be shown that this orbit is a Hermitian locally symmetric submanifold. Consequently, 
+the groups which can occur as as \(\mathbf{MT}(V_b)\) are highly 
+constrained. Due to work of Satake \cite{satake67}, we have a full classification of 
+the group \(\mathbf{MT}(V_b)\) and its action on \(V_b\), up to a central isogeny. 
+These groups are presented in \Cref{table-of-real-forms}, along with some useful associated
+invariants.
+
+\begin{table}
+    \centering
+    \begin{tabular}{|c||c|c|}
+        \hline && \\
+        {\bf Real group } & {\bf Dimension of } & {\bf Dimension of } \\
+        {\bf (up to isogeny)} & {\bf Mumford--Tate subdomain} & {\bf representation}\\ && \\
+        \hline && \\
+        \(\SL_2(\R)\) & 1 & 2 \\ && \\ \hline &&\\
+        \(\mathrm{SU}(p, n-p)\) & \(p(n-p)\) & \(n\) \\ && \\ \hline &&\\
+        \(\mathrm{SU}(1, n-1)\) & \(n-1\) & \(\binom{n}{c}\)\\ && \(c \in \{2, 3, \dots, n-2\}\) \\ && \\ \hline &&\\
+        \(\mathrm{SO}^*(2r)\) & \(\binom{r}{2}\) & \(2r\) \\ && \\ \hline &&\\
+        \(\Sp(r)\) & \(\binom{r+1}{2}\) & \(2r\) \\ && \\ \hline &&\\
+        \(\mathrm{SO}(2p-2, 2)\) & \(2p-2\) & \(2^{p-1}\) \\ && \\ \hline &&\\
+        \(\mathrm{SO}(2p-1, 2)\) & \(2p-1\) & \(2^p\) \\ && \\  
+        \hline
+    \end{tabular} \\
+    \caption{Satake's classification of real forms of irreducible weight one Mumford--Tate representations.}
+    \label{table-of-real-forms}
+\end{table}
+
+
+
+
+\subsection{Clifford theory}
+
+
+
+
+
+
+
+\section{General singular fibers in a Lagrangian fibration}
+
+For this section, we work with local analytic Lagrangian degenerations. To that end, 
+let \(U \simeq \Delta^g\) be a polydisk, \(D \subseteq U\) an irreducible codimension 
+one subvariety such that 
+\(U^\circ := U \smallsetminus D \simeq \Delta^{g-1} \times \Delta^*\).
+
+Let \((X, \sigma)\) be a holomorphic symplectic manifold of dimension \(2g\) equipped 
+with a proper surjective morphism \(f: X \to U\), such that 
+\(X_b\) is Lagrangian for all \(b \in U\), and \(X_b\) is smooth for \(b \in U^\circ\)
+and singular when \(b \in D\). Let \(X^\circ\) be the preimage of \(U^\circ\) in \(X\). 
+Set \(V = R^1 f_* \Z_{X^\circ}\) to be the variation of Hodge structures underlying \(f\).
+Finally, let \(T \in \Sp_{2g}(\Z)\) be a generator for the monodromy group of \(f\) 
+acting on the cohomology of a general fiber \(X_b\).
+
+
+
+\begin{lemma}[\cite{bakker-schnell23}, Lemma 6.6] \label{local-monodromy-eigenvalues}
+    \(T\) has at most two non-trivial eigenvalues \(\zeta_i, \ol{\zeta}_i\), which 
+    are the primitive \(i\)-th roots of unity for an integer \(i\) dividing six.
+    If \(T\) has infinite order, \(i\) divides two.
+\end{lemma}
+
+\begin{proof}
+Let \(N = \log T = N^{ss} + N^u\). Deligne's canonical extension extends a local frame 
+\(v_1, \dots, v_{2g} \in H^0(U^\circ, \cV)\) to a frame 
+\(\wt{v}_1, \dots, \wt{v}_{2g} \in H^0(U, \ol{\cV})\), 
+\(\wt{v}_j = \exp(\frac{zN}{2\pi i}). v_j\), for \(z\) a local coordinate on the 
+universal cover of \(U^\circ\). We can choose the \(v_j\) in such a way that \(N\) 
+has the form 
+\begin{equation*}
+    N = \begin{pmatrix}
+        D & S \\ 0 & D'
+    \end{pmatrix},\qquad S = \begin{pmatrix}
+        I_g & 0 \\ 0 & 0
+    \end{pmatrix}
+\end{equation*}
+This frame has the advantage that it behaves well with respect to the flat connection:
+if we set \(\varphi\) to be the local defining equation of \(D\), 
+\begin{equation*}
+    \nabla \wt{v}_k = \frac{N(\wt{v}_k)}{2\pi i} \frac{d\varphi}{\varphi}
+    = \frac{\alpha_k}{2\pi i} \frac{d\varphi}{\varphi} \wt{v}_k + \frac{\beta_k}{2\pi i} \frac{d\varphi}{\varphi} \wt{v}_{g+k}.
+\end{equation*}
+
+The limit mixed Hodge structures of \(\cV\) define a locally split 
+sub-bundle \(\left<\wt{v}_1, \dots, \wt{v}_g\right>|_D \subseteq \ol{\cV}|_D\).
+After possibly shrinking the open subset \(U\), we may lift this to a Deligne frame 
+\(h_1, \dots, h_g, h_{g+1}, \dots, h_{2g} \in H^0(U, \ol{\cV})\), 
+\begin{equation*}
+    F^1 \ol{\cV} = \left<h_1, \dots, h_g \right> \subseteq \ol{\cV},
+\end{equation*}
+agreeing with \(\left<\wt{v}_1, \dots, \wt{v}_g\right>\) on \(D\).
+
+Now we have two exact sequences 
+\begin{equation*}
+\begin{tikzcd}
+\left< \wt{v}_{g+1}, \dots, \wt{v}_{2g} \right> \arrow{r} \arrow[equal]{d} & \ol{\cV} \arrow{r} \arrow[equal]{d} & \ol{\cV} / \left< \wt{v}_{g+1}, \dots, \wt{v}_{2g} \right> \arrow{d}{g} \\
+\left< \wt{v}_{g+1}, \dots, \wt{v}_{2g} \right> \arrow{r} & \ol{\cV}  \arrow{r} & \ol{\cV} / \left< h_{g+1}, \dots, h_{2g} \right>
+\end{tikzcd}
+\end{equation*}
+Thus the two splittings differ by an element of 
+\(\Hom(\ol{\cV} / \left< \wt{v}_{g+1}, \dots, \wt{v}_{2g} \right>, \left< \wt{v}_{g+1}, \dots, \wt{v}_{2g} \right>)\).
+In other words, the isomorphism \(g\) has the form
+\begin{equation*}
+    h_j = \wt{v}_j + \sum_{k=g+1}^{2g} g_{jk} \wt{v}_k,\qquad j = 1,\dots, g.
+\end{equation*}
+
+Recall from \cite{bakker-schnell23} and our summary above the isomorphism 
+\(\cT_U \simeq F^1 \ol{\cV} = \left<h_1,\dots, h_g\right>\).
+This isomorphism is compatible with Lie bracket, so we have 
+\begin{align*}
+    [h_j, h_k] &= \nabla_{h_j} \wt{v}_k - \nabla_{h_k} \wt{v}_j 
+    +  \sum_{\ell = g+1}^{2g} h_j(g_{k\ell})\wt{v}_\ell + g_{k \ell} \nabla_{h_j} \wt{v}_\ell   
+    - h_k(g_{j\ell})\wt{v}_\ell - g_{j \ell} \nabla_{h_k} \wt{v}_\ell\\
+    &= \frac{\alpha_k}{2\pi i} \frac{d\varphi(h_j)}{\varphi} \wt{v}_k - 
+    \frac{\alpha_j}{2\pi i} \frac{d\varphi(h_k)}{\varphi} \wt{v}_j + 
+    \frac{\beta_k}{2\pi i} \frac{d\varphi(h_j)}{\varphi} \wt{v}_{g+k} - 
+    \frac{\beta_j}{2\pi i} \frac{d\varphi(h_k)}{\varphi} \wt{v}_{g+j} + \\
+    &\qquad + \sum_{\ell = g+1}^{2g} \left( h_j(g_{k\ell}) - h_k(g_{j\ell}) + 
+    \frac{\alpha_\ell}{2\pi i} \left(g_{k\ell}\frac{d\varphi(h_j)}{\varphi} - g_{j\ell}\frac{d\varphi(h_k)}{\varphi}\right) \right) \wt{v}_\ell \\
+    &= \frac{\alpha_k}{2\pi i} \frac{d\varphi(h_j)}{\varphi} h_k - \frac{\alpha_j}{2\pi i} \frac{d\varphi(h_k)}{\varphi} h_j 
+    + \frac{\beta_k}{2\pi i} \frac{d\varphi(h_j)}{\varphi} \wt{v}_{g+k} - 
+    \frac{\beta_j}{2\pi i} \frac{d\varphi(h_j)}{\varphi} \wt{v}_{g+j} + \\
+    &\qquad + \sum_{\ell = g+1}^{2g} \left( g_{j\ell} - g_{k\ell} + 
+    h_j(g_{k\ell}) - h_k(g_{j\ell}) + \frac{\alpha_\ell}{2\pi i} 
+    \left(g_{k\ell}\frac{d\varphi(h_j)}{\varphi} - g_{j\ell}\frac{d\varphi(h_k)}{\varphi}\right) \right) \wt{v}_\ell \\
+    &= \frac{\alpha_k}{2\pi i} \frac{d\varphi(h_j)}{\varphi} h_k -
+    \frac{\alpha_j}{2\pi i} \frac{d\varphi(h_k)}{\varphi} h_j.
+\end{align*}
+The last equality follows from the fact that the \(\wt{v}_\ell\) are not contained in 
+\(\cT_U\) when \(\ell \geq g+1\).
+
+Now, for \([h_j, h_k]\) to be holomorphic, we need either \(\alpha_k = 0\) or 
+\(\varphi\) divides \(d\varphi(h_j)\). The latter is equivalent to \(h_j\) being tangent to \(D\).
+But \(D\) is of codimension one, so at least one of the \(h_j\) is not tangent 
+to \(D\), say \(h_\lambda\). This forces \(\alpha_k = 0\) for all \(k \neq \lambda\).
+
+Notice additionally that \(g_{jk}\) all vanish on \(D\). Thus, when restricting 
+to \(D\), the higher \(\wt{v}_\ell\) terms in the expression above yield 
+\begin{align*}
+    0 &= \frac{\beta_k}{2\pi i} \frac{d\varphi(h_j)}{\varphi} \wt{v}_{g+k} - 
+    \frac{\beta_j}{2\pi i} \frac{d\varphi(h_k)}{\varphi} \wt{v}_{g+j} +
+    \sum_{\ell = g+1}^{2g} \left(h_j(g_{k\ell}) - h_k(g_{j\ell}) \right) \wt{v}_\ell
+\end{align*}
+The sum on the right is holomorphic along \(D\), and \(\varphi\) does not divide
+\(d\varphi(h_\lambda)\). Hence \(\beta_k = 0\) for all \(k \neq \lambda\). Hence we may 
+lose no generality in writing that \(\lambda=1\), i.e. the only possibly non-trivial 
+eigenvalues are \(\alpha_1\) and the only possibly non-semisimple eigenvector is 
+\(\wt{v}_1\).
+
+Observe that \(T\) is now an integer matrix with at most two non-trivial eigenvalues. 
+By Grothendieck, all eigenvalues of \(T\) are roots of unity; if \(\zeta_i\) is a
+primitive \(i\)-th root of unity, all other primitive \(i\)-th roots of unity 
+are in its Galois orbit, and thus also occur as eigenvalues of \(T\). Thus 
+if \(\phi\) is Euler's totient function, we must have \(\phi(i) \leq 2\). This 
+forces \(i = 1,2,3,4,\) or \(6\). Furthermore, when \(T\) has infinite order,
+there is only one non-trivial Jordan block, forcing \(\zeta_i = \ol{\zeta}_i\), 
+or equivalently \(\zeta_i = \pm 1\).
+\end{proof}
+
+
+
+
+
+\section{Classification of Lagrangian Mumford--Tate groups}
+
+
+
+\subsection{Existence of infinite local monodromy}
+
+
+Now we work in the compact setting. Let \(X\) be a primitive symplectic variety of 
+dimension \(2g\) which admits a maximally varying Lagrangian fibration \(f: X \to B\).
+Take \(V\) to be the the underlying variation of Hodge structures on \(B^\circ\).
+
+\begin{proposition} \label{infinite-monodromy}
+There exists an analytic neighborhood \(U \simeq \Delta^g \subseteq B\) meeting 
+the discriminant \(D \subseteq B\) in a codimension one subvariety 
+\(D_U := D \cap U \subseteq U\), such that the local monodromy of \(f\) around 
+\(D_U\) is infinite.
+\end{proposition}
+
+Before proving this proposition, we remark on an important consequence. 
+For one, recall from Hwang--Oguiso \cite{hwang-oguiso09} that \(D \subseteq B\) 
+is either empty or codimension one. In the case where \(X\) is primitive symplectic, 
+we can rule out the former case entirely.
+
+\begin{corollary}
+    Let \(X\) be a primitive symplectic variety, and let \(f: X \to B\) be a Lagrangian
+    fibration. Then the discriminant locus \(D \subseteq B\) of \(f\) has codimension one.
+\end{corollary}
+
+\begin{proof}
+Since \(X\) is primitive symplectic, \(f\) is either maximally varying or isotrivial. 
+By \Cref{infinite-monodromy}, the discriminant of \(f\) has a codimension one component 
+whenever \(f\) varies maximally, so we may take \(f\) to be isotrivial. 
+Now if \(D = \emptyset\), \(f\) is the trivial fibration and \(X \simeq X_b \times B\).
+But by Kunneth, we must now have \(H^1(X, \C) \neq 0\), a contradiction.
+\end{proof}
+
+% Now consider the period map \(\cP: B^\circ \to \cA_g\). This extends to a map to the 
+% Satake--Baily--Borel compactification \(\ol{\cP}: B^\mathrm{ls} \to \cA_g^*\), where 
+% \(B^\mathrm{ls} = B^\circ \sqcup D^\mathrm{ls}\) additionally contains the log-smooth 
+% locus of the discriminant. Recall that this compactification is stratified by 
+% \(\cA_g^* = \cA_g \sqcup \cA_{g-1} \sqcup \cdots \sqcup \cA_1 \sqcup \{*\}\), 
+% where the fibers landing in \(\cA_k\) have a local monodromy operator \(T\) with 
+% \(\mathrm{rk} \log(T) = k\). 
+
+% \begin{corollary} \label{rank-one-boundary}
+%     The extended period map takes the smooth locus of the discriminant 
+%     \[\ol{\cP}(D^\mathrm{sm}) \in \cA_{g-1} \subseteq \cA_g^*.\]
+%     This defines a Lagrangian fibration \(g: Y \to D^\mathrm{sm}\), for some non-compact
+%     holomorphic symplectic manifold \(Y\) of dimension \(g-1\).
+% \end{corollary}
+
+% The last statement of the corollary requires some justification. ***
+
+% \begin{remark}
+%     One can extend \(Y \to D^\mathrm{sm}\) to a tubular neighborhood 
+%     \(U \supseteq D^\mathrm{sm}\) ***
+% \end{remark}
+
+\begin{proof}[Proof of \Cref{infinite-monodromy}]
+
+
+Since \(V_\Q\) is irreducible, the period image lands in an 
+indecomposable special subvariety of \(\cA_{g, \eta}\). By \cite[Theorem 4.5]{grushevsky-mondello-manni-tsimerman25}, 
+the \(g\)-dimensional period image is not Hodge-generic inside of any special indecomposable 
+non-compact subvariety. Thus we only need to show that the period image is not
+contained in a compact special subvariety.
+
+Let \(G = [\mathbf{MT}(V_\Q), \mathbf{MT}(V_\Q)]\) be a \(\Q\)-simple factor of 
+the derived Mumford--Tate group. By the classical theorem 
+\cite[Corollary 2.7]{grushevsky-mondello-manni-tsimerman25}, we can write 
+\(G = \mathrm{Res}_{K/\Q} H\), for \(K\) a totally real field and
+\(H\) a geometrically simple \(K\)-algebraic group. (***Why can we take factors 
+of DMT without losing generality?)
+
+By \cite[Corollary 8.5]{borel-tits65}, an algebraic group over a number field is anisotropic 
+(contains no positive-dimensional split tori) if and only if it contains no non-trivial 
+unipotent elements. By Schmid's nilpotent orbit theorem, for \(G\) this is equivalent to 
+defining a compact special subvariety in \(\cA_{g, \eta}\). Note that \(G\) is anisotropic 
+if and only if \(H\) is anisotropic, since a unipotent element of one induces a 
+unipotent element of the other.
+
+We will prove that \(H\) is not anisotropic. This will show that the image of the 
+period map is not contained in a compact special subvariety. To do this, we 
+will apply the results of \cite{scharlau85}.
+
+\begin{lemma}[\cite{grushevsky-mondello-manni-tsimerman25}, \S 5.1] \label{anisotropic-rep-classification}
+    Suppose that \(H = \Aut(U, \eta)^\mathrm{ad}\) is non-compact at all real places. 
+    Assume that one of the following conditions holds:
+    \begin{enumerate}
+    \item[(q)] \(U\) is a \(K\)-vector space, \(\eta\) is symmetric bilinear, 
+        and \(\dim_K U \geq 5\). 
+    \item[(uF)] \(U\) is an \(L\)-vector space for \(L/K\) a quadratic extension 
+        with involution \(*\), \(\eta\) is a \(*\)-hermitian form, and \(\dim_L U \geq 3\).
+    \item[(uH)] \(U\) is a right \(\mathbb{H}\)-module for \(\mathbb{H}/K\) a quaternion 
+        division algebra with involution \(*\), \(\eta\) is a \(*\)-hermitian form, and 
+        \(\dim_\mathbb{H} U \geq 2\).
+    \item[(uD)] \(U\) is a right \(\mathbb{D}\)-module, for \(\mathbb{D}\) a non-commmutative 
+        division algebra over \(L\) a quadratic extension of \(K\) with involution \(*\),
+        \(\eta\) is a \(*\)-hermitian form, and \(\dim_\mathbb{D} V \geq 3\).
+    \item[(skH)] \(U\) is a right \(\mathbb{H}\)-module, for \(\mathbb{H}\) a 
+        quaternion division algebra over \(K\) with canonical involution \(*\), 
+        \(\eta\) is a skew-hermitian form, and \(\dim_{\mathbb{H}} U \geq 4\).
+    \end{enumerate}
+    Then \(H\) is anisotropic.
+\end{lemma}
+
+In our setting, \(V\) varies maximally, so \(H\) must be non-compact at all real places. 
+Thus we may rule out all cases one-by-one. We follow the exact analysis of 
+\cite[\S 7.2]{grushevsky-mondello-manni-tsimerman25}. Satake classified all possible 
+real forms of \(H\) up to isogeny, and we analyze each case. Let \(S\) denote the 
+special subvariety associated to \(G\).
+\begin{description}
+    \item[\(H\) has type \(A_1\)] We must have \(H = \mathrm{Nm}(\mathbb{H})\)
+    and \(\dim U_i = 2\) for all \(i\). 
+    Write \(\dim V = 2g = k \dim U_i = 2kh\). If \(k = 1\), \(H = \SL_{2, K}\) is not 
+    anisotropic. Otherwise, \(g \leq \dim S = \frac{g}{h}\) yields a contradiction.
+    \item[\(H\) has type \(D_4\)] \((U_i)_\C\) is a standard orthogonal representation of 
+    dimension \(h = 8\). Since \(U_i\) is not symplectic, its dual must also occur 
+    in the decomposition of \(V\), so \(\dim V = 16k\), while \(\dim S = 6\). 
+    Thus \(g = 8k \leq 6\), a contradiction.
+    \item[\(H\) has type \(I\)] We are in (uF) and (uD) of \Cref{anisotropic-rep-classification},
+    so \(H = \mathrm{SU}(\mathbb{D}^r, \eta)\) with \(r \leq 2\) and \(\dim_K U_i \leq 4\).
+    Here \(\mathbb{D}\) has degree \(\delta \geq 2\) over a CM extension \(L/K\). 
+    We may identify \((U_i)_\C \simeq M_{\delta \times \delta}(\C)^{\oplus r}\) as 
+    \(H(\C)\)-representations. Moreover, \(U_i\) is not self-dual, so its dual 
+    occurs in the decomposition of \(V_\C\). In particular, 
+    \begin{equation*}
+        \dim V = 2g = 2k \dim U_i = 2 k \delta^2 r.
+    \end{equation*}
+    On the other hand, \(\dim S\) is maximized when the signature of \(H(\C)\) is 
+    \((\frac{r\delta}{2}, \frac{r \delta}{2})\). Even in this case,
+    \begin{equation*}
+        g = k \delta^2 r \leq \dim S \leq k \cdot \frac{\delta r}{2} \cdot \frac{\delta r}{2} = 
+        \frac{1}{4} k \delta^2 r^2,
+    \end{equation*}
+    so that \(r \geq 4\), a contradiction.
+    \item[\(H\) has type \(I'\)] \(H\) is the same as in type \(I\), and 
+    \(U \simeq \bigwedge^c \C^{r \delta}\). Now \(\dim U_i = \binom{r \delta}{c}\), while 
+    \(\dim S = r\delta - 1\). Since \(U_i\) is not self-dual, we cannot have 
+    \(g \leq \dim S\) even when \(c = 1\).
+    \item[\(H\) has type \(II\)] Here \(G = \mathrm{SU}(\mathbb{H}^r, \eta)\) with 
+    \(r \geq 2\) and \(\eta\) skew-hermitian. We are in the case (skH) of 
+    \Cref{anisotropic-rep-classification}, so \(2 \leq \dim_\mathbb{H} U_i \leq 3\). 
+    Note again that \(U_i\) is not self-dual, so that its dual also occurs in the 
+    decomposition of \(V_\C\).
+    Thus \(\dim V = 2g = 2k \dim U_i = 4kr\). On the other hand, \(\dim S = k\frac{r(r-1)}{2}\). 
+    Thus \(g = 2kr \leq k\frac{r(r-1)}{2}\), so that \(4 \leq r-1\), a contradiction.
+    \item[\(H\) has type \(III\)] There are two possibilities here. Either 
+    \(H = \Sp(K^{2r}, \eta)\), or \(H = \mathrm{SU}(\mathbb{H}^r, \eta')\). The 
+    former case is always anisotropic, so we need not consider it. When \(r \geq 2\), 
+    we are in case (uH) of \Cref{anisotropic-rep-classification}, so \(S\) is 
+    non-compact. When \(r = 1\), \(H\) has type \(A_1\), which we have already disproved.
+    \item[\(H\) has type \(IV\)] \(H\) must be a form of \(\mathrm{SO}_n^\mathrm{ad}\), 
+    for \(n \geq 5\). This puts us into the cases (q) and (skH) of \Cref{anisotropic-rep-classification}. 
+    In either case, \(H\) is anisotropic.
+\end{description}
+
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+\subsection{Splitting the monodromy group also splits the representation}
+
+Let \(S\) be the special Mumford--Tate group 
+of \(V_\Q\), and let \(\Lambda = \mathrm{im}(\rho: \pi_1(B^\circ, b) \to \Sp_{2g, \Q})\). 
+Define its Zariski closure \(\mathrm{Mon}(V_\Q) = \ol{\Lambda}\); it admits an exact sequence 
+\begin{equation*}
+    1 \to \mathrm{Mon}(V_\Q)^\circ \to \mathrm{Mon}(V_\Q) \to \Gamma \to 1,
+\end{equation*}
+where \(\Gamma\) is the component group of \(\mathrm{Mon}(V_\Q)\). By Andr\'e, 
+\(\mathrm{Mon}(V_\Q)^\circ\) is a normal subgroup of \(S\). 
+
+\begin{lemma}
+    There exists a branched Galois cover of normal projective varieties \(\pi: B' \to B\) 
+    such that \(\mathrm{Mon}(\pi^* V_\Q) = \mathrm{Mon}(V_\Q)^\circ\).
+\end{lemma}
+
+\begin{proof}
+Construct \(\pi: B'^\circ \to B^\circ\) as follows: let \(\Lambda^\circ\) be the preimage 
+of \(\mathrm{Mon}(V_\Q)^\circ\) under the natural inclusion. It is the preimage of a normal 
+subgroup, and is therefore normal in \(\Lambda\). We have an exact sequence 
+\begin{equation*}
+    1 \to \Lambda^\circ \to \Lambda \to \Gamma \to 1.
+\end{equation*}
+Define \(B'^\circ\) to be the \'etale cover corresponding to the surjection 
+\(\Lambda \to \Gamma\), i.e. \(\Lambda^\circ = \pi_1(B'^\circ, b')\). Because 
+\(\Lambda^\circ\) is normal in \(\Lambda\), the cover is Galois.
+Now we may define \(B'^\circ\) to be the normalization of \(B'^\circ\) in the function 
+field \(K(B)\).
+\end{proof}
+
+To understand the monodromy of \(\pi^* V_\Q\), we will use Andr\'e's theorem, which 
+implies that \(\mathrm{Mon}(V_\Q)^\circ \trianglelefteq S\). The remainder of this 
+section will be dedicated to understanding the action of \(S\) on \(V_\Q\).
+
+% We want to understand the structure of \(\pi^* V_\Q\). Recall from \cite{varvak25}
+% that \(V_\C\) is irreducible under the action of \(\mathrm{Mon}(V_\Q)(\C)\). 
+% Let \(S \sim H_1 \times \cdots \times H_k\) be an isogeny decomposition of \(S(\C)\).
+% we will claim that \(\pi^* V_\C\) splits into a direct sum of irreducible 
+% \(H_i\)-representations. However, to do that, we will need the following 
+% observation regarding the infinitesimal representation.
+
+\begin{proposition}
+    There exists an isomorphism of \(\C\)-Hodge structures 
+    \(\pi^* V_\C = U_1 \oplus \cdots \oplus U_k\), where \(U_i\) has the compatible 
+    structure of an irreducible \(\mathfrak{h}_i\)-representation and 
+    \(\mathfrak{h}_j\) acts trivially on \(U_i\) for \(j \neq i\).
+\end{proposition}
+
+\begin{proof}
+We have an isomorphism of complex Lie algebras 
+\(\mathfrak{s}_\C = \mathfrak{h}_1 \oplus \cdots \oplus \mathfrak{h}_k\) coming from the 
+isogeny decomposition. In particular, the decomposed Lie algebra acts on \(V_\C\) by 
+\[d\rho: \mathfrak{h}_1 \oplus \cdots \oplus \mathfrak{h}_k \to \mathrm{Aut}(V_\C).\]
+Let \(U\) be an irreducible factor of \(\pi^* V_\C\); we can write it as 
+a tensor product \(U = W_1 \otimes \cdots \otimes W_k\), where \(W_i\) is an 
+irreducible \(\mathfrak{h}_i\)-representation. 
+
+Let \(\mu: \mathbb{G}_{m, \C} \to S(\C)\) be the Hodge cocharacter. Since 
+\(V_\Q\) is weight 1, \(\mu(z)\) acts by \(z\) or \(0\). Consequently, 
+\(d\mu: \C \to \mathfrak{s}_\C \to \mathrm{Aut}(V_\C)\) acts by matrices with
+eigenvalues in \{0, 1\}. Denote by \(\mu_i: \C \to \mathfrak{h}_i \to \Aut(W_i)\)
+the projection to the \(i\)-th factor. Suppose for \(z \in \C\) and \(w_i \in W_i\) 
+we have \(d\mu(z).w_i = w_i\); then 
+\begin{equation*}
+    d\mu(z).(w_1 \otimes \cdots \otimes w_k) = 
+    (\lambda_1 + \cdots + \lambda_k).(w_1 \otimes \cdots \otimes w_k),
+\end{equation*}
+where \(\lambda_j\) are the eigenvalues of \(d\mu(z)\) acting on \(W_j\). 
+Since \(\lambda_i = 1\) and \(\lambda_1 + \cdots + \lambda_k \in \{0, 1\}\), 
+we must have \(\lambda_j = 0\) for all \(j \neq i\). 
+
+\begin{lemma}
+    \(\mathfrak{h}_j\) acts trivially on \(W_j\) for \(j \neq i\). 
+\end{lemma}
+
+\begin{proof}
+\(S\) is the smallest \(\Q\)-algebraic group whose real points contain the 
+image of the Hodge cocharacter. As such, if \(X \in \mathfrak{s}_\C\) is a generator 
+of the image of \(d\mu\), its projection to \(\mathfrak{h}_j\) must be
+\(X_j \neq 0\) for all \(j=1,\dots, k\). Furthermore, \(\mathfrak{h}_j\) is 
+simple for all \(j\), so that \([\mathfrak{h}_j, \mathfrak{h}_j] = \mathfrak{h}_j\).
+In particular, \(X_j\) is traceless on \(W_j\).
+
+Now if \(W_j\) is non-trivial, \(X_j\) must have at least one positive integer 
+eigenvalue and at least one negative integer eigenvalue. Let \(\lambda_j \geq 1\) 
+be the largest eigenvalue of \(X_j\) acting on \(W_j\). By the same argument, 
+\(\lambda_i \geq 1\). This forces \(X\) to have an eigenvalue of at least two 
+on \(U\), a contradiction. Thus the image of the Deligne torus \(X_j\) acts 
+trivially on \(W_j\) for \(j \neq i\).
+
+Note that we have not yet shown that \(\mathfrak{h}_j\) acts trivially, only that 
+the representation \(W_j\) has level zero. Indeed, one may consider Mumford's 
+famous example of a non-trivial family of Abelian 4-folds with Mumford--Tate group isogenous 
+to \(\SL_2(\R) \times \mathrm{SU}(2)^2\) \cite{mumford69}. To rule out such examples, 
+we will need to leverage some actual geometry native to Lagrangian fibrations.
+
+Let \(D_1 \subseteq B\) be a component of the discriminant with infinite local 
+monodromy; such a component exists by \Cref{infinite-monodromy}. Let \(T\) be a 
+local monodromy operator for this component; its logarithm \(N\) belongs to 
+\(\mathfrak{h}_1 \oplus \cdots \oplus \mathfrak{h}_k\). Since \(\mathfrak{h}_i\) 
+acts with level one on \(W_i\), we may choose \(T\) such that the projection 
+\(N_i \in \mathfrak{h}_i\) acts non-trivially. By \Cref{local-monodromy-eigenvalues}, 
+\(N\) has rank one, so that all other projections \(N_j = 0\), for \(j \neq i\). 
+
+Now observe that every other \(W_j\) is forced to be one-dimensional. Indeed, 
+suppose \(\dim W_1 \geq 2\); then for every basis vector \(w_{1, \alpha} \in W_1\),
+\begin{equation*}
+    N. (w_{1, \alpha} \otimes \cdots \otimes w_i \otimes \cdots \otimes w_k) = 
+    w_{1, \alpha} \otimes \cdots \otimes N_i . w_i \otimes \cdots \otimes w_k
+\end{equation*}
+provides a disctinct linearly independent vector in \(\im(N)\), a contradiction.
+
+Finally, since the action of \(\mathfrak{h}_j\) on \(W_j\) is forced to be given by 
+characters, it factors through the Abelianization 
+\(\mathfrak{h}_j/[\mathfrak{h}_j, \mathfrak{h}_j]\). But \(\mathfrak{h}_j\) is 
+simple, so that this is the trivial group. Hence only \(\mathfrak{h}_i\) acts 
+non-trivially on \(W_1 \otimes \cdots \otimes W_k\), as needed.
+\end{proof}
+
+
+Thus we may write \(\pi^* V_\C = (B_1 \otimes U_1) \oplus \cdots \oplus (B_k \otimes U_k)\); 
+however, this is only a decomposition of infinitesimal representations. Next, we will show that 
+the \(B_i \otimes U_i\) are in fact representations of \(S(\C)\). To that end, write 
+\begin{equation*}
+    \mathfrak{k}_i = \mathfrak{h}_1 \oplus \cdots \oplus \wh{\mathfrak{h}_i}
+    \oplus \cdots \oplus \mathfrak{h}_k;
+\end{equation*}
+this allows us to describe \(B_i \otimes U_i\) as \(\mathrm{Ann}(\mathfrak{k}_i)\). We 
+now claim that for all \(g \in S(\C)\), \(g B_i \otimes U_i = B_i \otimes U_i\). To see this, 
+choose any \(X \in \mathfrak{k}_i\) and \(u_i \in B_i \otimes U_i\); by Lie theory, 
+\begin{equation*}
+    0 = g.(X.u_i) = g \frac{d}{dt}\Big|_{t=0} e^{tX} g^{-1} g . u_i = 
+    (\mathrm{Ad}(g) X). (g . u_i).
+\end{equation*}
+But \(\mathrm{Ad}\) is a continuous action of \(S(\C)\) a connected group
+on the discrete set of simple ideals of \(\mathfrak{s}_\C\). Hence the action does not 
+permute the simple ideals, so that \(\mathrm{Ad}(g) \mathfrak{h}_i = \mathfrak{h}_i\), 
+and analogously for \(\mathfrak{k}_i\). This implies that 
+\(\mathrm{Ad}(g) X \in \mathfrak{k}_i\), so that 
+\(g.u_i \in \mathrm{Ann}(\mathfrak{k}_i) = B_i \otimes U_i\), as needed.
+
+Now we claim that \(\mathfrak{h}_1 = \cdots = \mathfrak{h}_k\). 
+Indeed, by \cite{varvak25}, \(V_\C\) is irreducible, so by Clifford's theorem 
+\cite{clifford37}, \(\Gamma\) permutes the \(B_i \otimes U_i\) factors
+transitively, i.e. \((B_i \otimes U_i)^\gamma = B_j \otimes U_j\), for all 
+\(\gamma \in \Gamma\). But recall that \(U_i = \mathrm{Ann}(\mathfrak{k}_i)\), so 
+conjugation by \(\gamma\) induces an outer isomorphism 
+\(\mathfrak{k}_i = \mathfrak{k}_j\), forcing \(\mathfrak{h}_i = \mathfrak{h}_j\), 
+as needed.
+
+Finally, we claim that \(B_i = \C\) for all \(i\). Indeed, \(V_\C\) varies maximally, 
+so \(\pi^* V_\C\) also varies maximally, meaning that no power of a Hodge structure 
+shows up in the very general fiber. This shows that 
+\(\pi^* V_\C = U_1 \oplus \cdots \oplus U_k\), as needed.
+\end{proof}
+
+
+Notice that \(S(\C)\) is still merely isogenous to a power of a simple group.
+We lose no generality in taking \(H^k\) to be the universal cover of \(S(\C)\);
+thus \(\pi^* V_\C = U_1 \oplus \cdots \oplus U_k\) acquires the structure of a 
+\(H^k\)-representation. Furthermore, the \(i\)-th factor \(H_i\) acts non-trivially 
+on \(U_i\) and trivially on \(U_j\) for \(j \neq i\).
+
+\begin{proposition}
+    Let \(G = \mathbf{MT}(V_\Q)\) be the full Mumford--Tate group, and \(\wt{G}\) its 
+    universal cover, \(\wt{G} = Z \times H_1 \times \cdots \times H_k\). 
+    There exists an intermediate extension \(G' \twoheadrightarrow G\) 
+    for which the Deligne torus \(h: \mathbb{S} \to G\) lifts to 
+    \(h': \mathbb{S} \to G'\). Furthermore, we may write \(G'\) as a diagonal quotient
+    \[M' = \wt{G}/(\underline{\zeta}) = 
+        \frac{Z \times H_1 \times \cdots \times H_k}{(\zeta_0, \zeta_1, \dots, \zeta_k)}\] 
+    for \(\zeta_0 \in Z\) and \(\zeta_i \in Z(H_i)\). 
+\end{proposition}
+
+\begin{proof}
+% As before, decompose \(dh = X_0 + X_1 + \dots + X_k\). Let \(h_i^{1,0}\) be the 
+% dimension of the 1-eigenspace of \(X\) on \(U_i\), and let \(h_i = \dim U_i\) be the 
+% full dimension. By construction, only \(X_0\) and \(X_i\) act non-trivially on \(U_i\).
+% Furthermore, \(X_i\) is traceless, so that 
+% \begin{equation*}
+%     h_i^{1,0} = \mathrm{Tr}(X|_{U_i}) = \mathrm{Tr}(X_0|_{U_i}).
+% \end{equation*}
+% However, \(Z = Z(\wt{M})\) is the connected center, so \(X_0\) must act by 
+% scalar multiplication on \(U_i\). Thus \(X_0: u_i \mapsto (h_i^{1,0}/h_i)u_i\).
+
+In order for the Deligne torus to lift to an intermediate cover \(G' \to G\), 
+we must have \(h': \mathbb{S} \to G'\) acting by a torus representation on \(U_i\).
+In other words, \(dh' = X_0 + X_1 + \cdots + X_k\) must have integer eigenvalues.
+This is the same as requiring \(\exp(2\pi i\cdot dh') = 1 \in G'\).
+Thus we define \(\zeta_i = \exp(2\pi i X_i)\), \(i = 0, \dots, k\), and 
+take \(\underline{\zeta} = (\zeta_0, \zeta_1, \dots, \zeta_k) \in \wt{G}(\C)\). 
+By construction, the Deligne torus will lift to \(G' = \wt{G}/\underline{\zeta}\).
+\end{proof}
+
+To better understand why we generally cannot lift the Deligne torus to the universal 
+cover \(\wt{G}\), consider the following example.
+
+\begin{example}
+Suppose \(G = \GL_2 \times_{\mathbb{G}_m} \GL_2\), acting on \(U_1 \oplus U_2\) by the 
+standard representation. Then \(\wt{G}(\C) = \mathbb{G}_m(\C) \times \SL_2(\C)^2\). 
+We can decompose the Hodge co-character as 
+\begin{equation*}
+    \mu = \begin{pmatrix}
+        z & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & z & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix},\quad d\mu = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 0
+    \end{pmatrix} = X_0 + X_1 + X_2.
+\end{equation*}
+Write the trace \(\mathrm{Tr}(X|_{U_1}) = \mathrm{Tr}((X_0 + X_1)|_{U_1}) 
+= \mathrm{Tr}(X_0|_{U_1}) = 1\).
+But \(X_0\) is central, so it is diagonal and acts by multiplication by \(1/2\).
+Consequently,
+\begin{equation*}
+    X_0 = \begin{pmatrix}
+        1/2 & 0 & 0 & 0 \\
+        0 & 1/2 & 0 & 0 \\
+        0 & 0 & 1/2 & 0 \\
+        0 & 0 & 0 & 1/2
+    \end{pmatrix},\  X_1 = \begin{pmatrix}
+        1/2 & 0 & 0 & 0 \\
+        0 & -1/2 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0
+    \end{pmatrix},\  X_2 = \begin{pmatrix}
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 1/2 & 0 \\
+        0 & 0 & 0 & -1/2
+    \end{pmatrix}.
+\end{equation*}
+Now if we exponentiate these generators, we get 
+\begin{equation*}
+    \zeta_0 = -1 \in \mathbb{G}_m,\quad \zeta_1 = \zeta_2 = -I_2 \in Z(\SL_2).
+\end{equation*}
+Notice that \(G' = \wt{G}/(\ul{\zeta}) = G\), so the Deligne torus lifts no futher 
+than \(G\). 
+\qed
+\end{example}
+
+% \begin{example}
+% We can explicitly write down the Lie representation of the Deligne torus in general.
+% As before, decompose \(dh = X_0 + X_1 + \dots + X_k\). Let \(h_i^{1,0}\) be the 
+% dimension of the 1-eigenspace of \(X\) on \(U_i\), and let \(h_i = \dim U_i\) be the 
+% full dimension. By construction, only \(X_0\) and \(X_i\) act non-trivially on \(U_i\).
+% Furthermore, because \(\mathfrak{h}_i = [\mathfrak{h}_i, \mathfrak{h}_i]\) we see that 
+% \(X_i\) is traceless, and
+% \begin{equation*}
+%     h_i^{1,0} = \mathrm{Tr}(X|_{U_i}) = \mathrm{Tr}(X_0|_{U_i}).
+% \end{equation*}
+% However, \(Z = Z(\wt{G})\) is the connected center, so by Schur's lemma for commuting 
+% endomorphisms, \(X_0\) must act by scalar multiplication on \(U_i\). 
+% Thus \(X_0: u_i \mapsto (h_i^{1,0}/h_i)u_i\), and 
+% \begin{equation*}
+%     X_i: u_i \mapsto (1 - h_i^{1,0}/h_i) u_i^{1,0} - (h_i^{1,0}/h_i) u_i^{0,1}.
+% \end{equation*}
+% In particular, for \(i = 1, \dots, k\), 
+% \begin{equation*}
+%     \zeta_i = \exp(2\pi i X_i) = \exp(2\pi i \cdot h_i^{1,0}/h_i)\cdot I_{h_i} \in \wt{G}
+% \end{equation*}
+% \qed
+% \end{example}
+
+
+Now take the derived subgroup of \(G'\):
+\begin{equation*}
+    G' = [\wt{G}/N, \wt{G}/N] = \frac{[\wt{G}, \wt{G}] N}{N} = 
+    \frac{[\wt{G}, \wt{G}]}{[\wt{G}, \wt{G}] \cap N},
+\end{equation*}
+where \(N = \left<\underline{\zeta}\right>\). Notice that all the \(\zeta_i\) are 
+central, so that the intersection \([\wt{G}, \wt{G}] \cap N\) is trivial. Since 
+\([\wt{G}, \wt{G}] = H_1 \times \cdots \times H_k\), we get the following corollary.
+
+% We may identify the intersection 
+% \([\wt{M}, \wt{M}] \cap N\) with \(\left< (1, \zeta_1^r, \dots, \zeta_k^r )\right>\), 
+% where \(r\) is the order of \(\zeta_0 \in Z\). But by construction, the order of 
+% \(\zeta_0\) divides the orders of \(\zeta_i \in Z(H_i)\). 
+
+\begin{corollary}
+    Let \(U_1' \oplus \cdots \oplus U_k'\) be the induced representation of \(G'\)
+    on \(\pi^* V_\C = U_1 \oplus \cdots \oplus U_k\). 
+    The derived subgroup \([G', G'] = H_1 \times \cdots \times H_k\) is a 
+    power of a simple group, and acts on 
+    \(U_1' \oplus \cdots \oplus U_k'\) with each \(H_i\) acting non-trivially
+    on \(U_i'\) and trivially on \(U_j'\) for \(j \neq i\). 
+\end{corollary}
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Proof of the main theorem}
+
+
+Now we are ready to prove the main theorem. 
+
+\begin{theorem}
+    Let \(X\) be a primitive symplectic variety of dimension \(2g\), and let 
+    \(f: X \to B\) be a Lagrangian fibration. Let \(G\) be the derived Mumford--Tate 
+    group of \(f\). 
+    \begin{equation}
+        G = \begin{cases}
+            \Sp_{2g/k}^k & : f \text{ varies maximally,} \\
+            \SL_2 & : f \text{ is isotrivial with Hodge--generic fiber,} \\
+            1 & : f \text { is isotrivial with CM fiber.}
+        \end{cases}
+    \end{equation}
+\end{theorem}
+
+
+\begin{proof}
+As before, take \(\pi: B' \to B\) be the cover over which 
+\(\pi^* V = U_1 \oplus \cdots \oplus U_k\) splits, and let \(\Gamma\) be the automorphism 
+group of the cover, acting transitively on the \(U_i\). We claim that each of the 
+\(U_i\) is isotypic, i.e. \(U_i \ncong U_j\) for \(i \neq j\). To see that this holds, 
+suppose that \(U_1 \cong U_2\). By \Cref{infinite-monodromy}, there exists a component 
+\(D_1\) of the discriminant which has non-finite local monodromy. Without loss of 
+generality, suppose that \(U_1\) degenerates along \(D_1\). Then \(U_2\) also degenerates 
+along \(D_1\). But by \Cref{local-monodromy-eigenvalues}, every general degeneration is 
+of nilpotent rank one, a contradiction.
+
+Hence we must have \(U_i \ncong U_j\) for \(i \neq j\). We now claim that the 
+splitting is defined over \(\Q\). Indeed, if we replace \(V\) with any \(\Q\)-simple 
+factor, there is a number field \(K\) over which \(G = H(K)\) and 
+\(\pi^* V_K = U_1 \oplus \cdots \oplus U_k\), where the \(U_i\) 
+are now defined over \(\Q\) and permuted by the transitive action of \(\mathrm{Gal}(K/\Q)\).
+Use the setup above, with \(U_1\) degenerating along \(D_1\). As we have shown, the 
+degeneration of \(V\) along \(D_1\) is defined over \(\Q\), so the rest of the 
+Galois conjugates \(U_i\) must also degenerate along \(D_1\). Thus we must have 
+\(K = \Q\), as needed.
+
+Now any irreducible factor of \(G\) is defined over \(\Q\). Set \(U = U_1\), 
+and consider the action of \(H\) on \(U\). The group \(H\) is geometrically simple, 
+so that \(H(\C)\) is one of \(\SL_{2h}(\C)\), \(\Sp_{2h}(\C)\), or \(\mathrm{SO}_{2h}(\C)\).
+However, we may rule out \(\SL_{2h}(\C)\) and \(\mathrm{SO}_{2h}(\C)\), since 
+\(U\) comes from a family of Abelian varieties of dimension \(h\).
+
+Recall that \(\Sp_{2h}(\C)\) has no non-trivial outer automorphisms. Thus 
+\(H\) is an inner form of \(\Sp_{2h}\). Since \(U\) comes from a family of 
+Abelian varieties (up to isogeny), \(H(\R) = \Sp_{2h}(\R)\); the only alternative 
+would be \(\Sp(p, q)\), which is non-Hermitian when \(q \neq 0\), 
+for which \(U\) is isotrivial. Now \(H\) must be of the form \(\Sp_r(D)\), for 
+\(D\) a division algebra with center \(\Q\), \(U_b = D^r\). Maximal parabolic 
+subgroups of \(H\) are in bijection with totally isotropic
+\(D\)-subspaces \(W \subseteq U_b\) via orbit--stabilizer. In particular, since 
+\(\dim_\Q D = d > 1\), the period image of \(U\) meets the Baily--Borel boundary in 
+\(\cA_{g-d} \subseteq \partial \cA_g^*\). This once again contradicts \Cref{local-monodromy-eigenvalues}.
+Therefore \(H = \Sp_{2h}\), and \(G = \Sp_{2h}^k\), concluding the proof. 
+\end{proof}
+
+
+Note that this allows us to compute the center of the special Mumford--Tate group. 
+Since special endomorphisms are ruled out, the only endomorphisms which can 
+commute with the special Mumford--Tate group are rational scalars. 
+If we take \(c\) to be such a scalar, it satisfies 
+\begin{equation*}
+    c^2 \psi(v, w) = \psi(c I_g.v, c I_g.w) = \psi(v, w),
+\end{equation*}
+with respect to the polarization \(\psi\), forcing \(c^2 = 1\) and \(c = \pm 1\). 
+However, since the special Mumford--Tate group is generated by the derived Mumford--Tate 
+group and the identity component of the center, it is forced to be equal to \(G\).
+
+
+\begin{corollary} \label{mt-classification}
+    Let \(X\) be a primitive symplectic variety of dimension \(2g\), and let 
+    \(f: X \to B\) be a Lagrangian fibration. Let \(\wt{G}\) be the Mumford--Tate 
+    group of \(f\). 
+    \begin{equation}
+        \wt{G} = \begin{cases}
+            (\mathbb{G}_m \times \Sp_{2g/k}^k) / \{\pm 1\} & : f \text{ varies maximally,} \\
+            \GL_2 & : f \text{ is isotrivial with Hodge--generic fiber,} \\
+            \mathbb{G}_m & : f \text { is isotrivial with CM fiber.}
+        \end{cases}
+    \end{equation}
+\end{corollary}
+
+
+
+
+
+\section{The Mumford--Tate group of a general deformation}
+
+\subsection{Degenerations of elliptic fibrations}
+
+Below, we compute several examples for the monodromy eigenvalues of a family of 
+elliptic curves \(f_S: S \to U\). None of this work is original, but it is informative 
+and will be used later.
+
+\begin{example}[Type II]
+We work with the local model \(y^2 = x^3 + t\). As \(t\) goes to \(e^{2\pi i}t\),
+\(x\) goes to \(e^{2\pi i / 3}x\) and \(y\) goes to \(e^{\pi i}y = -y\). 
+Recall that \(F^1 V\) is generated by \(dx/y\); as we have seen above,
+\(T: dx/y \mapsto e^{-2 \pi i} dx/y\). In other words, with respect to the 
+Hodge frame, \(T\) takes the form 
+\begin{equation*}
+    T = \begin{pmatrix}
+        e^{-2 \pi i/3} & 0 \\ 0 & e^{2\pi i / 3}
+    \end{pmatrix}.
+\end{equation*}
+\end{example}
+
+\begin{example}[Type II*]
+This time our local model is \(y^2 = x^3 + t^5\). If we proceed as above, we will 
+find that the monodromy acts trivially. Thus, we must first pass to a finite cover.
+Let \(\Delta_u \to \Delta_t, u \mapsto u^6 = t\). By pulling back along this cover, 
+we get \(y^2 = x^3 + u^{30}\); define new coordinates for the total space 
+via \(x = x_u \cdot u^{10}\) and \(y = y_u \cdot u^{15}\); we get a new 
+defining equation
+\begin{equation*}
+    y_u^2 = x_u^3 + 1.
+\end{equation*}
+Thus we have trivialized the family. Pulling back \(dx/y\), we get 
+\(u^{10} dx_u / u^{15} y_u = dx_u / u^5 y_u\). Now consider what happens when 
+we apply the monodromy operator on \(\Delta_t^*\). As \(t\) goes to 
+\(e^{2\pi i} t\), \(u\) goes to \(e^{\pi i / 3} u\). Thus, the action of \(T\) on the
+\(F^1\) piece of the Hodge filtration is 
+\begin{equation*}
+    \frac{dx_u}{u^5 y_u} \mapsto \frac{dx_u}{e^{5\pi i / 3} u^5 y_u} = e^{\pi i / 3}\frac{dx_u}{u^5 y_u}.
+\end{equation*}
+In other words, \(T\) diagonalizes as 
+\begin{equation*}
+    T = \begin{pmatrix}
+        e^{\pi i/3} & 0 \\ 0 & e^{-\pi i/3}
+    \end{pmatrix}.
+\end{equation*}
+\end{example}
+
+\begin{lemma}
+    If \(S \to U\) is isotrivial of Kodaira type \(\mathrm{I}_n\), \(\mathrm{I}_n^*\), 
+    \(\mathrm{II}^*\), \(\mathrm{III}^*\), or \(\mathrm{IV}^*\), the eigenvalue 
+    of \(F^1\) (viewed as an eigenspace) lies in the upper half-plane.
+\end{lemma}
+
+
+\subsection{Splitting the fibration via the Mumford--Tate group}
+Let \(G\) be the Mumford--Tate group of a Lagrangian fibration \(f: X \to B\). 
+We have shown above that there exists a (ramified) cover \(\pi: B' \to B\) 
+such that \(\pi^* V_\C = U_1 \oplus \cdots \oplus U_k\), and \(G(\C)\) is 
+isogenous to \(H(\C)^k\), for \(H(\C)\) a connected algebraic group 
+acting on the \(U_i\).
+
+Consider the isomorphism \(\cT_B \xrightarrow{\simeq} F^1 \ol{\cV}\). We want to 
+lift this to an isomorphism on the cover 
+\(\cT_{B'} \xrightarrow{\simeq} F^1 \ol{\pi^* \cV}\). Equivalently, we would need 
+they symplectic form on \(\ol{V}\) to lift to a symplectic form on 
+\(\ol{\pi^* V}\). It is enough to check this locally: set \(\Delta^*_t\) 
+to be a cross-section of a tubular neighborhood of \(D \subseteq B\), 
+and set \(\Delta^*_s\) to be an analogous cross-section upstairs, 
+\(\pi: \Delta_s^* \to \Delta_t^*, s \mapsto s^r = t\). Recall that 
+\(V = W \oplus E\), where \(W\) is trivial and \(E\) captures all 
+of the degeneration of \(f\). We have the commutative square
+\begin{equation*}
+\begin{tikzcd}
+    F^1 \ol{\pi^* \cE}_{\Delta_s} \arrow{r}{\delta}           & \pi^* F^1 \ol{\cE}_{\Delta_t} \\
+    \cT_{\Delta_s} \arrow{u}{\iota_{\sigma'}} \arrow{r}{d\pi} & \pi^* \cT_{\Delta_t} \arrow{u}{\simeq}
+\end{tikzcd}
+\end{equation*}
+
+Suppose that \(E\) is isotrivial. Then the limit mixed Hodge structure of \(E\)
+is simply the general fiber of \(E\), and \(T\) is a Hodge endomorphism. In 
+particular, the Deligne frame is a \(T\)-eigenbasis, i.e.
+\begin{equation*}
+    \wt{e}_j = \exp\left(2\pi i\log\left(\frac{t}{2\pi i}\right)N\right)e_j = e^{2\pi i \alpha_j \log{\frac{t}{2\pi i}}} e_j = \frac{1}{2\pi i}t^{2\pi i \alpha_j} e_j.
+\end{equation*}
+
+Suppose that the cover \(\pi\) resolves the local monodromy. Then the frame 
+\(1 \otimes e_i\) is a Deligne frame on \(\Delta_s\).
+% Pulling back to the cover \(\Delta_s\) resolves the local monodromy \(T\) (***). 
+% We get an analogous expansion for the Deligne frame on \(\Delta_s\):
+% \begin{equation*}
+%     \wt{e'}_j = \frac{1}{2\pi i \alpha_1'} s^{2\pi i} \otimes e_j.
+% \end{equation*}
+% However, if we assume that \(\alpha_1\)
+% We may write the map 
+% \begin{equation*}
+%     F^1 \pi^* \cE_{\Delta_s^*} \to \pi^* F^1 \cE_{\Delta_t^*},\quad 
+%     1 \otimes \pi^{-1} e_1 \mapsto e_1.
+% \end{equation*}
+Writing the morphism \(\delta\) in terms of the new Deligne frames, 
+\begin{align*}
+    \delta: \wt{e'}_1 = 1 \otimes \pi^{-1} e_1 & \mapsto 1 \otimes t^{-2 \pi i \alpha_1} \cdot t^{2\pi i \alpha_1} \pi^{-1} e_1 \\
+    % &= 1 \otimes t^{2\pi i (1-\alpha_1)} t^{2\pi i \alpha_1} e_1 \\
+    &= s^{-2\pi i r\alpha_1} \otimes \wt{e}_1 \\
+    &= s^{2\pi i (-r\alpha_1 - r + 1)} \cdot s^{2\pi i (r-1)} \otimes \wt{e}_1.
+\end{align*}
+
+On the other hand, we may consider the map \(d\pi: \cT_{\Delta_s} \to \pi^* \cT_{\Delta_t}\).
+In terms of coordinates,
+\begin{equation*}
+    d(s^{2\pi i}) \mapsto d(t^{2\pi i}) = 2\pi i r\cdot s^{2\pi i(r-1)} \otimes d(t^{2\pi i/r})
+\end{equation*}
+In particular, \(\delta\) drops rank in the same degree as \(d \pi\) precisely when 
+\(r\alpha_1 = 1 - r\), and \(\alpha = 1/r - 1\). Equivalently, the \(F^1\) eigenvalue 
+lies in the upper half-plane. On the other hand, if \(\alpha_1 = -1/r\), the rank 
+drop of \(\delta\) is degree one. 
+
+% Instead, if \(\alpha_1'\) is the eigenvalue corresponding to \(F^1 E\), we have 
+% \begin{equation*}
+%     \delta: \wt{e'}_1 = s^{2\pi i \alpha_1'} \otimes \pi^{-1}e_1 \mapsto 
+%     % s^{2\pi i(-r\alpha_1 - \alpha_1' - r + 1)} \cdot s^{2\pi i (r-1)} \otimes \wt{e}_1.
+%     s^{2\pi i (r\alpha'_1 - r\alpha_1)} \otimes t^{2\pi \alpha_1} \pi^{-1} e_1.
+% \end{equation*}
+% For \(\delta\) to drop rank of degree \(r-1\), we would have 
+% \(r(\alpha_1' - \alpha_1) = r-1\). Now we proceed by cases.
+
+
+More generally, if \(E\) is possibly non-isotrivial with trivial unipotent rank,
+we can still consider the frame \(\wt{e}_j\). While \(T\) is no longer diagonalized 
+by the Deligne frame, it is diagonal on the limit mixed Hodge structure on the 
+puncture. The computation above yields the nilpotent residues of the connection. (***)
+
+Set \(E\) to have monodromy matrix 
+\begin{equation*}
+    T = \begin{pmatrix}
+        e^{2\pi i \alpha_1} & 0 \\ 0 & e^{2\pi i \alpha_2}
+    \end{pmatrix}.
+\end{equation*}
+We get a Deligne frame
+\begin{equation*}
+    \wt{e}_i = \exp\left(2\pi i \log\left(\frac{t}{2\pi i}\right)\begin{pmatrix}
+        \alpha_1 & 0 \\ 0 & \alpha_2
+    \end{pmatrix} \right) e_i = \ol{t}^{\alpha_i} e_i,
+\end{equation*}
+where \(\ol{t} := (t/2\pi i)^{2\pi i}\). On \(\Delta_s\), we get an induced Deligne 
+frame 
+\begin{equation*}
+    \wt{e'}_i = 1 \otimes \pi^{-1} e_i,
+\end{equation*}
+whose simple form comes from the fact that \(\pi\) resolves \(T\). However, 
+we must remark that neither of these frames needs to be a Hodge frame away from 
+\(t = 0\) and \(s = 0\). By the argument above, we may find holomorphic functions 
+\(g, g'\) on \(\Delta_t\) and \(\Delta_s\) respectively such that
+\begin{equation*}
+    h_1 = \wt{e}_1 + g \wt{e}_2 = \ol{t}^{\alpha_1} e_1 + g \ol{t}^{\alpha_2} e_2
+\end{equation*}
+generates \(F^1 \ol{\cE}\) and 
+\begin{equation*}
+    h_1' = \wt{e'}_1 + g' \wt{e'}_2 = 1 \otimes \pi^{-1} e_1 + g' \otimes \pi^{-1} e_2
+\end{equation*}
+generates \(F^1 \ol{\pi^* \cE}\). Now we may consider the comparison morphism \(\delta\)
+as above. Recall that \(\alpha_2 = -1-\alpha_1\).
+\begin{align*}
+    \delta: h_1' \mapsto& 1 \otimes \pi^{-1} e_1 + g' \otimes \pi^{-1} e_2 = \\
+    &= \ol{s}^{-r \alpha_1} \otimes \ol{t}^{\alpha_1} \pi^{-1} e_1 + 
+        g' \ol{s}^{-r \alpha_2} \otimes \ol{t}^{\alpha_2} \pi^{-1} e_2 \\
+    &= \ol{s}^{-r \alpha_1} \left( 1 \otimes \pi^{-1}\wt{e}_1 + 
+        g' \ol{s}^{r+2r\alpha_1} \otimes \pi^{-1}\wt{e}_2\right) \\
+    &= \ol{s}^{-r \alpha_1} \otimes \pi^{-1} h_1 - 
+        (\ol{s}^{-r \alpha_1} \otimes g \ol{t}^{-1-\alpha_1} - 
+        g' \ol{s}^{r+r\alpha_1} \otimes 1) \cdot 1 \otimes \pi^{-1} \wt{e}_2 \\
+    &= \ol{s}^{-r \alpha_1} \otimes \pi^{-1} h_1 - 
+        (\ol{s}^{-r-2r\alpha_1} \otimes g - g' \ol{s}^{r + r\alpha_1} \otimes 1) 
+        \cdot 1 \otimes \pi^{-1} \wt{e}_2
+\end{align*}
+Observe that if \(\alpha_1 = -d/r\), as \(s\) approaches zero, 
+\(\ol{s}^{-r \alpha_1} = o(|s|^d)\), while 
+\(\ol{s}^{-r-2r\alpha_1} \otimes g = o(|\ol{s}|^{2d})\) and 
+\(g'\ol{s}^{r+r\alpha_1} = o(|\ol{s}|^{r})\) (***). In particular, \(\delta\) 
+drops rank with degree \(d\), reducing to the case above. 
+
+
+
+
+Now suppose instead that \(E\) has non-trivial unipotent part, 
+\begin{equation*}
+    T = \begin{pmatrix}
+        e^\alpha & 1 \\ 0 & e^\alpha
+    \end{pmatrix},\quad e^\alpha = \pm 1.
+\end{equation*}
+We work with the Deligne frame above: on \(\Delta_t\),
+\begin{equation*}
+    \wt{e}_1 = \exp\left(2\pi i \log\left(\frac{t}{2\pi i}\right) N\right)e_1 
+    = \left(\frac{t}{2\pi i}\right)^{2\pi i \alpha} e_1,
+\end{equation*}
+and 
+\begin{equation*}
+    \wt{e}_2 = \exp\left(2\pi i \log\left(\frac{t}{2\pi i}\right) N\right)e_2 
+    = \left(\frac{t}{2\pi i}\right)^{2\pi i \alpha} e_2
+    + 2\pi i \log\left(\frac{t}{2\pi i}\right)\cdot \left(\frac{t}{2\pi i}\right)^{2\pi i \alpha} e_1.
+\end{equation*}
+In the limit mixed Hodge structure, the \(F^1\) is spanned by \(\wt{e}_2\). 
+However, this is not by itself a Hodge frame over \(\Delta^*_t\). Instead, we may 
+write \(h_2 = \wt{e}_2 + g_1 \wt{e}_1\), for \(g_1\) a function holomorphic on 
+\(\Delta_t\) and vanishing at \(t = 0\), with \(h_2\) spanning \(F^1\).
+
+Write the analogous Deligne frame \(\wt{e'}_i\) and Hodge frame \(h_i'\) for 
+\(\Delta_s\), with \(\alpha' = 0\). For simplicity, we will substitute 
+\begin{equation*}
+    \ol{t} = \left(\frac{t}{2\pi i}\right)^{2\pi i},\quad 
+    \ol{s} = \left(\frac{s}{2\pi i}\right)^{2\pi i}.
+\end{equation*}
+The map 
+\begin{align*}
+    \delta: h_2' = \ol{s} \otimes e_2 &+ (\ol{s} \log(\ol{s}) + g_1') \otimes e_1 
+    \mapsto (\ol{s})^r \otimes e_2 + (r (\ol{s})^r \log(\ol{s}) + g_1') \otimes e_1 \\
+    &= (\ol{s})^{r(1 - \alpha)} \otimes (\ol{t})^{\alpha} e_2 
+       + (\ol{s})^{r(1-\alpha)} 
+        \otimes ((\ol{t})^{\alpha} \log(\ol{t}) + g_1) e_1 + \\
+        &\qquad + (g_1' \otimes 1 - (\ol{s})^{r(1 - \alpha)} \otimes g_1) e_1 \\
+    &= (\ol{s})^{r(1-\alpha)} \otimes h_2 + 
+        (g_1' \otimes 1 - (\ol{s})^{r(1-\alpha)} \otimes g_1) e_1
+\end{align*}
+The right term vanishes as \(s \to 0\). Now if \(\alpha = -1/2\), setting 
+\(r = 2\) allows \(\delta\) to attain the same drop of rank as \(d\pi\). 
+Otherwise, if \(\alpha = 0\), \(T\) does not permute the \(U_i\), and thus 
+the acquired singular fibers come from the fibration downstairs.
+
+\begin{theorem} \label{symplectic-preservation-under-smoothing}
+    Suppose that for every dimension \(g-1\) component of the discriminant 
+    \(D_1 \subseteq D \subseteq B\), the general singular fiber of 
+    \(\cE|_{D_1} \to D_1\) is not of Kodaira type \(\mathrm{II}\), 
+    \(\mathrm{III}\), or \(\mathrm{IV}\). Then the morphism
+    \(\iota_{\sigma'}: \cT_{B'} \to F^1 \ol{\pi^* \cV}\) is an isomorphism
+    on the smooth locus of \(B'\). 
+\end{theorem}
+
+\begin{proof}
+This follows from the preceeding discussion on the singular fibers of elliptic 
+fibrations and the fact that \(\delta\) captures all of the drop in rank of the 
+derivative map \(d\pi\). (May need to use relative MMP for elliptic fibrations***)
+\end{proof}
+
+
+
+We illustrate this with the following example.
+
+\begin{example}
+Let \(f: S \to \bbP^1\) be the elliptically fibered K3 surface defined by the 
+following Weirstrass equation: \(y^2 = x^3 + t^4 x + t^5(t^2 + 1)\), for \(t\) a 
+coordinate on \(\bbP^1\). This has discriminant with defining equation
+\[\Delta(t) = 4(t^4)^3 + 27(t^7 + t^5)^2 = 27t^{14} + 58t^{12} + 27t^{10}.\]
+Note that \(\Delta(t)\) vanishes to order \(10\) at \(0\) and \(\infty\), and 
+has simple zeros at the roots of \(27t^4 + 58t^2 + 27\). In particular, 
+the Euler characteristic of the total space \(S\) is 
+\(\chi(S) = 10 + 10 + 4 \cdot 1 = 24\), as needed. By Kodaira's classification 
+of singular fibers, the fibers over \(0\) and \(\infty\) are of type \(\mathrm{II}^*\),
+while the four simple fibers are of type \(\mathrm{I}_1\).
+
+Let \(\pi: B' \to \bbP^1\) be a degree six cover branched at \(0\) and \(\infty\).
+By Riemann--Hurwitz, we have 
+\begin{equation*}
+    \chi(B') - \deg R = \chi(B') - 2 = 6 (\chi(\bbP^1) - 2) = 0.
+\end{equation*}
+Hence \(\chi(B') = 2\), forcing \(B' \simeq \bbP^1\). 
+
+Now consider the pullback of \(S\):
+\begin{equation*}
+\begin{tikzcd}
+    S' \arrow{d}{f'} \arrow{rr} && S \arrow{d}{f} \\
+    \bbP^1 \arrow{rr}{\pi} && \bbP^1
+\end{tikzcd}
+\end{equation*}
+We claim that the induced symplectic form on the smooth fibers of \(f'\) extends to 
+a symplectic form on the singular fibers of \(f'\). To see this, it suffices to 
+show that \(S'\) is another K3 surface. We again check this by verifying the 
+Euler characteristic of \(S'\). Since \(S_0\) and \(S_\infty\) have local monodromy 
+\(\Z/6\Z\), the cover resolves the monodromy group, thereby smoothing the \(\mathrm{II}^*\) 
+fibers. On the other hand, the four \(\mathrm{I}_1\) fibers are left untouched, 
+so that 
+\begin{equation*}
+    \chi(S') = \sum_{b \in D \smallsetminus \{0, \infty\}} 6 \cdot \chi(S_b) = 24.
+\end{equation*}
+\qed
+\end{example}
+
+
+
+
+\subsection{Proving Hodge-genericity}
+
+Recall that we had \(\pi: B' \to B\) such that \(\pi^* V = U_1 \oplus \cdots \oplus U_k\),
+a splitting we now know to occur over \(\Q\). Let \(\Gamma\) be the automorphism group 
+of the cover, acting transitively on the summands. We want to realize \(f: X \to B\) 
+up to isogeny as a group quotient of a product fibration. For that, suppose 
+\(\Gamma \leq \mathfrak{S}_k\) is generated by a transitive collection of cycles of 
+length \(c \leq k\).
+
+Let \(D\) be the branch locus of \(\pi\). In a neighborhood of any component 
+\(D_1 \subseteq D\), we can choose coordinates \(t_1, \dots, t_g\) on \(B\)
+and \(s_1, \dots, s_g\) on \(B'\) such that \(t_1\) vanishes along \(D_1\) and 
+\(\pi: (s_1, \dots, s_g) \mapsto (s_1^c, s_2, \dots, s_g) = (t_1, \dots, t_g)\).
+Let \(R = \pi^{-1}(D_1)\) be the ramification divisor of \(\pi\), locally cut out by 
+\(s_1\). Without loss of generality, replace \(B\), \(B'\), \(R\), and \(D\) with
+their respective analytic neighborhoods. Consider the following diagram:
+\[\begin{tikzcd}
+F^1 \ol{\cU}_1 \oplus \cdots \oplus F^1 \ol{\cU}_k \arrow{rr}{\delta} && \pi^* F^1 \ol{\cV} \\
+\cT_{B'} \arrow{u}{\iota_{\sigma}} \arrow{rr}{d\pi} && \pi^*\cT_{B} \arrow{u}{\simeq}
+\end{tikzcd}\]
+
+\begin{lemma}
+    The map \(\delta\) vanishes to order \((c-1)\) along \(R\).
+\end{lemma}
+
+\begin{proof}
+We follow the argument given in the preceding section. Let \(T\) be the local 
+monodromy operator acting on \(F^1 \cV\) along a loop in \(B\) around \(D\).
+Let \(N\) be its logarithm; we have shown above that it has two non-trivial 
+eigenvalues \(\alpha_1\) and \(-1-\alpha_1\), where \(\alpha_1\) is taken to 
+be the eigenvalue corresponding to the action on the \(F^1\) piece of the limit mixed 
+Hodge structure, chosen in the interval \((-1, 0]\).
+
+We claim that \(\alpha_1 = -1-\alpha_1\); in particular, they are both \(-1/2\).
+Suppose otherwise; let \(u_1 \in F^1 \ol{\cU_1}|_{R}\), and choose 
+\(u_i = T^{i-1}(u_1) \in F^1 \ol{\cU_i}|_{R}\) for \(i=2, \dots, c\). 
+By construction, for \(\zeta\) a primitive \(c\)-th root of unity, 
+\begin{equation*}
+    T: u_1 + \zeta u_2 + \dots + \zeta^{c-1} u_c \mapsto 
+    \ol{\zeta}(u_1 + \zeta u_2 + \dots + \zeta^{c-1} u_c).
+\end{equation*}
+Notice that this does not depend on a choice of \(\zeta\).
+Hence \(F^1 \ol\cV|_D\) contains the eigenspaces of \(\zeta\) and \(\ol\zeta\). 
+But we have shown above that only one \(T\)-eigenspace is non-trivial in 
+\(F^1 \ol{\cV}|_D\), forcing \(\zeta = -1\), as needed.
+\end{proof}
+
+
+\begin{proposition} \label{liftability-of-tangent-bundle-isomorphism}
+    The map \(\iota_{\sigma}\) is an isomorphism.
+\end{proposition}
+
+\begin{proof}
+The map \(d\pi\) vanishes to order \(c-1\), and by the preceding result, all of the 
+vanishing is captured by \(\delta\). The needed statement follows form the commutativity 
+of the diagram.
+\end{proof}
+
+\begin{corollary}
+    The automorphism group \(\Gamma\) of the cover \(\pi: B' \to B\) 
+    is generated by transpositions. In particular, \(\Gamma = \mathfrak{S}_k\).
+\end{corollary}
+
+
+
+
+
+\begin{theorem} \label{general-mt-classification}
+    Let \(f: X \to B\) be a general member of a given deformation class of hyper-K\"ahler 
+    manifolds admitting a Lagrangian fibration (in the sense of Matsushita--Voisin***). 
+    Then the Mumford--Tate group of the very general fiber \(X_b\) is \(\mathrm{GSp}_{2g}\).
+\end{theorem}
+
+\begin{proof}
+Since isotrivial Lagrangian fibrations are not general in their deformation class 
+(loc. cit KLM?***),
+we may assume without loss of generality that \(f\) varies maximally. Thus is 
+suffices to show that the Mumford--Tate group is not a product of symplectic groups.
+The local monodromy action of the cover \(\pi\) consists of the two-cycle permuting 
+two irreducible factors \(U_i\), \(U_j\). This corresponds to a general singular fiber 
+of type \(\mathrm{I}_0^*\). By (loc. cit Sawon or Lehn***), a Lagrangian fibration 
+whose general singular is non-reduced (e.g. of type \(\mathrm{I}_0^*\)) may not 
+occur as a general member of its deformation class.
+\end{proof}
+
+
+
+\bibliographystyle{alphaurl}
+\bibliography{refs}
+
+\end{document}
