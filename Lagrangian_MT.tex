@@ -1489,16 +1489,167 @@ so that
 
 
 
+\subsection{The action of the component group}
+As above, let \(\pi: B' \to B\) be the cover for which the algebraic monodromy group 
+splits into a power of a simple group, and \(\pi^* V_\C = \bigoplus_i U_i\). 
+Let \(D \subseteq B\) be the branch divisor of \(\pi\), and \(R \subseteq B'\) 
+the ramification divisor.
+
+The component group \(\Gamma\) transitively permutes the irreducible factors \(U_i\). 
+However, if \(\gamma_{ij}, \gamma_{ji} \in \Gamma\) are such that 
+\(\gamma_{ij} U_i = U_j\) and \(\gamma_{ji} U_j = U_i\), then \(\gamma_{ji} \gamma_{ij}\)
+acts on \(U_i\) by a (possibly non-trivial) scalar. As such, there can a priori be 
+more to the action of \(\Gamma\) than just the induced \(\mathfrak{S}_k\)-action on 
+the \(\{U_1, \dots, U_k\}\). 
+
+\begin{lemma} \label{existance-of-S_n-splitting-cover}
+    Let \(D = D_1 \cup \dots \cup D_r\) be the (codimension one) components of \(D\), 
+    and let \(\gamma_i \in \Gamma\) be the local monodromy operator corresponding to 
+    \(D_i\). There exists an intermediate cover \(B'' \to B\) on which \(V_\C\) 
+    splits as before, for which the covering group is \(\mathfrak{S}_k\) acting 
+    by permuting the irreducible summands.
+\end{lemma}
+
+\begin{proof}
+Denote by \(\varphi: \Gamma \to \mathfrak{S}_k\) the induced permutation action on the 
+\(U_i\) factors. Then \(\ker \varphi\) is a normal subgroup stabilizing each summand. 
+We handle the cases of \(\gamma_i \in \ker \phi\) and \(\gamma_i \notin \ker \phi\) 
+separately. 
+
+First, suppose the latter. Then for some \(a \neq b\) we have \(\gamma_i U_a = U_b\).
+Since \(\gamma_i\) has finite order, there exists a minimal \(c\) for which 
+\(\gamma_i^c U_a = U_a\). Now take \(u \in F^1 \ol{\cU}_a|_R\) in the limit 
+mixed Hodge structure, and consider its orbit under \(\gamma_i\):
+\begin{equation*}
+    u^{(j)} := \gamma_i^j.u, \quad j = 0, 1, \dots, c-1.
+\end{equation*}
+Each of the \(u^{(j)}\) lies in \(F^1 \cU_{b'}|_R\) for some \(b' \neq a\).
+By Schur's lemma, \(\gamma_i^c.u = e^{2\pi i/n} u\) for some \(n \in \Z_{>0}\), 
+possibly 1. 
+
+Let \(\zeta\) be any primitive \((c\cdot n)\)-th root of unity with 
+\(\zeta^c = e^{-2\pi i/n}\). We can take the sum 
+\begin{equation*}
+    v_\zeta = u^{(0)} + \zeta u^{(1)} + \dots + \zeta^{c-1} u^{(c-1)}.
+\end{equation*}
+If we apply \(\gamma_i\) to \(v_\zeta\), we obtain
+\begin{equation*}
+    v_\zeta \mapsto = \zeta^{c-1}\zeta^c u^{(0)} + u^{(1)} + \zeta u^{(2)} + \cdots + \zeta^{c-2} u^{(c-1)}
+    = \ol{\zeta} v_\zeta
+\end{equation*}
+
+Thus, we have produced a non-trivial eigenvector \(v_\zeta\) for \(\gamma_i\) lying 
+in \(F^1 \cV|_{D_i}\). Note that the same construction yields \(v_{\ol{\zeta}}\) 
+a second eigenvector in \(F^1 \cV|_{D_i}\), this time with eigenvalue \(\zeta\). By 
+\Cref{local-monodromy-eigenvalues}, we must have \(\zeta = \ol{\zeta}\), so that 
+\(\zeta = -1\). In particular, \(c = 2\) and \(n = 1\). Now that the 
+only non-trivial eigenspaces of \(\gamma_i\) are accounted for, 
+we see that \(\gamma_i\) is forced to be a transposition: 
+\begin{equation*}
+    \gamma_i U_a = U_b,\quad \gamma_i^2 = 1,\quad \gamma_i|_{U_j} = 1 \text{ if } j \neq a,b.
+\end{equation*}
+
+To deal with the case where \(\gamma_i \in \ker \varphi\), we may need to replace 
+\(\pi\) with an intermediate cover. By the argument above, \(\Gamma\) surjects 
+onto \(\mathfrak{S}_k\). Hence, the composition 
+\(\pi_1(B^\circ, b) \to G \to \Gamma \to \mathfrak{S}_k\) is also surjective. 
+Let \(B' \to B'' \xrightarrow{p} B\) be the corresponding intermediate Galois cover. 
+By construction, the splitting \(p^* V_\C = U_1 \oplus \cdots \oplus U_k\) exists on the 
+intermediate cover. 
+
+
+Where before we had an exact sequence 
+\begin{equation*}
+    1 \to \Sp_{2h}^k \to \mathrm{Mon}(V_\Q) \to \Gamma \to 1,
+\end{equation*}
+we now have a slightly different exact sequence given by 
+\begin{equation*}
+    1 \to \Sp_{2h}^k \cdot \ker(\varphi) \to \mathrm{Mon}(V_\Q) \to \mathfrak{S}_k \to 1.
+\end{equation*}
+The group \(\ker \varphi\) is a finite group, which acts on \(V_\C\) by inner 
+autmorphisms, i.e. its representation factors through \(\mathrm{PSp}_{2h}(\C)\).
+If we find a way to prove that the local monodromy operators in \(\ker \varphi\) act 
+with monodromy eigenvalues \(\pm 1\) (or even lying in the upper half-plane), 
+we will not need to pass to the intermediate cover. 
+\end{proof}
+
+
+
+
+
+
 
 \subsection{Proving Hodge-genericity}
 
 Recall that we had \(\pi: B' \to B\) such that \(\pi^* V = U_1 \oplus \cdots \oplus U_k\),
-a splitting we now know to occur over \(\Q\). Let \(\Gamma\) be the automorphism group 
+a splitting we now know to occur over \(\Q\). Let 
+\begin{equation*}
+    1 \to \Gamma' \to \Gamma \to \Lambda \to 1
+\end{equation*}
+be the corresponding map of monodromy groups, where \(\Gamma\) is the monodromy image 
+of \(V\), \(\Gamma'\) is the monodromy image of \(\pi^* V\), and \(\Lambda\) is the 
+covering automorphisms of \(\pi\). 
+
+Recall again that \(V_\C\) is irreducible as a \(\C\)-local system, by \cite{varvak25}. 
+Since \(\pi^* V\) decomposes as above, the group \(\Lambda\) must transitively 
+permute the irreducible factors \(U_i\). Since \(\Lambda\) is a quotient of \(\Gamma\), 
+it is generated by local monodromy operators coming from some components 
+\(D_i \subseteq D\).
+
+\begin{lemma}
+    There exists a component of the discriminant 
+    \(D_1 \subseteq D\) whose associated local monodromy operator \(\lambda\) 
+    acts by a two-cycle on the \(U_i\) factors: 
+    \[\lambda: U_i \to U_j,\ U_j \to U_i,\ U_\ell \xrightarrow{\sim} U_\ell, \quad 
+    \lambda^2 = \id.\]
+\end{lemma}
+
+\begin{proof}
+First notice that there is a natural map \(\Lambda \to \mathfrak{S}_k\), 
+coming from the permutations of the factors \(U_1, \cdots, U_k\) underlying 
+the action of \(\Lambda\). In fact, this proof will show that this map is surjective,
+but it suffices that it surjects onto a subgroup \(\overline{\Lambda} \leq \mathfrak{S}_k\). 
+Since \(\Lambda\) is the group of covering automorphisms of \(\pi\), there is a 
+corresponding intermediate cover
+\begin{equation*}
+    B' \xrightarrow{\pi'} B'' \xrightarrow{p} B
+\end{equation*}
+where \(\ol{\Lambda} = \Aut(p)\). Take \(D_1\) to be a component whose local 
+monodromy operator acts by an element of \(\ol\Lambda\); then \(\lambda\) 
+acts on any \(U_{i}\) by a \(c_i\)-cycle, i.e. 
+\begin{equation} \label{eq-permutation-of-factors}
+    \lambda: U_{i} \to U_{i_2} \to \cdots \to U_{i_{c_i-1}} \to U_{i}, \quad 
+    \lambda^c: U_i \xrightarrow{\sim} U_i.
+\end{equation}
+
+% Now the crucual ingredient in this lemma is again \Cref{local-monodromy-eigenvalues}, 
+% once again asserting that \(\lambda\) has at most two non-trivial eigenvalues. 
+% We claim that for all \(U_i\) we have \(c_i = 2\). Indeed, take \(\lambda\) 
+% as in \eqref{eq-permutation-of-factors}, and choose \(u_i \in F^1 U_i\).
+% \begin{equation*}
+%     \lambda: u_i \mapsto u_{i_2} \mapsto \cdots \mapsto u_{i_{c_i}} = u_i.
+% \end{equation*}
+% Take \(\zeta\) to be a primitive \(c_i\)-th root of unity; 
+
+% We will need to use Deligne extension business, unfortunately.
+
+
+
+
+\end{proof}
+
+
+
+
+
+
+
+Let \(\Gamma\) be the automorphism group 
 of the cover, acting transitively on the summands. We want to realize \(f: X \to B\) 
 up to isogeny as a group quotient of a product fibration. For that, suppose 
 \(\Gamma \leq \mathfrak{S}_k\) is generated by a transitive collection of cycles of 
 length \(c \leq k\).
-
+ 
 Let \(D\) be the branch locus of \(\pi\). In a neighborhood of any component 
 \(D_1 \subseteq D\), we can choose coordinates \(t_1, \dots, t_g\) on \(B\)
 and \(s_1, \dots, s_g\) on \(B'\) such that \(t_1\) vanishes along \(D_1\) and 
