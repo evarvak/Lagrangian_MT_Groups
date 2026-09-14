@@ -116,158 +116,22 @@ Chicago, IL 60637 \\}}
 
 \begin{document}
 
-\maketitle
 
+\begin{abstract}
+    For a primitive symplectic variety \(X\) admitting a Lagrangian fibration,
+    we fully classify the possible Mumford--Tate groups of the very 
+    general fiber. In the special case when \(X\) is a general hyper-K\"ahler 
+    manifold with \(b_2(X) \geq 7\), we further show that the very general fiber 
+    is Hodge-generic. 
+\end{abstract}
+
+\maketitle
 
 
 \section{Introduction}
 
-
-
-\begin{theorem}[=\Cref{mt-classification}]
-    Let \(X\) be a primitive symplectic variety of dimension \(2g\), and let 
-    \(f: X \to B\) be a Lagrangian fibration. Let \(\wt{G}\) be the Mumford--Tate 
-    group of \(f\). 
-    \begin{equation}
-        \wt{G} = \begin{cases}
-            (\mathbb{G}_m \times \Sp_{2g/k}^k) / \{\pm 1\} & : f \text{ varies maximally,} \\
-            \GL_2 & : f \text{ is isotrivial with Hodge--generic fiber,} \\
-            \mathbb{G}_m & : f \text { is isotrivial with CM fiber.}
-        \end{cases}
-    \end{equation}
-\end{theorem}
-
-
-
-\begin{theorem}[=\Cref{general-mt-classification}]
-    Let \(f: X \to B\) be a general member of a given deformation class of hyper-K\"ahler 
-    manifolds admitting a Lagrangian fibration (in the sense of Matsushita--Voisin***). 
-    Then the Mumford--Tate group of the very general fiber \(X_b\) is \(\mathrm{GSp}_{2g}\).
-\end{theorem}
-
-
-
-
-
-
-\subsection{The period matrix of a Lagrangian fibration}
-
-Our original motivation for this paper began with the following question of 
-Valentino Tosatti, conveyed to us through Ben Bakker:
-
-\begin{question} \label{constant-diagonal-entry}
-    Let \(X\) be a hyper-K\"ahler manifold, \(f: X \to B\) a Lagrangian fibration. 
-    Let \(\cP: B^\circ \to \cA_g\) be its period map, with period matrix 
-    \begin{equation}
-        \cP(b) = \begin{pmatrix}
-            \mathbf{T}(b) \\ I_g
-        \end{pmatrix},\qquad \mathbf{T} = \begin{pmatrix}
-            \tau_{11} & \cdots & \tau_{1g} \\ 
-            \vdots & \ddots & \vdots \\ 
-            \tau_{1g} & \cdots & \tau_{gg}
-        \end{pmatrix}
-    \end{equation}
-    Then the following are equivalent:
-    \begin{enumerate}
-        \item \(\cP\) is the constant map.
-        \item \(\tau_{11}\) is constant.
-    \end{enumerate}
-\end{question}
-
-While the statement seems ad hoc, if not outright false, \Cref{constant-diagonal-entry}
-has a positive answer under the assumption that the very general fiber of \(f\)
-is Hodge-generic. 
-
-\begin{proposition}
-    Suppose that the Mumford--Tate group of the very general fiber \(X_b\) is simple.
-    If \(\tau_{11}\) is constant, then \(\cP\) is the constant map.
-\end{proposition}
-
-\begin{proof}
-A result of Donagi--Markman \cite{donagi-markman94} shows that the partial derivatives 
-of the \(\tau_{ij}\) obey a cubic symmetry condition: there exist \(z_1, \cdots, z_g\) 
-local coordinates on \(B^\circ\) for which
-\begin{equation}
-    \frac{\partial \tau_{ij}}{\partial z_k} = \frac{\partial \tau_{ik}}{\partial z_j}, 
-    \quad 1 \leq i, j, k \leq g.
-\end{equation}
-Thus, the condition that \(\tau_{11}\) is constant in all directions implies that 
-\begin{equation*}
-    \frac{\partial \tau_{11}}{\partial z_1} = \frac{\partial \tau_{12}}{\partial z_1} = 
-    \cdots = \frac{\partial \tau_{1k}}{\partial z_1} = 0.
-\end{equation*}
-
-Let \(V\) be the \(\Z\)-VHS underlying \(f\) on the locus of smooth fibers \(B^\circ\).
-Choose a very general point \(p \in B^\circ\), and let \(C_p\) be a 
-(locally defined) complex curve given by integrating \(\partial/\partial z_1\) 
-through \(p\). We get a real Hodge substructure
-\begin{equation}
-    E = \begin{pmatrix}
-        \tau_{11} \\ \tau_{21}\\ \vdots \\ \tau_{g1} \\ \\ | \\ e_1 \\ |
-    \end{pmatrix} \oplus
-    \begin{pmatrix}
-        \overline{\tau}_{11} \\ \overline{\tau}_{21} \\ \vdots \\ \overline{\tau}_{g1} \\
-        \\ | \\ e_1 \\ |
-    \end{pmatrix} \subseteq V_{\R,p},
-\end{equation}
-which is preserved by moving along \(C_p\). In other words, \(E\) is contained in 
-the fixed part of \(V_\R|_{C_p}\).
-
-We can interpret \(C_p\) more moduli-theoretically. Recall that we have 
-\(\cP: B^\circ \to \cA_g\); let \(\wt{\cP}: U \to \bbH_g\) be a local lift of \(\cP\) to 
-the universal cover of \(\cA_g\). Then \(\wt{\cP}(U)\) meets the locus 
-\(\{E\} \times \bbH_{g-1}\) along the curve \(\wt{\cP}(C_p)\). Observe that this is 
-an atypical intersection: the image of \(\wt{\cP}\) is \(g\)-dimensional,
-while the codimension of \(\{E\} \times \bbH_{g-1}\) is also
-\(\binom{g+1}{2} - \binom{g}{2} = g\), so the expected dimension of the intersection 
-is \(g - g = 0\). As a result,
-we can apply the functional transcendence result of Bakker--Tsimerman 
-\cite[Theorem 1.3]{bakker-tsimerman25}: because \(\wt{\cP}(U) \cap (\bbH_{g-1} \times \{E\})\) 
-is atypical, \(\cP(C_p)\) is contained in a weakly special subvariety of \(\cA_g\).
-
-However, recall that \(p\) was a very general point. Hence there is a 
-weakly special subvariety \(Z \subsetneq \cA_g\) containing \(\cP(B^\circ)\). 
-Such a subvariety necessarily arises from a normal subgroup \(H\) of the 
-Mumford--Tate group \(G = \mathrm{MT}(Z)\) of the very general point of \(Z\).
-But by assumption, \(G\) is simple. Since \(Z\) is strictly contained in \(\cA_g\),
-\(H\) is a strict normal subgroup of \(G\) which contains the Hodge torus, so that 
-\(H = \mathbb{G}_m\). Therefore \(Z = \{\cP(p)\}\), so that \(\cP\) is the constant map.
-\end{proof}
-
-
-By applying \Cref{general-mt-classification}, 
-we now see that if \(X\) is a hyper-K\"ahler manifold chosen generally from its 
-deformation class, the diagonal entries of its period matrix are not constant.
-However, knowing \Cref{mt-classification}, we claim that \Cref{constant-diagonal-entry}
-has a positive answer for all Lagrangian fibrations coming from any primitive symplectic 
-variety \(X\).
-
-\begin{theorem}
-    Let \(X\) be primitive symplectic, and \(f: X \to B\) be a Lagrangian fibration 
-    with period map \(\cP: B^\circ \to \cA_g\) and period matrix \(\mathbf{T}\). 
-    Suppose there exists a vector \(\mathbf{v}\) for which the function
-    \begin{equation*}
-        \transpose{\mathbf{v}} \mathbf{T} \mathbf{v}: B^\circ \to \cA_g
-    \end{equation*}
-    is constant in an analytic neighborhood \(U \subseteq B^\circ\). Then 
-    \(f\) is isotrivial.
-\end{theorem}
-
-\begin{proof}
-***
-
-\end{proof}
-
-
-
-
-
-\section{Preliminaries}
-
-\subsection{Lagrangian fibrations coming from primitive symplectic varieties}
-
-We begin with the relevant definitions of symplectic varieties which appear in this 
-paper.
+In this paper, we will use Hodge-theoretic methods to study holomorphic symplectic 
+varieties. We will start with the following definitions.
 
 \begin{definition}
     Let \(X\) and \(B\) be normal analytic varieties, and \(f: X \to B\) a non-trivial 
@@ -282,8 +146,8 @@ paper.
         \item Suppose that \(X\) is compact, \(\Q\)-factorial, and log-terminal. 
         We say that \(X\) is {\bf primitive symplectic} if \(H^1(X, \mathcal{O}_X) = 0\) 
         and the symplectic form \(\sigma\) is unique up to scaling.
-        \item If \(X\) is compact, smooth, and simply connected with a symplectic form 
-        \(\sigma\) unique up to scaling, we say that \(X\) is {\bf hyper-K\"ahler}.
+        \item If \(X\) is a compact, simply connected K\"ahler manifold with a symplectic 
+        form \(\sigma\) unique up to scaling, we say that \(X\) is {\bf hyper-K\"ahler}.
     \end{enumerate}
 \end{definition}
 
@@ -293,19 +157,18 @@ more recently been generalized to compact symplectic varieties, which are isogen
 products of complex tori and special classes of primitive symplectic varieties (see, 
 for instance, \cite[Theorem 1.5]{horing-peternell19}).
 
-***Deformation/moduli theory?
-
 When \(X\) is hyper-K\"ahler, much is understood. For instance, any non-trivial surjective
-morphism \(f: X \to B\) with connected fibers is Lagrangian, and \(B\) is smooth if 
-and only if \(B \simeq \bbP^n\) \cite{greb-lehn14}. A conjecture of Matsushita 
-predicts that this is always the case.
+morphism \(f: X \to B\) with connected fibers is forced to be a Lagrangian fibration \cite{greb-lehn14}, 
+and \(B\) is smooth if and only if \(B \simeq \bbP^n\) \cite{hwang08}. 
+A conjecture of Matsushita predicts that this is always the case.
 
 More generally, suppose \(X\) is any primitive symplectic variety admitting a 
 Lagrangian fibration \(f: X \to B\). We abuse notation to denote \(f: X^\circ \to B^\circ\) 
 the restriction of \(f\) to the preimage of the regular values, over which the fibers 
 of \(f\) are smooth. It turns out that every smooth fiber \(X_b\) is an Abelian 
-variety, due to Matusushita \cite{matsushita99} when \(X\) is projective hyper-K\"ahler 
+variety, due to Matsushita \cite{matsushita99} when \(X\) is projective hyper-K\"ahler 
 and \cite{campana06} in more general settings.
+
 
 Take \(X\) to have dimension \(2g\), so that both the base \(B\) and the fibers \(X_b\)
 are \(g\)-dimensional. We denote by \(\cP: B^\circ \to \cA_{g, \eta}\) the period map 
@@ -315,6 +178,160 @@ then \(\cP\) is generically injective; this is due to \cite{geemen-voisin16} for
 \(X\) a very general hyper-K\"ahler and \cite{bakker25} for primitive symplectic \(X\).
 In the non-isotrivial case, we say that \(f\) varies maximally.
 
+Our main technical result provides some description of the image of \(\cP\). Since 
+\(\cA_{g, \eta}\) is a Shimura variety, i.e. 
+\begin{equation*}
+    \cA_{g, \eta} = \leftQ{\rightQ{\Sp_{2g}(\R)}{U(g)}}{\Gamma},
+\end{equation*}
+some ``special'' subvarieties of \(\cA_{g, \eta}\) are induced by algebraic 
+subgroups \(G < \Sp_{2g}\). This subgroup is the Mumford--Tate group of the
+very general fiber of \(f\). Our result is a full classification of Mumford--Tate 
+groups which can occur in a Lagrangian fibration's very general fiber. 
+
+\begin{theorem}[=\Cref{mt-classification}] 
+    Let \(X\) be a primitive symplectic variety of dimension \(2g\), and let 
+    \(f: X \to B\) be a Lagrangian fibration. The Mumford--Tate group of 
+    \(f\) has the form 
+    \begin{equation*}
+        \mathbf{MT}(X_b) = \begin{cases}
+            (\mathbb{G}_m \times \Sp_{2g/k}^k) / \{\pm 1\} & : f \text{ varies maximally,} \\
+            \mathbb{G}_m & : f \text{ is isotrivial with fiber isogenous to } E^g\\
+            & \qquad \text{ for  } E \text{ a CM elliptic curve,}\\
+            \GL_2 & : \text{ otherwise.}
+        \end{cases}
+    \end{equation*}
+\end{theorem}
+
+There is a more geometric description of this result, which we provide as an 
+obvious corollary. In particular, this generalizes \cite{matsushita99} and 
+\cite{campana06} to describe the structure of the fibers. 
+
+\begin{corollary}
+    Suppose that \(f: X \to B\) is non-isotrivial. Then for some positive integer 
+    \(k\) dividing \(g\), the very general fiber \(X_b\) is isogenous to a product 
+    \(A_1 \times \cdots \times A_k\), where the \(A_i\) are Hodge-generic Abelian 
+    varieties of dimension \(g/k\), which are not pairwise isogenous. 
+    In particular, each \(A_i\) is simple and has no extra endomorphisms.
+\end{corollary}
+
+As a direct consequence of this classification, we answer a question of 
+Li--Tosatti. Their result \cite[Corollary 2.2]{li-tosatti24} shows that 
+if \(f\) is not isotrivial, the special K\"ahler metric \(\omega_\mathrm{SK}\) on 
+\(B^\circ\) has positive Ricci curvature. In a later remark, they state their stronger
+expectation that \(\omega_\mathrm{SK}\) should have positive holomorphic sectional 
+curvature on \(B^\circ\). The following result proves them right.
+
+\begin{proposition}[=\Cref{constant-diagonal-entry}]
+    Let \(X\) be primitive symplectic, and \(f: X \to B\) be a Lagrangian fibration 
+    with period map \(\cP: B^\circ \to \cA_{g, \eta}\) and period matrix \(\mathbf{T}\), i.e. 
+    \begin{equation*}
+        \cP(b) = \begin{pmatrix}
+            \mathbf{T}(b) \\ I_g
+        \end{pmatrix},\qquad \mathbf{T} = \begin{pmatrix}
+            \tau_{11} & \cdots & \tau_{1g} \\ 
+            \vdots & \ddots & \vdots \\ 
+            \tau_{1g} & \cdots & \tau_{gg}
+        \end{pmatrix}
+    \end{equation*}
+    Suppose that \(\mathbf{T}\) has a constant diagonal entry \(\tau_{ii}\)
+    in some analytic neighborhood \(U \subseteq B^\circ\). Then \(f\) is isotrivial.
+\end{proposition}
+
+By \cite[Remark 2.3]{li-tosatti24}, \(\omega_\mathrm{SK}\) having positive holomorphic 
+section curvature is equivalent to \(\mathbf{T}\) having non-constant diagonal 
+entries, as needed.
+
+\begin{corollary}
+    If \(f\) is not isotrivial, then \(\omega_\mathrm{SK}\) has positive holomorphic 
+    sectional curvature on \(B^\circ\).
+\end{corollary}
+
+
+
+It turns out that the deformation space of a  polarized hyper-K\"ahler manifold \((X, H)\)
+is a Shimura variety. We can construct it as follows: take 
+\(L = H^\perp \subsetneq H^2(X, \Z)\) with respect to the Beauville--Bogomolov--Fujiki 
+form \(q\), and define 
+\[\mathcal{D}_H = \{[\sigma] \in \bbP L_\C \mid q(\sigma, \sigma) = 0, \quad
+q(\sigma, \ol\sigma) > 0\}.\]
+Then the deformation space of \(X\) is constructed as an open subset 
+\begin{equation*}
+    \mathcal{X} \subseteq \leftQ{\mathcal{D}_H}{\Gamma} = 
+    \leftQ{\rightQ{SO(2, b_2-3)}{SO(2) \times SO(b_2-3)}}{\Gamma},
+\end{equation*}
+where \(b_2 = \dim H^2(X, \C)\).
+
+As such, to construct a deformation space of hyper-K\"ahler manifold, it suffices 
+to exhibit one member. There are currently four known deformation types: the infinite 
+families \(K3^{[g]}\) and \(\mathrm{Kum}_g\), occurring in every even dimension \(2g\),
+and the two sporadic types \(OG6\) and \(OG10\), occurring in dimensions 6 and 10 
+respectively. 
+
+Every known deformation space \(\mathcal{X}\) contains a member \(X\) admitting a 
+Lagrangian fibration \(f: X \to B\). Furthermore, the hyper-K\"ahler SYZ conjecture 
+predicts that such a member exists in every deformation class of hyper-K\"ahler 
+manifolds. Matsushita subsequently shows that a codimension one collection of 
+deformations \(X'\) of \(X\) preserve the Lagrangian fibration \(f\) \cite{matsushita16}.
+
+Thus, we have a notion of \(X\) being general among the members of its deformation 
+class admitting a Lagrangian fibration. Our next result strengthens 
+\Cref{mt-classification} in this setting, concluding that the very general fiber 
+\(X_b\) is Hodge-generic.
+
+\begin{theorem}[=\Cref{general-mt-classification}]
+    Let \(\mathcal{X}\) be a deformation class of hyper-K\"ahler manifolds satisfying 
+    \begin{enumerate}
+        \item there exists \(X \in \mathcal{X}\) a hyper-K\"ahler manifold admitting a 
+        Lagrangian fibration,
+        \item the second Betti number of any member \(X \in \mathcal{X}\) is at least 7.
+    \end{enumerate}
+    Choose \(X \in \mathcal{X}\) general among those admitting Lagrangian fibrations,
+    \(f: X \to B\). Then the Mumford--Tate group of the very general fiber \(X_b\) 
+    is \(\mathrm{GSp}_{2g}\).
+\end{theorem}
+
+Once again, it is an obvious consequence that the very general fiber \(X_b\) is 
+simple with no extra endomorphisms. 
+
+
+We prove these results by analyzing the monodromy of the variation of Hodge structures 
+underlying \(f\). In the process of proving \Cref{mt-classification}, we also 
+produce the following consequence.
+
+\begin{theorem}[=\Cref{codim-one-discriminant}]
+    Let \(f: X \to B\) be a Lagrangian fibration, and let \(D \subseteq B\) 
+    be its discriminant. Then \(D\) has codimension one.
+\end{theorem}
+
+To the best of our knowledge, this was not priorly known for primitive symplectic 
+varieties, or even hyper-K\"ahler manifolds; in \cite{hwang-oguiso09}, Hwang--Oguiso proved 
+that \(D\) is either of codimension one or empty, and we rule out the latter case in this 
+setting.
+
+
+
+
+
+In \S2, we review preliminaries on variations of weight one Hodge stuctures, namely 
+Deligne's canonical extension and Mumford--Tate groups. In \S3, we prove 
+a crucial technical remark of \cite{bakker-schnell23} about how Lagrangian fibrations 
+degenerate in codimension one. Then \S4 proves the classification theorem \Cref{mt-classification},
+as well as the discriminant result \Cref{codim-one-discriminant}. Finally, 
+\S5 studies the general deformation of a Lagrangian fibration and proves 
+\Cref{general-mt-classification}.
+
+\subsection*{Acknowledgements}
+I thank my advisor, Ben Bakker, for his support and guidance in writing this paper.
+I'm also grateful to \.{I}zzet Co\c{s}kun, Daniel Litt, and Valentino Tosatti for 
+helpful discussions. This paper contains no AI output, but the author used Gemini 3.1 Pro 
+for help with research, definitions, and review.
+
+
+
+
+
+
+\section{Preliminaries}
 
 
 
@@ -505,7 +522,6 @@ invariants.
 
 
 
-\subsection{Clifford theory}
 
 
 
@@ -530,7 +546,7 @@ acting on the cohomology of a general fiber \(X_b\).
 
 
 
-\begin{lemma}[\cite{bakker-schnell23}, Lemma 6.6] \label{local-monodromy-eigenvalues}
+\begin{lemma}[\cite{bakker-schnell23}, Remark 6.8] \label{local-monodromy-eigenvalues}
     \(T\) has at most two non-trivial eigenvalues \(\zeta_i, \ol{\zeta}_i\), which 
     are the primitive \(i\)-th roots of unity for an integer \(i\) dividing six.
     If \(T\) has infinite order, \(i\) divides two.
@@ -660,7 +676,7 @@ For one, recall from Hwang--Oguiso \cite{hwang-oguiso09} that \(D \subseteq B\)
 is either empty or codimension one. In the case where \(X\) is primitive symplectic, 
 we can rule out the former case entirely.
 
-\begin{corollary}
+\begin{corollary} \label{codim-one-discriminant}
     Let \(X\) be a primitive symplectic variety, and let \(f: X \to B\) be a Lagrangian
     fibration. Then the discriminant locus \(D \subseteq B\) of \(f\) has codimension one.
 \end{corollary}
@@ -698,29 +714,33 @@ But by Kunneth, we must now have \(H^1(X, \C) \neq 0\), a contradiction.
 \begin{proof}[Proof of \Cref{infinite-monodromy}]
 
 
+Our proof will use methods of \cite{grushevsky-mondello-manni-tsimerman25} 
+to analyze the period image of \(V\).
 Since \(V_\Q\) is irreducible, the period image lands in an 
 indecomposable special subvariety of \(\cA_{g, \eta}\). By \cite[Theorem 4.5]{grushevsky-mondello-manni-tsimerman25}, 
 the \(g\)-dimensional period image is not Hodge-generic inside of any special indecomposable 
 non-compact subvariety. Thus we only need to show that the period image is not
 contained in a compact special subvariety.
 
-Let \(G = [\mathbf{MT}(V_\Q), \mathbf{MT}(V_\Q)]\) be a \(\Q\)-simple factor of 
-the derived Mumford--Tate group. By the classical theorem 
-\cite[Corollary 2.7]{grushevsky-mondello-manni-tsimerman25}, we can write 
-\(G = \mathrm{Res}_{K/\Q} H\), for \(K\) a totally real field and
-\(H\) a geometrically simple \(K\)-algebraic group. (***Why can we take factors 
-of DMT without losing generality?)
 
-By \cite[Corollary 8.5]{borel-tits65}, an algebraic group over a number field is anisotropic 
-(contains no positive-dimensional split tori) if and only if it contains no non-trivial 
-unipotent elements. By Schmid's nilpotent orbit theorem, for \(G\) this is equivalent to 
-defining a compact special subvariety in \(\cA_{g, \eta}\). Note that \(G\) is anisotropic 
-if and only if \(H\) is anisotropic, since a unipotent element of one induces a 
-unipotent element of the other.
+Let \(G \subseteq [\mathbf{MT}(V_\Q), \mathbf{MT}(V_\Q)]\) be the derived Mumford--Tate 
+group of \(V\). By \cite[Corollary 8.5]{borel-tits65}, an algebraic group over a 
+number field is anisotropic (contains no positive-dimensional split tori) if and only if 
+it contains no non-trivial unipotent elements. By Schmid's nilpotent orbit theorem, 
+for \(G\) this is equivalent to defining a compact special subvariety in \(\cA_{g, \eta}\).
+
+Note that \(G\) is anisotropic if and only if its \(\Q\)-simple factors are, since 
+a unipotent element in a factor induces a unipotent element in \(G\) and vice versa. Hence 
+we may assume without loss of generality that \(G\) is a \(\Q\)-simple algebraic group.
+By the classical theorem \cite[Corollary 2.7]{grushevsky-mondello-manni-tsimerman25}, 
+we can write \(G = \mathrm{Res}_{K/\Q} H\), for \(K\) a totally real field and
+\(H\) a geometrically simple \(K\)-algebraic group. But again, \(G\) is anisotropic 
+if and only if \(H\) is anisotropic.
 
 We will prove that \(H\) is not anisotropic. This will show that the image of the 
 period map is not contained in a compact special subvariety. To do this, we 
-will apply the results of \cite{scharlau85}.
+will apply the results of \cite{scharlau85}. Let \(U \subseteq V_K\) the irreducible 
+\(K\)-representation induced by the factor \(H \leq G_K\).
 
 \begin{lemma}[\cite{grushevsky-mondello-manni-tsimerman25}, \S 5.1] \label{anisotropic-rep-classification}
     Suppose that \(H = \Aut(U, \eta)^\mathrm{ad}\) is non-compact at all real places. 
@@ -747,24 +767,25 @@ In our setting, \(V\) varies maximally, so \(H\) must be non-compact at all real
 Thus we may rule out all cases one-by-one. We follow the exact analysis of 
 \cite[\S 7.2]{grushevsky-mondello-manni-tsimerman25}. Satake classified all possible 
 real forms of \(H\) up to isogeny, and we analyze each case. Let \(S\) denote the 
-special subvariety associated to \(G\).
+special subvariety associated to \(G\). 
+
 \begin{description}
     \item[\(H\) has type \(A_1\)] We must have \(H = \mathrm{Nm}(\mathbb{H})\)
-    and \(\dim U_i = 2\) for all \(i\). 
-    Write \(\dim V = 2g = k \dim U_i = 2kh\). If \(k = 1\), \(H = \SL_{2, K}\) is not 
+    and \(\dim U = 2\) for all \(i\). 
+    Write \(\dim V = 2g = k \dim U = 2kh\). If \(k = 1\), \(H = \SL_{2, K}\) is not 
     anisotropic. Otherwise, \(g \leq \dim S = \frac{g}{h}\) yields a contradiction.
-    \item[\(H\) has type \(D_4\)] \((U_i)_\C\) is a standard orthogonal representation of 
-    dimension \(h = 8\). Since \(U_i\) is not symplectic, its dual must also occur 
+    \item[\(H\) has type \(D_4\)] \(U_\C\) is a standard orthogonal representation of 
+    dimension \(h = 8\). Since \(U\) is not symplectic, its dual must also occur 
     in the decomposition of \(V\), so \(\dim V = 16k\), while \(\dim S = 6\). 
     Thus \(g = 8k \leq 6\), a contradiction.
     \item[\(H\) has type \(I\)] We are in (uF) and (uD) of \Cref{anisotropic-rep-classification},
-    so \(H = \mathrm{SU}(\mathbb{D}^r, \eta)\) with \(r \leq 2\) and \(\dim_K U_i \leq 4\).
+    so \(H = \mathrm{SU}(\mathbb{D}^r, \eta)\) with \(r \leq 2\) and \(\dim_K U \leq 4\).
     Here \(\mathbb{D}\) has degree \(\delta \geq 2\) over a CM extension \(L/K\). 
-    We may identify \((U_i)_\C \simeq M_{\delta \times \delta}(\C)^{\oplus r}\) as 
-    \(H(\C)\)-representations. Moreover, \(U_i\) is not self-dual, so its dual 
+    We may identify \(U_\C \simeq M_{\delta \times \delta}(\C)^{\oplus r}\) as 
+    \(H(\C)\)-representations. Moreover, \(U\) is not self-dual, so its dual 
     occurs in the decomposition of \(V_\C\). In particular, 
     \begin{equation*}
-        \dim V = 2g = 2k \dim U_i = 2 k \delta^2 r.
+        \dim V = 2g = 2k \dim U = 2 k \delta^2 r.
     \end{equation*}
     On the other hand, \(\dim S\) is maximized when the signature of \(H(\C)\) is 
     \((\frac{r\delta}{2}, \frac{r \delta}{2})\). Even in this case,
@@ -774,15 +795,15 @@ special subvariety associated to \(G\).
     \end{equation*}
     so that \(r \geq 4\), a contradiction.
     \item[\(H\) has type \(I'\)] \(H\) is the same as in type \(I\), and 
-    \(U \simeq \bigwedge^c \C^{r \delta}\). Now \(\dim U_i = \binom{r \delta}{c}\), while 
-    \(\dim S = r\delta - 1\). Since \(U_i\) is not self-dual, we cannot have 
+    \(U \simeq \bigwedge^c \C^{r \delta}\). Now \(\dim U = \binom{r \delta}{c}\), while 
+    \(\dim S = r\delta - 1\). Since \(U\) is not self-dual, we cannot have 
     \(g \leq \dim S\) even when \(c = 1\).
     \item[\(H\) has type \(II\)] Here \(G = \mathrm{SU}(\mathbb{H}^r, \eta)\) with 
     \(r \geq 2\) and \(\eta\) skew-hermitian. We are in the case (skH) of 
-    \Cref{anisotropic-rep-classification}, so \(2 \leq \dim_\mathbb{H} U_i \leq 3\). 
-    Note again that \(U_i\) is not self-dual, so that its dual also occurs in the 
+    \Cref{anisotropic-rep-classification}, so \(2 \leq \dim_\mathbb{H} U \leq 3\). 
+    Note again that \(U\) is not self-dual, so that its dual also occurs in the 
     decomposition of \(V_\C\).
-    Thus \(\dim V = 2g = 2k \dim U_i = 4kr\). On the other hand, \(\dim S = k\frac{r(r-1)}{2}\). 
+    Thus \(\dim V = 2g = 2k \dim U = 4kr\). On the other hand, \(\dim S = k\frac{r(r-1)}{2}\). 
     Thus \(g = 2kr \leq k\frac{r(r-1)}{2}\), so that \(4 \leq r-1\), a contradiction.
     \item[\(H\) has type \(III\)] There are two possibilities here. Either 
     \(H = \Sp(K^{2r}, \eta)\), or \(H = \mathrm{SU}(\mathbb{H}^r, \eta')\). The 
@@ -1116,19 +1137,26 @@ Now we are ready to prove the main theorem.
     Let \(X\) be a primitive symplectic variety of dimension \(2g\), and let 
     \(f: X \to B\) be a Lagrangian fibration. Let \(G\) be the derived Mumford--Tate 
     group of \(f\). 
-    \begin{equation}
+    \begin{equation*}
         G = \begin{cases}
-            \Sp_{2g/k}^k & : f \text{ varies maximally,} \\
-            \SL_2 & : f \text{ is isotrivial with Hodge--generic fiber,} \\
-            1 & : f \text { is isotrivial with CM fiber.}
+            (\Sp_{2g/k})^k & : f \text{ varies maximally,} \\
+            1 & : f \text{ is isotrivial with fiber isogenous to } E^g\\
+            & \qquad \text{ for  } E \text{ a CM elliptic curve,}\\
+            \SL_2 & : \text{ otherwise.}
         \end{cases}
-    \end{equation}
+    \end{equation*}
 \end{theorem}
 
 
 \begin{proof}
+We first deal with the latter two cases. By \cite{bakker25}, if \(f\) does not vary 
+maximally, it is isotrivial, so we can refer to \cite{kim-laza-martin24}. Namely, 
+the fiber of \(f\) is isogenous to \(E^n\), for \(E\) an elliptic curve. 
+Now \(G\) is \(\SL_2\) unless \(E\) is CM, in which case \(G\) is trivial. Thus 
+we may assume that \(f\) varies maximally. 
+
 As before, take \(\pi: B' \to B\) be the cover over which 
-\(\pi^* V = U_1 \oplus \cdots \oplus U_k\) splits, and let \(\Gamma\) be the automorphism 
+\(\pi^* V_\Q = U_1 \oplus \cdots \oplus U_k\) splits, and let \(\Gamma\) be the automorphism 
 group of the cover, acting transitively on the \(U_i\). We claim that each of the 
 \(U_i\) is isotypic, i.e. \(U_i \ncong U_j\) for \(i \neq j\). To see that this holds, 
 suppose that \(U_1 \cong U_2\). By \Cref{infinite-monodromy}, there exists a component 
@@ -1182,16 +1210,113 @@ This allows us to easily compute the actual Mumford--Tate group.
 
 \begin{corollary} \label{mt-classification}
     Let \(X\) be a primitive symplectic variety of dimension \(2g\), and let 
-    \(f: X \to B\) be a Lagrangian fibration. Let \(\wt{G}\) be the Mumford--Tate 
-    group of \(f\). 
-    \begin{equation}
-        \wt{G} = \begin{cases}
+    \(f: X \to B\) be a Lagrangian fibration. The Mumford--Tate group of 
+    \(f\) has the form 
+    \begin{equation*}
+        \mathbf{MT}(X_b) = \begin{cases}
             (\mathbb{G}_m \times \Sp_{2g/k}^k) / \{\pm 1\} & : f \text{ varies maximally,} \\
-            \GL_2 & : f \text{ is isotrivial with Hodge--generic fiber,} \\
-            \mathbb{G}_m & : f \text { is isotrivial with CM fiber.}
+            \mathbb{G}_m & : f \text{ is isotrivial with fiber isogenous to } E^g\\
+            & \qquad \text{ for  } E \text{ a CM elliptic curve,}\\
+            \GL_2 & : \text{ otherwise.}
         \end{cases}
-    \end{equation}
+    \end{equation*}
 \end{corollary}
+
+
+
+
+
+\subsection{An application to a question of Li--Tosatti} 
+
+We will first need to make our notation a bit more precise. When we refer to 
+``the'' special K\"ahler metric \(\omega_\mathrm{SK}\), we will simply fix one, 
+since they are unique up to scaling. For any sufficiently small analytic neighborhood 
+\(U \subseteq B^\circ\) there is a local coordinate system \(z_1, \dots, z_g\) 
+such that the entries of the period matrix \(\mathbf{T}\) satisfy the 
+Donagi--Markman symmetry condition \cite{donagi-markman94}:
+\begin{equation} \label{eq-donagi-markman}
+    \frac{\partial \tau_{ij}}{\partial z_k} = \frac{\partial \tau_{ik}}{\partial z_j}, 
+    \quad 1 \leq i, j, k \leq g.
+\end{equation}
+
+
+\begin{proposition} \label{constant-diagonal-entry}
+    Let \(X\) be primitive symplectic, and \(f: X \to B\) be a Lagrangian fibration 
+    with period map \(\cP: B^\circ \to \cA_{g, \eta}\) and period matrix \(\mathbf{T}\), i.e. 
+    \begin{equation*}
+        \cP(b) = \begin{pmatrix}
+            \mathbf{T}(b) \\ I_g
+        \end{pmatrix},\qquad \mathbf{T} = \begin{pmatrix}
+            \tau_{11} & \cdots & \tau_{1g} \\ 
+            \vdots & \ddots & \vdots \\ 
+            \tau_{1g} & \cdots & \tau_{gg}
+        \end{pmatrix}
+    \end{equation*}
+    Suppose that \(\mathbf{T}\) has a constant diagonal entry \(\tau_{ii}\)
+    in some analytic neighborhood \(U \subseteq B^\circ\). Then \(f\) is isotrivial.
+\end{proposition}
+
+
+\begin{proof}
+Without loss of generality, take \(i = 1\). By directly applying 
+\eqref{eq-donagi-markman}, the condition that \(\tau_{11}\) is constant in all 
+directions implies that
+\begin{equation*}
+    \frac{\partial \tau_{11}}{\partial z_1} = \frac{\partial \tau_{12}}{\partial z_1} = 
+    \cdots = \frac{\partial \tau_{1k}}{\partial z_1} = 0.
+\end{equation*}
+
+Let \(V\) be the \(\Z\)-VHS underlying \(f\) on the locus of smooth fibers \(B^\circ\).
+Choose a very general point \(p \in B^\circ\), and let \(C_p\) be a 
+(locally defined) complex curve given by integrating \(\partial/\partial z_1\) 
+through \(p\). We get a real Hodge substructure
+\begin{equation}
+    E = \begin{pmatrix}
+        \tau_{11} \\ \tau_{21}\\ \vdots \\ \tau_{g1} \\ \\ | \\ e_1 \\ |
+    \end{pmatrix} \oplus
+    \begin{pmatrix}
+        \overline{\tau}_{11} \\ \overline{\tau}_{21} \\ \vdots \\ \overline{\tau}_{g1} \\
+        \\ | \\ e_1 \\ |
+    \end{pmatrix} \subseteq V_{\R,p},
+\end{equation}
+which is preserved by moving along \(C_p\). In other words, \(E\) is contained in 
+the fixed part of \(V_\R|_{C_p}\).
+
+We can interpret \(C_p\) more moduli-theoretically. Recall that we have 
+\(\cP: B^\circ \to \cA_g\); let \(\wt{\cP}: U \to \bbH_g\) be a local lift of \(\cP\) to 
+the universal cover of \(\cA_{g, \eta}\). Then \(\wt{\cP}(U)\) meets the locus 
+\(\{E\} \times \bbH_{g-1}\) along the curve \(\wt{\cP}(C_p)\). Observe that this is 
+an atypical intersection: the image of \(\wt{\cP}\) is \(g\)-dimensional,
+while the codimension of \(\{E\} \times \bbH_{g-1}\) is also
+\(\binom{g+1}{2} - \binom{g}{2} = g\), so the expected dimension of the intersection 
+is \(g - g = 0\). As a result,
+we can apply the functional transcendence result of Bakker--Tsimerman 
+\cite[Theorem 1.3]{bakker-tsimerman25}: because \(\wt{\cP}(U) \cap (\bbH_{g-1} \times \{E\})\) 
+is atypical, \(\cP(C_p)\) is contained in a weakly special subvariety of \(\cA_g\).
+
+
+However, recall that \(p\) was a very general point. Hence there is a 
+weakly special subvariety \(Z \subsetneq \cA_{g, \eta}\) containing \(\cP(B^\circ)\). 
+Such a subvariety by definition arises from a normal subgroup \(H\) of the 
+Mumford--Tate group \(G = \mathbf{MT}(Z)\) of the very general point of \(Z\).
+Now recall \Cref{mt-classification}; we want to rule out the case where \(G\) is
+isogenous to \((\Sp_{2h})^{g/h}\), for some \(h\) dividing \(g\). 
+
+If \(h = g\), then we are immediately done, since \(G = \mathrm{GSp}_{2g}\) has 
+only \(H = \mathbb{G}_m\) as a non-trivial normal subgroup, forcing \(\cP(C_p)\) to be a 
+single point. This implies that \(f\) does not vary maximally, so it is 
+isotrivial. On the other hand, if \(G\) is isogenous to \((\Sp_{2h})^{g/h}\), 
+for \(h < g\), then \(H\) is isogenous to \((\Sp_{2h})^\ell\), for \(\ell < g/h\).
+Since \(G\) acts by direct sums of the standard representation, there is 
+some factor which admits a trivial action from \(H\). In other words, the VHS 
+\(V_\Q\) has a fixed part. As such, it does not vary maximally, so it is forced to 
+once again be isotrivial. 
+\end{proof}
+
+
+
+
+
 
 
 
@@ -1200,7 +1325,7 @@ This allows us to easily compute the actual Mumford--Tate group.
 \section{The Mumford--Tate group of a general deformation}
 
 
-Recall that we had \(\pi: B' \to B\) such that \(\pi^* V = U_1 \oplus \cdots \oplus U_k\),
+Recall that we had \(\pi: B' \to B\) such that \(\pi^* V_\C = U_1 \oplus \cdots \oplus U_k\),
 a splitting we now know to occur over \(\Q\). Let 
 \begin{equation*}
     1 \to \Gamma' \to \Gamma \to \Lambda \to 1
