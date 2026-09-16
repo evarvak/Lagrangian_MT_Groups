@@ -34,7 +34,7 @@ items; add a short resolution note instead.
   redundant/unused direct package imports, and 17 macros whose only occurrence
   was their definition. The reduced preamble builds successfully.
 
-- [ ] **E-002 — PDF metadata and link presentation.** Location: lines 17–25,
+- [x] **E-002 — PDF metadata and link presentation.** Location: lines 17–25,
   anchor `pdftitle={Notes of my current research}`. Issue: the built PDF has the
   wrong title, no PDF author, forces full-screen mode, and renders citations and
   URLs in bright magenta/cyan. Impact: stale metadata and presentation that looks
@@ -148,7 +148,7 @@ items; add a short resolution note instead.
   Resolution (2026-09-16): closed without implementing the listed source
   changes, at the author's direction.
 
-- [ ] **E-015 — Section 5 notation slips.** Locations: lines 1335–1339, 1372, and
+- [x] **E-015 — Section 5 notation slips.** Locations: lines 1335–1339, 1372, and
   1420; anchors `where \(\Gamma\) is the monodromy image`, `\lambda^c`, and
   `fiber \(X'_b\)`. Issue: `\Gamma` is reused after denoting a different component
   group in Section 4, `c` is undefined where the cycle length is `c_i`, and `X'`
@@ -176,7 +176,7 @@ items; add a short resolution note instead.
 
 ## Substantive issues
 
-- [ ] **S-001 — The abstract overstates/obscures the deformation theorem's
+- [x] **S-001 — The abstract overstates/obscures the deformation theorem's
   scope.** Location: lines 123–127 versus Theorem 5.3 at lines 1413–1423; anchors
   `when \(X\) is a general hyper-K\"ahler manifold` and `general among those
   admitting Lagrangian fibrations`. Issue: the abstract sounds like a statement

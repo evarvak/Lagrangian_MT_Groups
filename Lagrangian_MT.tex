@@ -13,8 +13,9 @@
     filecolor=green,      
     urlcolor=cyan,
     citecolor=magenta,
-    pdftitle={Notes of my current research},
-    pdfpagemode=FullScreen,
+    pdftitle={The Mumford--Tate group of the very general Lagrangian fiber},
+    pdfauthor={Edward Varvak},
+    % pdfpagemode=FullScreen,
 }
 \urlstyle{same}
 \usepackage{caption} 
@@ -87,13 +88,13 @@ Chicago, IL 60637 \\}}
 \begin{abstract}
     For a primitive symplectic variety \(X\) admitting a holomorphic Lagrangian fibration 
     \(f: X \to B\), we fully classify the possible Mumford--Tate groups of the very 
-    general fiber. In the special case when \(X\) is a general hyper-K\"ahler 
-    manifold with \(b_2(X) \geq 7\), we further show that the very general fiber 
-    is Hodge-generic. We extract as a consequence that the discriminant of 
-    \(f\) has codimension one in \(B\). Finally, as an application of 
-    our classification, we confirm an expectation of Li--Tosatti that when \(f\) is not 
-    isotrivial, the special K\"ahler metric on \(B\) has positive holomorphic sectional 
-    curvature on the regular values of \(f\).
+    general fiber. We extract as a consequence that the discriminant of 
+    \(f\) has codimension one in \(B\). In the special case when \(X\) is a hyper-K\"ahler manifold which 
+    is general among those admitting a Lagrangian fibration, and \(b_2(X) \geq 7\), 
+    we further show that the very general fiber of \(f\) is Hodge-generic. Finally, as an 
+    application of our classification, we confirm an expectation of Li--Tosatti that 
+    when \(f\) is not isotrivial, the special K\"ahler metric on \(B\) has positive 
+    holomorphic sectional curvature on the regular values of \(f\).
 \end{abstract}
 
 \maketitle
@@ -1336,24 +1337,24 @@ monodromy operator acts by an element of \(\ol\Lambda\); then \(\lambda\)
 acts on any \(U_{i}\) by a \(c_i\)-cycle; that is,
 \begin{equation} \label{eq-permutation-of-factors}
     \lambda: U_{i} \to U_{i_2} \to \cdots \to U_{i_{c_i}} \to U_{i}, \quad 
-    \lambda^c: U_i \xrightarrow{\sim} U_i.
+    \lambda^{c_i}: U_i \xrightarrow{\sim} U_i.
 \end{equation}
 
 Now notice that \(\ol\Lambda\) acts on the limit mixed Hodge structure over a general 
 point of \(D_1\). In other words, for \(b \in D_1\) a general point, 
 we can find a local frame
-\(v_{i_1}, \dots, v_{i_c} \in (F^1 \ol{\cV}|_{D_1})\) for which
+\(v_{i_1}, \dots, v_{i_{c_i}} \in (F^1 \ol{\cV}|_{D_1})\) for which
 \begin{equation*}
-    \lambda: v_{i_1} \mapsto v_{i_2} \mapsto \cdots \mapsto v_{i_c} \mapsto v_{i_1}.
+    \lambda: v_{i_1} \mapsto v_{i_2} \mapsto \cdots \mapsto v_{i_{c_i}} \mapsto v_{i_1}.
 \end{equation*}
 
-Fix \(\zeta\) a primitive \(c\)-th root of unity, and consider the action of \(\lambda\) 
-on \(v_{i_1} + \zeta v_{i_2} + \cdots + \zeta^{c-1} v_{i_c}\); this is an eigenvector
+Fix \(\zeta\) a primitive \(c_i\)-th root of unity, and consider the action of \(\lambda\) 
+on \(v_{i_1} + \zeta v_{i_2} + \cdots + \zeta^{c_i-1} v_{i_{c_i}}\); this is an eigenvector
 in \(F^1 \ol\cV|_{D_1}\) with eigenvalue \(\ol\zeta\). On the other hand, 
-\(v_{i_1} + \ol\zeta v_{i_2} + \cdots + \ol\zeta^{c-1} v_{i_c}\) is another eigenvector 
+\(v_{i_1} + \ol\zeta v_{i_2} + \cdots + \ol\zeta^{c_i-1} v_{i_{c_i}}\) is another eigenvector 
 living in \(F^1 \ol\cV|_{D_1}\), with eigenvalue \(\zeta\). By \Cref{local-monodromy-eigenvalues},
 we cannot have two distinct eigenvalues in the \(F^1\)-piece of the limit MHS, 
-so we must have \(\zeta = \ol\zeta = -1\). In particular, \(c = 2\). 
+so we must have \(\zeta = \ol\zeta = -1\). In particular, \(c_i = 2\). 
 
 Finally, the argument that \(\lambda\) fixes all but two of the \(U_i\) is analogous: 
 if not, by the construction above, we could produce two distinct monodromy eigenvectors 
@@ -1385,7 +1386,7 @@ the following theorem.
         \item the second Betti number of any member \(X \in \mathcal{X}\) is at least 7.
     \end{enumerate}
     Choose \(X \in \mathcal{X}\) general among those admitting Lagrangian fibrations,
-    \(f: X \to B\). Then the Mumford--Tate group of the very general fiber \(X'_b\) 
+    \(f: X \to B\). Then the Mumford--Tate group of the very general fiber \(X_b\) 
     is \(\mathrm{GSp}_{2g}\).
 \end{theorem}
 
