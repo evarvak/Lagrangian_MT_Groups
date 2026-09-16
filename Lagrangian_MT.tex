@@ -1,18 +1,10 @@
 \documentclass[12pt]{amsart}
 
 \usepackage[margin=1in]{geometry}
-\usepackage{amsfonts}
-\usepackage{amsthm}
-\usepackage{thmtools}
 \usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{mathrsfs}
-\usepackage{array}
 \usepackage{amssymb}
 % \usepackage{mathabx}
 \usepackage{tikz-cd}
-\usepackage{mathtools}
 \usepackage{hyperref}
 \usepackage[nameinlink, capitalize]{cleveref}
 \hypersetup{
@@ -33,57 +25,32 @@
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Q}{\mathbb{Q}}
-\newcommand{\V}{\mathbb{V}}
-\newcommand{\sph}{\mathbb{S}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\Z}{\mathbb{Z}}
-\newcommand{\End}{\mathrm{End}}
 \newcommand{\Aut}{\mathrm{Aut}}
 \newcommand{\Hom}{\mathrm{Hom}}
 \newcommand{\id}{\mathrm{id}}
 
-\newcommand{\bbA}{\mathbb{A}}
 \newcommand{\bbH}{\mathbb{H}}
 \newcommand{\bbP}{\mathbb{P}}
 
-\newcommand{\cM}{\mathcal{M}}
-\newcommand{\cL}{\mathcal{L}}
-\newcommand{\cE}{\mathcal{E}}
 \newcommand{\cT}{\mathcal{T}}
 \newcommand{\cV}{\mathcal{V}}
-\newcommand{\cW}{\mathcal{W}}
-\newcommand{\cH}{\mathcal{H}}
 \newcommand{\cP}{\mathcal{P}}
 \newcommand{\cA}{\mathcal{A}}
-\newcommand{\cG}{\mathcal{G}}
-\newcommand{\cU}{\mathcal{U}}
-
-\newcommand{\IH}{\mathrm{IH}}
 
 \newcommand{\Sp}{\mathrm{Sp}}
 \newcommand{\SL}{\mathrm{SL}}
 \newcommand{\GL}{\mathrm{GL}}
-\newcommand{\U}{\mathrm{U}}
-\newcommand{\gr}{\mathrm{gr}}
 \newcommand{\ol}{\overline}
 \newcommand{\ul}{\underline}
 \newcommand{\wt}{\widetilde}
 \newcommand{\wh}{\widehat}
-\newcommand{\codim}{\mathrm{codim}}
 
 \newcommand{\rightQ}[2]{\left.\raisebox{.2em}{$#1$}\middle/\raisebox{-.2em}{$#2$}\right.}
 \newcommand{\leftQ}[2]{\left.\raisebox{-.2em}{$#2$}\middle\backslash\raisebox{.2em}{$#1$}\right.}
 
 \DeclareMathOperator{\im}{\mathrm{im}}
-
-
-\NewDocumentCommand{\ltranspose}{m}{
-    \ensuremath{\prescript{\mathsf{T}}{}{{#1}}}
-}
-
-\NewDocumentCommand{\transpose}{m}{
-    \ensuremath{{#1}^{\mathsf{T}}}
-}
 
 
 \newtheorem{theorem}{Theorem}[section]
@@ -176,14 +143,14 @@ and \cite{campana06} in more general settings.
 
 Take \(X\) to have dimension \(2g\), so that both the base \(B\) and the fibers \(X_b\)
 are \(g\)-dimensional. We denote by \(\cP: B^\circ \to \cA_{g, \eta}\) the period map 
-associated to \(f\),where \(\cA_{g, \eta}\) is a moduli space for appropriately-polarized 
-Abelian varieties. If \(\cP\) is non-constant, i.e. \(f\) is not an isotrivial fibration,
+associated to \(f\), where \(\cA_{g, \eta}\) is a moduli space for appropriately-polarized
+Abelian varieties. If \(\cP\) is non-constant, that is, if \(f\) is not an isotrivial fibration,
 then \(\cP\) is generically injective; this is due to \cite{geemen-voisin16} for 
 \(X\) a very general hyper-K\"ahler and \cite{bakker25} for primitive symplectic \(X\).
 In the non-isotrivial case, we say that \(f\) varies maximally.
 
 Our main technical result provides some description of the image of \(\cP\). Since 
-\(\cA_{g, \eta}\) is a Shimura variety, i.e. 
+\(\cA_{g, \eta}\) is a Shimura variety; explicitly,
 \begin{equation*}
     \cA_{g, \eta} = \leftQ{\rightQ{\Sp_{2g}(\R)}{U(g)}}{\Gamma},
 \end{equation*}
@@ -227,7 +194,7 @@ curvature on \(B^\circ\). The following result proves them right.
 
 \begin{proposition}[=\Cref{constant-diagonal-entry}]
     Let \(X\) be primitive symplectic, and \(f: X \to B\) be a Lagrangian fibration 
-    with period map \(\cP: B^\circ \to \cA_{g, \eta}\) and period matrix \(\mathbf{T}\), i.e. 
+    with period map \(\cP: B^\circ \to \cA_{g, \eta}\) and period matrix \(\mathbf{T}\), written as
     \begin{equation*}
         \cP(b) = \begin{pmatrix}
             \mathbf{T}(b) \\ I_g
@@ -242,7 +209,7 @@ curvature on \(B^\circ\). The following result proves them right.
 \end{proposition}
 
 By \cite[Remark 2.3]{li-tosatti24}, \(\omega_\mathrm{SK}\) having positive holomorphic 
-section curvature is equivalent to \(\mathbf{T}\) having non-constant diagonal 
+sectional curvature is equivalent to \(\mathbf{T}\) having non-constant diagonal
 entries, as needed.
 
 \begin{corollary}
@@ -307,7 +274,7 @@ produce the following consequence.
     be its discriminant. Then \(D\) has codimension one.
 \end{theorem}
 
-To the best of our knowledge, this was not priorly known for primitive symplectic 
+To the best of our knowledge, this was not previously known for primitive symplectic
 varieties. Hwang \cite[Proposition 4.1]{hwang08} proved this result when \(X\) 
 is a projective hyper-K\"ahler, but his argument does not actually need \(X\) to be 
 projective. However, it relies on \(B\) being simply connected of Picard rank 1, and 
@@ -317,7 +284,7 @@ therefore fails for primitive symplectic varieties.
 
 
 
-In \S2, we review preliminaries on variations of weight one Hodge stuctures, namely 
+In \S2, we review preliminaries on variations of weight one Hodge structures, namely
 Deligne's canonical extension and Mumford--Tate groups. In \S3, we prove 
 a crucial technical remark of \cite{bakker-schnell23} about how Lagrangian fibrations 
 degenerate in codimension one. Then \S4 proves the classification theorem \Cref{mt-classification},
@@ -363,7 +330,7 @@ along with a logarithmic connection
 extending \(\nabla\). 
 We will outline the local construction of \(\ol{\cV}\) on the smooth part of the 
 discriminant \(D^\mathrm{sm}\); this will be enough for the purposes of this paper,
-but the general case of \(D^\mathrm{ls}\) is completely analogous, albiet with more 
+but the general case of \(D^\mathrm{ls}\) is completely analogous, albeit with more
 variables. 
 
 Let \(U \simeq \Delta^{g} \subseteq B^\circ\) be a polydisk which only meets 
@@ -371,7 +338,7 @@ Let \(U \simeq \Delta^{g} \subseteq B^\circ\) be a polydisk which only meets
 the complement of the discriminant in \(U\). Denote the restriction of \(\cV\) to 
 \(U^\circ\) by \(\cV_U\). The monodromy group of the restricted VHS is generated 
 by a single element, which we will denote by \(T \in \Aut(V_b)\) for some 
-\(b \in U^\circ\). Let \(t_1, t_2, \cdots, t_g\) be the natural coordinates 
+\(b \in U^\circ\). Let \(t_1, t_2, \dots, t_g\) be the natural coordinates
 on \(U\), so that \(U^\circ\) is defined by the non-vanishing of \(t_1\). 
 
 By the classical Monodromy Theorem, \(T\) is quasi-unipotent, so that we can write 
@@ -395,18 +362,18 @@ As such, \(N_s\) is unique upon choosing a half-open unit interval \(I \subseteq
 in which the eigenvalues of \(N_s\) lie. We construct sections for the bundle 
 \(\ol{\cV}_U\) as follows.
 
-Let \(v = v(t_1, t_2, \cdots, t_g) \in V_\C|_U \subseteq \cV_U\) be a flat multi-section of 
-\(\cV_U\), i.e. a multi-section of the underlying \(\C\)-local system \(V_\C|_U\). We allow it 
+Let \(v = v(t_1, t_2, \dots, t_g) \in V_\C|_U \subseteq \cV_U\) be a flat multi-section of
+\(\cV_U\), that is, a multi-section of the underlying \(\C\)-local system \(V_\C|_U\). We allow it
 to be multivalued because moving around \(D\) sends \(v\) to \(T.v\). Define 
 \begin{equation*}
-    \wt{v}(t_1, t_2, \cdots, t_g) = 
-    \exp\left(\frac{\log(t_1) N}{2\pi i}\right).v(t_1, \cdots, t_g).
+    \wt{v}(t_1, t_2, \dots, t_g) =
+    \exp\left(\frac{\log(t_1) N}{2\pi i}\right).v(t_1, \dots, t_g).
 \end{equation*}
 It is not hard to see that this new section is single-valued on \(U^\circ\), and 
 one readily checks that \(\wt{v}\) has a removable singularity along \(D\). For a 
-detailed overview, refer to refer to \cite{cattani16}.
+detailed overview, refer to \cite{cattani16}.
 
-Finally, for a frame of flat multisections \(v_1, \cdots, v_r \in \cV_U\), we define 
+Finally, for a frame of flat multisections \(v_1, \dots, v_r \in \cV_U\), we define
 the canonical extension \(\ol{\cV}_U = \bigoplus_{i=1}^r \mathcal{O}_U \wt{v}_i\).
 It comes with an induced logarithmic connection 
 \begin{equation*}
@@ -414,9 +381,9 @@ It comes with an induced logarithmic connection
     = \frac{N}{2\pi i} \wt{v}_j \otimes \frac{dz}{z}.
 \end{equation*}
 It is a highly non-trivial, but nevertheless true fact that this construction 
-globalizes to all of \(B^\mathrm{ls}\), i.e. one glues \(\ol{\cV}_U\) along all the 
+globalizes to all of \(B^\mathrm{ls}\); that is, one glues \(\ol{\cV}_U\) along all the
 analytic neighborhoods \(U\) of \(D^\mathrm{ls}\) the log-smooth locus of the 
-discriminant to canonically produce an extension \(\ol{\cV}\) of \(\cV\)
+discriminant to canonically produce an extension \(\ol{\cV}\) of \(\cV\).
 
 
 
@@ -455,7 +422,7 @@ is defined over \(\Q\).
 
 \begin{definition}
     The {\bf Mumford--Tate group} of a \(\Q\)-Hodge structure \(H_\Q\) is the 
-    smallest algrebraic subgroup \(G \subseteq \GL(H_\Q)\) whose real points 
+    smallest algebraic subgroup \(G \subseteq \GL(H_\Q)\) whose real points
     contain the image of \(h\).
 \end{definition}
 
@@ -478,13 +445,13 @@ group only shrinks under specialization, we can make the following definition.
 \begin{definition}
     Let \(H\) be a weight one polarized \(\Q\)-Hodge structure. We say that \(H\) is 
     {\bf Hodge-generic} if \(H\) has a maximal Mumford--Tate group in \(\cA_{g, \eta}\),
-    i.e. \(\mathbf{MT}(H) = \mathrm{GSp_{2g, \Q}}\).
+    that is, \(\mathbf{MT}(H) = \mathrm{GSp_{2g, \Q}}\).
 \end{definition}
 
 Notice that the VHS \(V\) naturally gives rise to two representations:
 the Mumford--Tate group \(\mathbf{MT}(V_b)\) and the fundamental group \(\pi_1(B^\circ, b)\)
 both act on the very general fiber \(V_b\). One can ask if these two representations 
-are related. A theorem of Yves Andr\'e provides an affirmitive answer.
+are related. A theorem of Yves Andr\'e provides an affirmative answer.
 
 \begin{theorem}[Andr\'e]
     Let \(V\) be a polarized \(\Q\)-VHS on a quasi-projective variety \(B^\circ\), 
@@ -498,7 +465,7 @@ are related. A theorem of Yves Andr\'e provides an affirmitive answer.
 On the other hand, the group \(\mathbf{MT}(V_b)\) admits an action on \(\cA_{g, \eta}\). 
 We refer to the orbit of \(V_b\) under this action as a Mumford--Tate subdomain. It 
 can be shown that this orbit is a Hermitian locally symmetric submanifold. Consequently, 
-the groups which can occur as as \(\mathbf{MT}(V_b)\) are highly 
+the groups which can occur as \(\mathbf{MT}(V_b)\) are highly
 constrained. Due to work of Satake \cite{satake67}, we have a full classification of 
 the group \(\mathbf{MT}(V_b)\) and its action on \(V_b\), up to a central isogeny. 
 These groups are presented in \Cref{table-of-real-forms}, along with some useful associated
@@ -640,7 +607,7 @@ to \(D\), the higher \(\wt{v}_\ell\) terms in the expression above yield
 \end{align*}
 The sum on the right is holomorphic along \(D\), and \(\varphi\) does not divide
 \(d\varphi(h_\lambda)\). Hence \(\beta_k = 0\) for all \(k \neq \lambda\). Hence we may 
-lose no generality in writing that \(\lambda=1\), i.e. the only possibly non-trivial 
+lose no generality in writing that \(\lambda=1\); that is, the only possibly non-trivial
 eigenvalues are \(\alpha_1\) and the only possibly non-semisimple eigenvector is 
 \(\wt{v}_1\).
 
@@ -667,7 +634,7 @@ or equivalently \(\zeta_i = \pm 1\).
 
 Now we work in the compact setting. Let \(X\) be a primitive symplectic variety of 
 dimension \(2g\) which admits a maximally varying Lagrangian fibration \(f: X \to B\).
-Take \(V\) to be the the underlying variation of Hodge structures on \(B^\circ\).
+Take \(V\) to be the underlying variation of Hodge structures on \(B^\circ\).
 
 \begin{proposition} \label{infinite-monodromy}
 There exists an analytic neighborhood \(U \simeq \Delta^g \subseteq B\) meeting 
@@ -758,7 +725,7 @@ will apply the results of \cite{scharlau85}. Let \(U \subseteq V_K\) the irreduc
     \item[(uH)] \(U\) is a right \(\mathbb{H}\)-module for \(\mathbb{H}/K\) a quaternion 
         division algebra with involution \(*\), \(\eta\) is a \(*\)-hermitian form, and 
         \(\dim_\mathbb{H} U \geq 2\).
-    \item[(uD)] \(U\) is a right \(\mathbb{D}\)-module, for \(\mathbb{D}\) a non-commmutative 
+    \item[(uD)] \(U\) is a right \(\mathbb{D}\)-module, for \(\mathbb{D}\) a non-commutative
         division algebra over \(L\) a quadratic extension of \(K\) with involution \(*\),
         \(\eta\) is a \(*\)-hermitian form, and \(\dim_\mathbb{D} V \geq 3\).
     \item[(skH)] \(U\) is a right \(\mathbb{H}\)-module, for \(\mathbb{H}\) a 
@@ -855,7 +822,7 @@ subgroup, and is therefore normal in \(\Lambda\). We have an exact sequence
     1 \to \Lambda^\circ \to \Lambda \to \Gamma \to 1.
 \end{equation*}
 Define \(B'^\circ\) to be the \'etale cover corresponding to the surjection 
-\(\Lambda \to \Gamma\), i.e. \(\Lambda^\circ = \pi_1(B'^\circ, b')\). Because 
+\(\Lambda \to \Gamma\); that is, \(\Lambda^\circ = \pi_1(B'^\circ, b')\). Because
 \(\Lambda^\circ\) is normal in \(\Lambda\), the cover is Galois.
 Now we may define \(B'^\circ\) to be the normalization of \(B'^\circ\) in the function 
 field \(K(B)\).
@@ -941,7 +908,7 @@ suppose \(\dim W_1 \geq 2\); then for every basis vector \(w_{1, \alpha} \in W_1
     N. (w_{1, \alpha} \otimes \cdots \otimes w_i \otimes \cdots \otimes w_k) = 
     w_{1, \alpha} \otimes \cdots \otimes N_i . w_i \otimes \cdots \otimes w_k
 \end{equation*}
-provides a disctinct linearly independent vector in \(\im(N)\), a contradiction.
+provides a distinct linearly independent vector in \(\im(N)\), a contradiction.
 
 Finally, since the action of \(\mathfrak{h}_j\) on \(W_j\) is forced to be given by 
 characters, it factors through the Abelianization 
@@ -975,7 +942,7 @@ and analogously for \(\mathfrak{k}_i\). This implies that
 Now we claim that \(\mathfrak{h}_1 = \cdots = \mathfrak{h}_k\). 
 Indeed, by \cite{varvak25}, \(V_\C\) is irreducible, so by Clifford's theorem 
 \cite{clifford37}, \(\Gamma\) permutes the \(B_i \otimes U_i\) factors
-transitively, i.e. \((B_i \otimes U_i)^\gamma = B_j \otimes U_j\), for all 
+transitively; that is, \((B_i \otimes U_i)^\gamma = B_j \otimes U_j\), for all
 \(\gamma \in \Gamma\). But recall that \(U_i = \mathrm{Ann}(\mathfrak{k}_i)\), so 
 conjugation by \(\gamma\) induces an outer isomorphism 
 \(\mathfrak{k}_i = \mathfrak{k}_j\), forcing \(\mathfrak{h}_i = \mathfrak{h}_j\), 
@@ -1071,7 +1038,7 @@ Now if we exponentiate these generators, we get
 \begin{equation*}
     \zeta_0 = -1 \in \mathbb{G}_m,\quad \zeta_1 = \zeta_2 = -I_2 \in Z(\SL_2).
 \end{equation*}
-Notice that \(G' = \wt{G}/(\ul{\zeta}) = G\), so the Deligne torus lifts no futher 
+Notice that \(G' = \wt{G}/(\ul{\zeta}) = G\), so the Deligne torus lifts no further
 than \(G\). 
 \qed
 \end{example}
@@ -1163,7 +1130,7 @@ we may assume that \(f\) varies maximally.
 As before, take \(\pi: B' \to B\) be the cover over which 
 \(\pi^* V_\Q = U_1 \oplus \cdots \oplus U_k\) splits, and let \(\Gamma\) be the automorphism 
 group of the cover, acting transitively on the \(U_i\). We claim that each of the 
-\(U_i\) is isotypic, i.e. \(U_i \ncong U_j\) for \(i \neq j\). To see that this holds, 
+\(U_i\) is isotypic; that is, \(U_i \ncong U_j\) for \(i \neq j\). To see that this holds,
 suppose that \(U_1 \cong U_2\). By \Cref{infinite-monodromy}, there exists a component 
 \(D_1\) of the discriminant which has non-finite local monodromy. Without loss of 
 generality, suppose that \(U_1\) degenerates along \(D_1\). Then \(U_2\) also degenerates 
@@ -1174,7 +1141,7 @@ Hence we must have \(U_i \ncong U_j\) for \(i \neq j\). We now claim that the
 splitting is defined over \(\Q\). Indeed, the splitting occurs over some number field 
 \(K\), so we have a \(\Q\)-irreducible factor \(W \subseteq V_\Q\) which splits as 
 \(W_K = U_1 \oplus \cdots \oplus U_\ell\). But now the Galois group \(\mathrm{Gal}(K/\Q)\) 
-transitively permutes the \(U_1, \cdots, U_\ell\). Now as above, suppose 
+transitively permutes the \(U_1, \dots, U_\ell\). Now as above, suppose
 \(U_1\) degenerates over \(D_1 \subseteq D\). The limit variation of mixed Hodge structures
 of \(V\) over \(D_1\) is defined over \(\Q\), while that of \(U_1\) is not; thus 
 any element of the Galois orbit of \(U_1\) must degenerate over \(D_1\) like \(U_1\).
@@ -1247,7 +1214,7 @@ Donagi--Markman symmetry condition \cite{donagi-markman94}:
 
 \begin{proposition} \label{constant-diagonal-entry}
     Let \(X\) be primitive symplectic, and \(f: X \to B\) be a Lagrangian fibration 
-    with period map \(\cP: B^\circ \to \cA_{g, \eta}\) and period matrix \(\mathbf{T}\), i.e. 
+    with period map \(\cP: B^\circ \to \cA_{g, \eta}\) and period matrix \(\mathbf{T}\), written as
     \begin{equation*}
         \cP(b) = \begin{pmatrix}
             \mathbf{T}(b) \\ I_g
@@ -1356,7 +1323,7 @@ it is generated by local monodromy operators coming from some components
 
 \begin{proof}
 First notice that there is a natural map \(\Lambda \to \mathfrak{S}_k\), 
-coming from the permutations of the factors \(U_1, \cdots, U_k\) underlying 
+coming from the permutations of the factors \(U_1, \dots, U_k\) underlying
 the action of \(\Lambda\). In fact, this proof will show that this map is surjective,
 but it suffices that it surjects onto a subgroup \(\overline{\Lambda} \leq \mathfrak{S}_k\). 
 Since \(\Lambda\) is the group of covering automorphisms of \(\pi\), there is a 
@@ -1366,7 +1333,7 @@ corresponding intermediate cover
 \end{equation*}
 where \(\ol{\Lambda} = \Aut(p)\). Take \(D_1\) to be a component whose local 
 monodromy operator acts by an element of \(\ol\Lambda\); then \(\lambda\) 
-acts on any \(U_{i}\) by a \(c_i\)-cycle, i.e. 
+acts on any \(U_{i}\) by a \(c_i\)-cycle; that is,
 \begin{equation} \label{eq-permutation-of-factors}
     \lambda: U_{i} \to U_{i_2} \to \cdots \to U_{i_{c_i}} \to U_{i}, \quad 
     \lambda^c: U_i \xrightarrow{\sim} U_i.
@@ -1375,7 +1342,7 @@ acts on any \(U_{i}\) by a \(c_i\)-cycle, i.e.
 Now notice that \(\ol\Lambda\) acts on the limit mixed Hodge structure over a general 
 point of \(D_1\). In other words, for \(b \in D_1\) a general point, 
 we can find a local frame
-\(v_{i_1}, \cdots, v_{i_c} \in (F^1 \ol{\cV}|_{D_1})\) for which 
+\(v_{i_1}, \dots, v_{i_c} \in (F^1 \ol{\cV}|_{D_1})\) for which
 \begin{equation*}
     \lambda: v_{i_1} \mapsto v_{i_2} \mapsto \cdots \mapsto v_{i_c} \mapsto v_{i_1}.
 \end{equation*}
@@ -1432,7 +1399,7 @@ contradicting \Cref{lehn-general-singular-fibers}.
 \begin{remark}
 Note that the statements of \cite[Theorem 5.7]{lehn2016} and 
 \cite[Theorem 6.2]{kim-laza-martin24} in their respective papers are somewhat weaker 
-than what is used here, since they only guarentee the existence of an appropriate 
+than what is used here, since they only guarantee the existence of an appropriate
 deformation. However, the proofs of both theorems show that these results hold for the 
 general deformation.
 \end{remark}

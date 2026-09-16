@@ -1,0 +1,9 @@
+# ignore all files except .tex, .pdf, and addons
+*
+!.gitignore
+!*.tex
+!*.pdf
+!refs.bib
+!issues.md
+!quiver.sty
+!oup-authoring-template
