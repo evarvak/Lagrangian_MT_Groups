@@ -82,18 +82,23 @@ items; add a short resolution note instead.
   and rewrote every `i.e.` construction as ordinary punctuated prose. The related
   ChkTeX and LaCheck warnings are gone.
 
-- [ ] **E-008 — Identity-matrix dimensions.** Locations: lines 378, 385, and
+- [x] **E-008 — Identity-matrix dimensions.** Locations: lines 378, 385, and
   1209; anchors `T_s^m = I_g`, `(T_u-I_g)`, and `c I_g`. Issue: these operators
   act on the rank-`2g` space `V_b`, not a rank-`g` space. Impact: dimensionally
   incorrect notation. Proposed resolution: replace with `I_{2g}` (or a
   dimension-free `I`) wherever the action is on `V_b`.
+  Resolution (2026-09-16): replaced all three rank-`g` identity symbols listed
+  here with `I_{2g}`; the `I_g` blocks in period matrices and the Section 3 block
+  matrix were left unchanged.
 
-- [ ] **E-009 — Local canonical-extension symbols.** Locations: lines 398 and
+- [x] **E-009 — Local canonical-extension symbols.** Locations: lines 398 and
   413; anchors `V_\C|_U` and `\frac{dz}{z}`. Issue: the local system exists on
   `U^\circ`, and the chosen punctured coordinate is `t_1`, while `z` is undefined
   there. Impact: avoidable domain/coordinate mismatches. Proposed resolution:
   use `V_\C|_{U^\circ}` and `dt_1/t_1`, coordinated with the substantive
   convention repair in S-005.
+  Resolution (2026-09-16): closed without implementation at the author's
+  direction; the source remains unchanged for this item.
 
 - [ ] **E-010 — Prose tone and terminology consistency.** Locations: lines
   172–216, 210, 244–251, 298, 405–416, and 328–333; anchors include `Abelian
@@ -131,7 +136,7 @@ items; add a short resolution note instead.
   debris. Proposed resolution: delete obsolete commented blocks after confirming
   that none should be restored.
 
-- [ ] **E-014 — Section 4 notation slips.** Locations: lines 1003, 1074, 1103,
+- [x] **E-014 — Section 4 notation slips.** Locations: lines 1003, 1074, 1103,
   1159, and 1166; anchors `M' = \wt{G}`, `\ul{\zeta}`, `G' = [`, `E^n`, and
   `isotypic; that is, \(U_i \ncong U_j\)`. Issue: `M'` should be `G'`, the quotient
   notation for the same element/subgroup changes, the derived-subgroup equation
@@ -140,6 +145,8 @@ items; add a short resolution note instead.
   objects even apart from the substantive problems in S-011–S-013. Proposed
   resolution: normalize symbols after those arguments are rewritten and use
   “pairwise non-isomorphic” (or “multiplicity-free”) in line 1166.
+  Resolution (2026-09-16): closed without implementing the listed source
+  changes, at the author's direction.
 
 - [ ] **E-015 — Section 5 notation slips.** Locations: lines 1335–1339, 1372, and
   1420; anchors `where \(\Gamma\) is the monodromy image`, `\lambda^c`, and
