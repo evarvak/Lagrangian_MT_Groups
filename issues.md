@@ -187,7 +187,7 @@ items; add a short resolution note instead.
   deformation/moduli locus and use exactly the same quantifiers and hypotheses in
   the abstract, introduction, and Theorem 5.3.
 
-- [ ] **S-002 — The introductory discriminant theorem drops its main
+- [x] **S-002 — The introductory discriminant theorem drops its main
   hypothesis.** Location: Theorem 1.7, lines 305–308, versus Corollary 4.2, lines
   684–687; anchor `Let \(f: X \to B\) be a Lagrangian fibration`. Issue: Theorem
   1.7 omits the assumption that `X` is primitive symplectic, which Corollary 4.2
@@ -195,7 +195,7 @@ items; add a short resolution note instead.
   body. Proposed resolution: add the primitive-symplectic hypothesis or prove the
   broader version.
 
-- [ ] **S-003 — The full Mumford–Tate group in the CM isotrivial case is
+- [x] **S-003 — The full Mumford–Tate group in the CM isotrivial case is
   incorrect.** Location: Theorem 1.2/Corollary 4.11, lines 202 and 1223; anchor
   `\mathbb{G}_m ... \(E\) a CM elliptic curve`. Issue: the derived group of a CM
   elliptic curve is trivial, but its full weight-one Mumford–Tate group is a

@@ -167,8 +167,9 @@ groups which can occur in a Lagrangian fibration's very general fiber.
     \begin{equation*}
         \mathbf{MT}(X_b) = \begin{cases}
             (\mathbb{G}_m \times \Sp_{2g/k}^k) / \{\pm 1\} & : f \text{ varies maximally,} \\
-            \mathbb{G}_m & : f \text{ is isotrivial with fiber isogenous to } E^g\\
-            & \qquad \text{ for  } E \text{ a CM elliptic curve,}\\
+            \mathrm{Res}_{K/\Q} \mathbb{G}_{m, K} & : 
+            f \text{ is isotrivial with fiber isogenous to } E^g \text{ for } \\
+            & \quad  E \text{ a CM elliptic curve with endomorphism field } K\\
             \GL_2 & : \text{ otherwise.}
         \end{cases}
     \end{equation*}
@@ -271,8 +272,9 @@ underlying \(f\). In the process of proving \Cref{mt-classification}, we also
 produce the following consequence.
 
 \begin{theorem}[=\Cref{codim-one-discriminant}]
-    Let \(f: X \to B\) be a Lagrangian fibration, and let \(D \subseteq B\) 
-    be its discriminant. Then \(D\) has codimension one.
+    Let \(X\) be a primitive symplectic variety, and \(f: X \to B\) a Lagrangian 
+    fibration. Let \(D \subseteq B\) be the discriminant of \(f\). Then \(D\) has 
+    codimension one.
 \end{theorem}
 
 To the best of our knowledge, this was not previously known for primitive symplectic
@@ -733,14 +735,16 @@ will apply the results of \cite{scharlau85}. Let \(U \subseteq V_K\) the irreduc
         quaternion division algebra over \(K\) with canonical involution \(*\), 
         \(\eta\) is a skew-hermitian form, and \(\dim_{\mathbb{H}} U \geq 4\).
     \end{enumerate}
-    Then \(H\) is anisotropic.
+    Then \(H\) is not anisotropic.
 \end{lemma}
 
 In our setting, \(V\) varies maximally, so \(H\) must be non-compact at all real places. 
-Thus we may rule out all cases one-by-one. We follow the exact analysis of 
+Thus we may rule out all cases one-by-one. We roughly follow the analysis of 
 \cite[\S 7.2]{grushevsky-mondello-manni-tsimerman25}. Satake classified all possible 
 real forms of \(H\) up to isogeny, and we analyze each case. Let \(S\) denote the 
 special subvariety associated to \(G\). 
+
+% EV: Insert Table 3 of GMMT here.
 
 \begin{description}
     \item[\(H\) has type \(A_1\)] We must have \(H = \mathrm{Nm}(\mathbb{H})\)
@@ -1188,8 +1192,9 @@ This allows us to easily compute the actual Mumford--Tate group.
     \begin{equation*}
         \mathbf{MT}(X_b) = \begin{cases}
             (\mathbb{G}_m \times \Sp_{2g/k}^k) / \{\pm 1\} & : f \text{ varies maximally,} \\
-            \mathbb{G}_m & : f \text{ is isotrivial with fiber isogenous to } E^g\\
-            & \qquad \text{ for  } E \text{ a CM elliptic curve,}\\
+            \mathrm{Res}_{K/\Q} \mathbb{G}_{m, K} & : 
+            f \text{ is isotrivial with fiber isogenous to } E^g \text{ for } \\
+            & \quad  E \text{ a CM elliptic curve with endomorphism field } K\\
             \GL_2 & : \text{ otherwise.}
         \end{cases}
     \end{equation*}
