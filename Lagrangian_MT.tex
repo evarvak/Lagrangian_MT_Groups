@@ -744,7 +744,203 @@ Thus we may rule out all cases one-by-one. We roughly follow the analysis of
 real forms of \(H\) up to isogeny, and we analyze each case. Let \(S\) denote the 
 special subvariety associated to \(G\). 
 
-% EV: Insert Table 3 of GMMT here.
+For our analysis, we recall \cite[Table 3]{grushevsky-mondello-manni-tsimerman25},
+providing a classification and numerics for the derived form of the group \(H\); 
+see \Cref{table-of-algebraic-forms}. Now let us work by cases.
+
+\begin{table}
+\tiny
+\resizebox{1 \textwidth}{!}{
+\begin{tabular}{ |c|c | c  | c |c|c|}
+  \hline 
+  &\textbf{Group $H^{\mathrm{der}}$} & \textbf{Non-compact}  &  
+  \textbf{Irreducible}
+  & \textbf{Non-self-dual/}\\
+ &\textbf{over $K$} & \textbf{Hermitian} &  
+ \textbf{complex linear} &   \textbf{/Symplectic/}\\
+  &\textbf{(up to isogeny)} & \textbf{symmetric space}  & 
+  \textbf{representation $U$} & \textbf{/Orthogonal}\\
+  \hline\hline 
+\begin{tabular}{c}
+  (A$_1$)
+\end{tabular} &  
+  \begin{tabular}{c}
+  $\textrm{Nm}_1(\mathbb{H})$\end{tabular} & 
+  \begin{tabular}{c}
+  $\mathrm{SU}_{1,1}/\mathrm{S}(\mathrm{U}_1\times\mathrm{U}_{1})$ \\ $\dim=1$
+  \end{tabular} & 
+  \begin{tabular}{c} (dual) standard $\C^2$\\ $\dim=2$\end{tabular} &
+  Symp\\  
+\hline 
+  \begin{tabular}{c}
+  (D$_4$)
+\end{tabular} &  
+  \begin{tabular}{c}
+  ??? \\
+
+  \end{tabular} & 
+  \begin{tabular}{c}
+  $\mathrm{SO}^*_8/\mathrm{U}_4=\mathrm{SO}_{6,2}/(\mathrm{SO}_6\times\mathrm{SO}_2)$
+ \\ $\dim=6$
+  \end{tabular} & 
+  \begin{tabular}{c} standard \\ $\dim=8$\end{tabular} &
+  Orth\\  
+\hline 
+\begin{tabular}{c}
+  (I)$_{p,r\delta-p}$\\
+  $r\delta\geq 3$
+\end{tabular} &  
+  \begin{tabular}{c}
+  $\mathrm{SU}(\mathbb{D}^r,\eta)$\\ $\eta$ Hermitian\end{tabular} & 
+  \begin{tabular}{c}
+  $\mathrm{SU}_{p,r\delta-p}/\mathrm{S}(\mathrm{U}_p\times\mathrm{U}_{r\delta-p})$ \\ $\dim=p(r\delta-p)$
+  \end{tabular} & 
+  \begin{tabular}{c} (dual) standard $\C^{r\delta}$\\ $\dim=r\delta$\end{tabular} &
+  NSD\\  
+\hline 
+\begin{tabular}{c}
+  (I')$_{r\delta-1,1}^c$\\
+  $r\delta\geq 4$\\
+  $2\leq c\leq r\delta-2$\\
+\end{tabular} & 
+\begin{tabular}{c}
+$\mathrm{SU}(\mathbb{D}^r,\eta)$\\ $\eta$ Hermitian\end{tabular} & 
+\begin{tabular}{c}
+$\mathrm{SU}_{r\delta-1,1}/\mathrm{S}(\mathrm{U}_{r\delta-1}\times\mathrm{U}_1)$ \\
+$\dim=r\delta-1$
+  \end{tabular}  & \begin{tabular}{c}$\bigwedge^c\C^{r\delta}$ \\ 
+  $\dim=\binom{r\delta}{c}$\end{tabular}
+& $\begin{cases} c\neq \frac{r\delta}{2} & \textrm{NSD}\\ c=\frac{r\delta}{2}\textrm{ even} & \textrm{Orth }\\  c=\frac{r\delta}{2}\textrm{ odd} & \textrm{Symp }  \end{cases}$\\  
+\hline 
+\begin{tabular}{c}
+  (II)$_r$ \\ 
+  $r\geq 2$ with $r\neq 4$ \end{tabular} &
+\begin{tabular}{c}
+$\mathrm{SU}(\mathbb{H}^r,\eta)$ \\
+$\eta$ skew-Hermitian
+\end{tabular}
+& \begin{tabular}{c}
+$\mathrm{SO}^*_{2r}/\mathrm{U}_r$\\
+$\dim=\frac{r(r-1)}{2}$
+\end{tabular}
+&
+\begin{tabular}{c}
+standard\\
+$\dim=2r$
+\end{tabular} 
+&
+Orth
+\\
+\hline
+\begin{tabular}{c}
+  (III.1)$_r$ 
+  \\ $r\geq 2$
+\end{tabular} &
+\begin{tabular}{c}
+$\Sp(K^{2r},\eta)$ \\
+$\eta$ symplectic
+\end{tabular}
+& \begin{tabular}{c}
+$\Sp_{r}/\mathrm{U}_r$\\
+$\dim=\frac{r(r+1)}{2}$
+\end{tabular}
+&
+\begin{tabular}{c}
+standard\\
+$\dim=2r$
+\end{tabular} &
+Symp
+\\
+\hline \begin{tabular}{c}
+  (III.2)$_r$ 
+    \\ $r\geq 2$
+\end{tabular} &
+\begin{tabular}{c}
+$\mathrm{SU}(\mathbb{H}^r,\eta)$ \\
+$\eta$ Hermitian
+\end{tabular}
+& \begin{tabular}{c}
+$\Sp_r/\mathrm{U}_r$\\
+$\dim=\frac{r(r+1)}{2}$
+\end{tabular}
+&
+\begin{tabular}{c}
+standard\\
+$\dim=2r$
+\end{tabular} &
+Symp
+\\
+\hline 
+\begin{tabular}{c}
+  (IV.1)$_{2p}$ 
+  \\ $p\geq 3$, $p\neq 4$
+\end{tabular} &
+\begin{tabular}{c}
+$\mathrm{SO}(K^{2p},\eta)$ \\
+$\eta$ symmetric
+\end{tabular}
+& \begin{tabular}{c}
+$\mathrm{SO}_{2p-2,2}/(\mathrm{SO}_{2p-2}\times\mathrm{SO}_2)$\\
+$\dim=2p-2$
+\end{tabular}
+&
+\begin{tabular}{c}
+spin${^\pm(W)}$, $W$ isotropic\\
+$\dim=2^{p-1}$
+\end{tabular} 
+&
+$\begin{cases}p\equiv 2(4) & \textrm{Symp}\\ p\equiv 0(4) & \textrm{Orth}\\  p\equiv 1,3(4) &  \textrm{NSD}\end{cases}$
+\\
+\hline
+\begin{tabular}{c}
+  (IV.1)$_{2p+1}$ 
+     \\ $p\geq 2$
+\end{tabular} &
+\begin{tabular}{c}
+$\mathrm{SO}(K^{2p+1},\eta)$ \\
+$\eta$ symmetric
+\end{tabular}
+& \begin{tabular}{c}
+$\mathrm{SO}_{2p-1,2}/(\mathrm{SO}_{2p-1}\times\mathrm{SO}_2)$\\
+$\dim=2p-1$
+\end{tabular}
+&
+\begin{tabular}{c}
+spin${(W)}$, $W$ isotropic\\
+$\dim=2^p$
+\end{tabular} 
+&
+$\begin{cases}p\equiv 0,3(4) &\textrm{Orth}\\ p\equiv 1,2(4) & \textrm{Symp}\end{cases}$
+\\
+\hline \begin{tabular}{c}
+(IV.2)$_{2r}$ 
+\\ $r\geq 3$ with $r\neq 4$
+\end{tabular} &
+\begin{tabular}{c}
+$\mathrm{SU}(\mathbb{H}^r,\eta)$ \\
+$\eta$ skew-Hermitian
+\end{tabular}
+& \begin{tabular}{c}
+$\mathrm{SO}_{2r-2,2}/(\mathrm{SO}_{2r-2}\times\mathrm{SO}_2)$\\
+$\dim=2r-2$
+\end{tabular}
+&
+\begin{tabular}{c}
+spin$^{\pm}{(W)}$, $W$ isotropic\\
+$\dim=2^{r-1}$
+\end{tabular} 
+&
+$\begin{cases}r\equiv 2(4) & \textrm{Symp}\\ r\equiv 0(4) & \textrm{Orth}\\  r\equiv 1,3(4) &  \textrm{NSD}\end{cases}$
+\\
+\hline \end{tabular}
+}\\
+
+\medskip
+
+\caption{Satake's classification, 
+\cite[Table 3]{grushevsky-mondello-manni-tsimerman25}} 
+\label{table-of-algebraic-forms}
+\end{table}
 
 \begin{description}
     \item[\(H\) has type \(A_1\)] We must have \(H = \mathrm{Nm}(\mathbb{H})\)
