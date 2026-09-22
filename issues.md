@@ -245,7 +245,7 @@ items; add a short resolution note instead.
   state separately the finite-order possibilities and the rank-one conclusion in
   the infinite-order case.
 
-- [ ] **S-007 — The anisotropy argument proves the opposite of its announced
+- [x] **S-007 — The anisotropy argument proves the opposite of its announced
   goal.** Location: Proposition 4.1 proof, lines 729–829; anchors `We will prove
   that \(H\) is not anisotropic`, Lemma 4.3's `Then \(H\) is anisotropic`, and the
   type III/IV conclusions. Issue: the proof says it must rule out anisotropy, but

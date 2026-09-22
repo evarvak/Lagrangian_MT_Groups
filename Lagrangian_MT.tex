@@ -166,7 +166,8 @@ groups which can occur in a Lagrangian fibration's very general fiber.
     \(f\) has the form 
     \begin{equation*}
         \mathbf{MT}(X_b) = \begin{cases}
-            (\mathbb{G}_m \times \Sp_{2g/k}^k) / \{\pm 1\} & : f \text{ varies maximally,} \\
+            (\mathbb{G}_m \times \Sp_{2g/k}^k) / \{\pm 1\} & : f \text{ varies maximally, } 
+            k \text{ divides g,}\\
             \mathrm{Res}_{K/\Q} \mathbb{G}_{m, K} & : 
             f \text{ is isotrivial with fiber isogenous to } E^g \text{ for } \\
             & \quad  E \text{ a CM elliptic curve with endomorphism field } K\\
@@ -230,7 +231,7 @@ q(\sigma, \ol\sigma) > 0\}.\]
 Then the deformation space of \(X\) is constructed as an open subset 
 \begin{equation*}
     \mathcal{X} \subseteq \leftQ{\mathcal{D}_H}{\Gamma} = 
-    \leftQ{\rightQ{SO(2, b_2-3)}{SO(2) \times SO(b_2-3)}}{\Gamma},
+    \leftQ{\rightQ{\mathrm{SO}(2, b_2-3)}{\mathrm{SO}(2) \times \mathrm{SO}(b_2-3)}}{\Gamma},
 \end{equation*}
 where \(b_2 = \dim H^2(X, \C)\).
 
@@ -288,19 +289,23 @@ therefore fails for primitive symplectic varieties.
 
 
 In \S2, we review preliminaries on variations of weight one Hodge structures, namely
-Deligne's canonical extension and Mumford--Tate groups. In \S3, we prove 
-a crucial technical remark of \cite{bakker-schnell23} about how Lagrangian fibrations 
-degenerate in codimension one. Then \S4 proves the classification theorem \Cref{mt-classification},
-as well as the discriminant result, \Cref{codim-one-discriminant}, and the application 
+Deligne's canonical extension, Mumford--Tate groups, and standard examples of Lagrangian 
+fibrations. We also show that the groups in \Cref{mt-classification} are attainable. 
+In \S3, we prove a crucial technical remark of \cite{bakker-schnell23} about how 
+Lagrangian fibrations degenerate in codimension one. Then \S4 proves the classification 
+theorem \Cref{mt-classification}, as well as the discriminant result, 
+\Cref{codim-one-discriminant}, and the application 
 to Li--Tosatti, \Cref{constant-diagonal-entry}. Finally, \S5 studies the general 
 deformation of a Lagrangian fibration and proves \Cref{general-mt-classification}.
+
+\subsection*{AI Useage}
+This paper contains no AI output, but the author used Gemini 3.1 Pro for help with 
+research, definitions, and review.
 
 \subsection*{Acknowledgements}
 I thank my advisor, Ben Bakker, for his support and guidance in writing this paper.
 I'm also grateful to \.{I}zzet Co\c{s}kun, Daniel Litt, and Valentino Tosatti for 
-helpful discussions. This paper contains no AI output, but the author used Gemini 3.1 Pro 
-for help with research, definitions, and review.
-
+helpful discussions. 
 
 
 
@@ -495,7 +500,178 @@ invariants.
 \end{table}
 
 
+\subsection{Some examples of Lagrangian fibrations and their Mumford--Tate groups}
 
+To place our results in context, we will consider some standard examples of Lagrangian
+fibrations, and figure out the Mumford--Tate groups of their very general fibers. 
+
+\begin{example}
+Let \(S\) be an elliptically fibered K3 surface, and let \(f: S \to \bbP^1\) be the 
+associated fibration. Then \(f\) is a Lagrangian fibration and the fibers of \(f\) 
+are genus one curves. The image of the associated period map has dimension either 
+one or zero.
+
+In the former case, the period map dominates \(\cA_1\), so the Mumford--Tate group 
+of the very general fiber \(\mathbf{MT}(S_b) = \GL_2\). In the latter case, 
+every fiber of \(f\) is isogenous to some elliptic curve \(E\), so that 
+\(\mathbf{MT}(S_b) = \mathbf{MT}(E)\) is one of \(\GL_2\) or 
+\(\mathrm{Res}_{K/\Q} \mathbb{G}_{m, K}\), depending on whether \(E\) has CM. 
+Here \(K\) is the CM field of \(E\). \qed
+\end{example}
+
+From this trivial example, it is clear that our \Cref{mt-classification} holds when 
+\(X_b\) has dimension one. Put differently, the only special subvarieties of \(\cA_1\) 
+are \(\cA_1\) and CM points. However, in higher dimensions, we see from 
+\Cref{table-of-real-forms} that more exotic special subvarieties start to appear. 
+Our claim is that despite their existence, Lagrangian fibrations tend to avoid them, 
+behaving like the one-dimensional case. 
+
+Next, we consider an immediate generalization of the preceding example.
+
+\begin{example}
+As before, take \(S\) to be an elliptically fibered K3 surface, and \(\pi: S \to \bbP^1\) 
+the associated Lagrangian fibration. Recall that for a smooth surface \(S\), 
+the Hilbert scheme of \(g\) points \(X := S^{[g]}\) is also smooth. Note that 
+the map \(g\) induces a proper morphism \(f := \pi^{[g]}: X \to (\bbP^1)^{[g]} = \bbP^g\).
+One can readily see that \(X\) is hyper-K\"ahler and \(f\) is a Lagrangian fibration.
+
+Notice that the general fiber of \(f\) has the form 
+\(X_{(b_1, \dots, b_g)} = S_{b_1} \times \cdots \times S_{b_g}\). It is a product of 
+distinct genus one curves, so it lies in the product locus 
+\((\cA_1)^g \subseteq \cA_{g, \eta}\). Again, we have three cases to consider. 
+If the period map associated to \(\pi: S \to \bbP^1\) had one-dimensional image, 
+then the period map associated to \(f: X \to \bbP^g\) has \(g\)-dimensional image. 
+In this case, it is forced to dominate \((\cA_1)^g\), so that the Mumford--Tate group of 
+the very general fiber \(\mathbf{MT}(X_b) = (\mathbb{G}_m \times (\SL_2)^g) / \pm 1\).
+
+On the other hand, if \(\pi\) was isotrivial with fiber \(E\), then \(f\) is also 
+isotrivial, and there are two cases to consider. The general fiber of \(f\) is of the 
+form \(E^g\), so we again have \(\mathbf{MT}(X_b) = \mathbf{MT}(E)\). 
+This is equal to \(\GL_2\) when \(E\) is not CM, and 
+\(\mathrm{Res}_{K/\Q} \mathbb{G}_{m, K}\) when \(E\) is CM with CM field \(K\). \qed
+\end{example}
+
+If one is to believe the statement of \Cref{general-mt-classification}, the 
+behavior of the general fiber observed in this example is unusual; for a generically 
+chosen Lagrangian fibration, we would expect that the very general fiber is simple. 
+Of course, one cannot ``write down'' a general Lagrangian fibration. Still, 
+we can certainly produce a Lagrangian fibration exhibiting a more typical behavior. 
+
+\begin{example}[The Beauville--Mukai system]
+Let \(S\) be a K3 surface, and \(H\) a primitive ample class on \(S\), with \(H^2 = 2g-2\).
+Then \(|H| \simeq \bbP^g\) and the curves \(C \in |H|\) have genus \(g\). We can 
+take the relative compactified Jacobians of the curves \(C \in |H|\) as follows:
+let \(\mathbf{v} = (0, H, 1-g) \in H^0(S, \Z) \oplus H^2(S, \Z) \oplus H^4(S, \Z)\) be 
+the given Mukai vector, and let \(X := M_H(\mathbf{v})\) be the moduli space of 
+\(H\)-stable sheaves on \(S\) with Mukai vector \(\mathbf{v}\). 
+
+To see that this is indeed a relative Jacobian, observe that \(X\) comes with a 
+natural morphism \(f: X \to |H|\), taking each pure sheaf \(F \in X\) to the curve 
+\(C \in |H|\) on which it is supported. 
+In this case, \(F\) is the pushforward of some line bundle \(L\) on \(C\). 
+By Riemann--Roch, we have \(\chi(F) = \chi(L) = \deg L + 1 - g\). But 
+\(\chi(F) = 1-g\) by construction, so that \(\deg L = 0\). Therefore, we can 
+identify the fiber \(X_{[C]} \subseteq M_H(\mathbf{v})\) with \(\mathrm{Pic}^0(C)\).
+
+One might have expected that we would need to take \(X\) to be a moduli space of 
+semi-stable sheaves for it to be compact. However, if we pick \(H\) to be sufficiently 
+general, there are no strictly semi-stable sheaves in \(M_H(\mathbf{v})^\mathrm{ss}\).
+Hence \(X\) is compact, and even projective. We claim that \(X\) is a hyper-K\"ahler 
+manifold of dimension \(2g\). We will not prove this fact, but we will at least exhibit 
+the symplectic pairing. Let \(F \in X\) be a sheaf. The associated tangent space can by 
+identified with \(T_{[F]} X = \mathrm{Ext}^1(F, F)\). We let the symplectic pairing be 
+the following composition:
+\begin{equation*}
+    \mathrm{Ext}^1(F, F) \times \mathrm{Ext}^1(F, F) \xrightarrow{\cup} 
+    \mathrm{Ext}^2(F, F) \xrightarrow{\mathrm{Tr}} H^2(S, \mathcal{O}_S) \simeq \C.
+\end{equation*}
+
+Next we consider the Mumford--Tate group \(\mathbf{MT}(X_{[C]})\) of the very general 
+fiber. Note that since \(H\) is ample, the smooth curves \(C \in |H|\) vary maximally, 
+and hence so do their Jacobians. Thus the period map associated to \(f\) has 
+\(g\)-dimensional image. In particular, the isotrivial cases seen in the previous examples
+do not occur here. 
+
+We claim that \(\mathbf{MT}(X_b) = \mathrm{GSp}_{2g}\). By Andr\'e's theorem, 
+it is enough to show that the algebraic monodromy group of \(f\) is all of
+\(\Sp_{2g, \Q}\). This follows from classical Picard--Lefschetz theory; one takes 
+Leftschetz pencils \(\mathbb{P}^1 \subseteq |H|\) and observes that their algebraic 
+monodromy groups are generated by Picard--Lefschetz cycles 
+\(x \mapsto \left<x, \delta\right> \delta\). Since the nodal curves in \(|H|\) form 
+an irreducible component of the discriminant of \(f\), the Picard--Lefschetz cycles 
+form a single monodromy orbit. Our desired result follows from the following 
+classical theorem.
+
+\begin{theorem}[\cite{deligne80}, Lemma \(4.4.2^a\)]
+    Let \((V, \left<,\right>)\) be a finite-dimensional complex symplectic space, 
+    and \(M \leq \Sp(V)\) an algebraic subgroup. Suppose there is an \(M\)-orbit 
+    \(R \subseteq V\) such that 
+    \begin{enumerate}
+        \item \(R\) spans \(V\),
+        \item \(M\) is the smallest algebraic subgroup with the property that 
+        for every \(\delta \in R\),
+        \[\{x \mapsto x + \lambda\left<x, \delta\right>\delta \mid \lambda \in \C\} \subseteq M.\]
+    \end{enumerate}
+    Then \(M = \Sp(V)\).
+\end{theorem}
+\qed
+\end{example}
+
+
+So far, we have only produced Lagrangian fibrations coming from hyper-K\"ahler manifolds. 
+However, if we allow \(X\) to be singular, we can exhibit more exotic Mumford--Tate groups.
+
+\begin{proposition} \label{attainability}
+    Let \(h, k \in \Z_{\geq 1}\) be any positive integers, and set \(g = hk\).
+    There exists a primitive symplectic variety \(X\) of dimension \(2g\), 
+    and a Lagrangian fibration \(f: X \to B\), such that the Mumford--Tate group 
+    of the very general fiber 
+    \[\mathbf{MT}(X_b) = (\mathbb{G}_m \times (\mathrm{Sp}_{2h})^k) / \pm 1. \]
+\end{proposition}
+
+In particular, the non-CM groups appearing in \Cref{mt-classification} are all 
+attainable.
+
+\begin{proof}
+Let \(Y\) be a \(2h\)-dimensional hyper-K\"ahler manifold admitting a Lagrangian fibration 
+\(\pi: Y \to S\) with \(\mathbf{MT}(Y_s) = \mathrm{GSp}_{2h}\). (For example, you can 
+take \(\pi\) to be an appropriate Beauville--Mukai system.) Take the \(k\)-th symmetric 
+power of \(Y\), \(X := Y^{(k)} = Y^k/\mathfrak{S}_k\). This is a primitive symplectic 
+variety. Furthermore, the induced fibration 
+\begin{equation*}
+    f = \pi^{(k)}: X \to S^{(k)}
+\end{equation*}
+is Lagrangian. But by construction, the very general fiber of \(f\) has the form 
+\(X_{(s_1, \dots, s_k)} = Y_{s_1} \times \cdots \times Y_{s_k}\), where each 
+\(Y_{s_i}\) is distinct and Hodge--generic. This forces 
+\(\mathbf{MT}(X_{(s_1, \cdots, s_k)}) = (\mathbb{G}_m \times (\mathrm{Sp}_{2h})^k) / \pm 1\), 
+as needed.
+\end{proof}
+
+We conclude this section with the following observation.
+The proof above show that each \(\mathbb{G}_m \cdot (\Sp_{2h})^k\) is attainable as 
+the Mumford--Tate group of a {\it primitive symplectic} Lagrangian fibration. However, 
+we can ask the following specialization of \Cref{attainability}: 
+\begin{question}
+    For which positive integers \(h\) and \(k\) does there exist a hyper-K\"ahler 
+    manifold \(X\) of dimension \(2hk\) and a Lagrangian fibration \(f: X \to B\) with 
+    \[\mathbf{MT}(X_b) = (\mathbb{G}_m \times (\mathrm{Sp}_{2h})^k) / \pm 1? \]
+\end{question}
+
+Notice that the argument in \Cref{attainability} no longer works in this setting. 
+Indeed, when \(k \geq 2\), the symmetric power \(Y^{(k)}\) is not smooth.
+Of course, we may try to find a crepant resolution for \(Y^{(k)}\), like
+\(Y^{[k]} \to Y^{(k)}\) when \(h = 1\). However, when \(h \geq 2\), 
+the cohomology of the base \(S^{(k)}\) is no longer equal to that of \(\bbP^n\). 
+But by Matsushita \cite{matsushita16}, the base of a hyper-K\"ahler Lagrangian fibration 
+must have the same intersection cohomology as projective space. Thus, 
+if there were a resolution of \(Y^{(k)}\) by a hyper-K\"ahler, it would need to be 
+indeterminate.
+
+We expect that the only attainable values of \((h, k)\) are \((g, 1)\) and \((1, g)\), 
+where \(g\) is any positive integer. These values were shown to be attainable in the 
+examples above. However, we do not currently have an argument to rule out the 
+intermediate cases.
 
 
 
@@ -943,15 +1119,15 @@ $\begin{cases}r\equiv 2(4) & \textrm{Symp}\\ r\equiv 0(4) & \textrm{Orth}\\  r\e
 \end{table}
 
 \begin{description}
-    \item[\(H\) has type \(A_1\)] We must have \(H = \mathrm{Nm}(\mathbb{H})\)
+    \item[\(H\) has type \(\mathrm{A}_1\)] We must have \(H = \mathrm{Nm}(\mathbb{H})\)
     and \(\dim U = 2\) for all \(i\). 
     Write \(\dim V = 2g = k \dim U = 2kh\). If \(k = 1\), \(H = \SL_{2, K}\) is not 
-    anisotropic. Otherwise, \(g \leq \dim S = \frac{g}{h}\) yields a contradiction.
-    \item[\(H\) has type \(D_4\)] \(U_\C\) is a standard orthogonal representation of 
+    anisotropic. Otherwise, \(g \leq \dim S = g/h\) yields a contradiction.
+    \item[\(H\) has type \(\mathrm{D}_4\)] \(U_\C\) is a standard orthogonal representation of 
     dimension \(h = 8\). Since \(U\) is not symplectic, its dual must also occur 
     in the decomposition of \(V\), so \(\dim V = 16k\), while \(\dim S = 6\). 
     Thus \(g = 8k \leq 6\), a contradiction.
-    \item[\(H\) has type \(I\)] We are in (uF) and (uD) of \Cref{anisotropic-rep-classification},
+    \item[\(H\) has type \(\mathrm{I}\)] We are in (uF) and (uD) of \Cref{anisotropic-rep-classification},
     so \(H = \mathrm{SU}(\mathbb{D}^r, \eta)\) with \(r \leq 2\) and \(\dim_K U \leq 4\).
     Here \(\mathbb{D}\) has degree \(\delta \geq 2\) over a CM extension \(L/K\). 
     We may identify \(U_\C \simeq M_{\delta \times \delta}(\C)^{\oplus r}\) as 
@@ -967,23 +1143,23 @@ $\begin{cases}r\equiv 2(4) & \textrm{Symp}\\ r\equiv 0(4) & \textrm{Orth}\\  r\e
         \frac{1}{4} k \delta^2 r^2,
     \end{equation*}
     so that \(r \geq 4\), a contradiction.
-    \item[\(H\) has type \(I'\)] \(H\) is the same as in type \(I\), and 
+    \item[\(H\) has type \(\mathrm{I}'\)] \(H\) is the same as in type \(I\), and 
     \(U \simeq \bigwedge^c \C^{r \delta}\). Now \(\dim U = \binom{r \delta}{c}\), while 
     \(\dim S = r\delta - 1\). Since \(U\) is not self-dual, we cannot have 
     \(g \leq \dim S\) even when \(c = 1\).
-    \item[\(H\) has type \(II\)] Here \(G = \mathrm{SU}(\mathbb{H}^r, \eta)\) with 
+    \item[\(H\) has type \(\mathrm{II}\)] Here \(H = \mathrm{SU}(\mathbb{H}^r, \eta)\) with 
     \(r \geq 2\) and \(\eta\) skew-hermitian. We are in the case (skH) of 
     \Cref{anisotropic-rep-classification}, so \(2 \leq \dim_\mathbb{H} U \leq 3\). 
     Note again that \(U\) is not self-dual, so that its dual also occurs in the 
     decomposition of \(V_\C\).
     Thus \(\dim V = 2g = 2k \dim U = 4kr\). On the other hand, \(\dim S = k\frac{r(r-1)}{2}\). 
     Thus \(g = 2kr \leq k\frac{r(r-1)}{2}\), so that \(4 \leq r-1\), a contradiction.
-    \item[\(H\) has type \(III\)] There are two possibilities here. Either 
+    \item[\(H\) has type \(\mathrm{III}\)] There are two possibilities here. Either 
     \(H = \Sp(K^{2r}, \eta)\), or \(H = \mathrm{SU}(\mathbb{H}^r, \eta')\). The 
     former case is always anisotropic, so we need not consider it. When \(r \geq 2\), 
     we are in case (uH) of \Cref{anisotropic-rep-classification}, so \(S\) is 
     non-compact. When \(r = 1\), \(H\) has type \(A_1\), which we have already disproved.
-    \item[\(H\) has type \(IV\)] \(H\) must be a form of \(\mathrm{SO}_n^\mathrm{ad}\), 
+    \item[\(H\) has type \(\mathrm{IV}\)] \(H\) must be a form of \(\mathrm{SO}_n^\mathrm{ad}\), 
     for \(n \geq 5\). This puts us into the cases (q) and (skH) of \Cref{anisotropic-rep-classification}. 
     In either case, \(H\) is anisotropic.
 \end{description}
@@ -1387,7 +1563,8 @@ This allows us to easily compute the actual Mumford--Tate group.
     \(f\) has the form 
     \begin{equation*}
         \mathbf{MT}(X_b) = \begin{cases}
-            (\mathbb{G}_m \times \Sp_{2g/k}^k) / \{\pm 1\} & : f \text{ varies maximally,} \\
+            (\mathbb{G}_m \times \Sp_{2g/k}^k) / \{\pm 1\} & : f \text{ varies maximally, } 
+            k \text{ divides g,}\\
             \mathrm{Res}_{K/\Q} \mathbb{G}_{m, K} & : 
             f \text{ is isotrivial with fiber isogenous to } E^g \text{ for } \\
             & \quad  E \text{ a CM elliptic curve with endomorphism field } K\\
