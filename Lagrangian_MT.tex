@@ -5,7 +5,10 @@
 \usepackage{amssymb}
 % \usepackage{mathabx}
 \usepackage{tikz-cd}
+
 \usepackage{hyperref}
+% \usepackage{amsthm}
+\usepackage{thmtools}
 \usepackage[nameinlink, capitalize]{cleveref}
 \hypersetup{
     colorlinks=true,
@@ -87,7 +90,7 @@ Chicago, IL 60637 \\}}
 
 \begin{abstract}
     For a primitive symplectic variety \(X\) admitting a holomorphic Lagrangian fibration 
-    \(f: X \to B\), we fully classify the possible Mumford--Tate groups of the very 
+    \(f: X \to B\), we classify the possible Mumford--Tate groups of the very 
     general fiber. We extract as a consequence that the discriminant of 
     \(f\) has codimension one in \(B\). In the special case when \(X\) is a hyper-K\"ahler manifold which 
     is general among those admitting a Lagrangian fibration, and \(b_2(X) \geq 7\), 
@@ -293,12 +296,12 @@ Deligne's canonical extension, Mumford--Tate groups, and standard examples of La
 fibrations. We also show that the groups in \Cref{mt-classification} are attainable. 
 In \S3, we prove a crucial technical remark of \cite{bakker-schnell23} about how 
 Lagrangian fibrations degenerate in codimension one. Then \S4 proves the classification 
-theorem \Cref{mt-classification}, as well as the discriminant result, 
+\Cref{mt-classification}, as well as the discriminant result
 \Cref{codim-one-discriminant}, and the application 
 to Li--Tosatti, \Cref{constant-diagonal-entry}. Finally, \S5 studies the general 
 deformation of a Lagrangian fibration and proves \Cref{general-mt-classification}.
 
-\subsection*{AI Useage}
+\subsection*{AI useage}
 This paper contains no AI output, but the author used Gemini 3.1 Pro for help with 
 research, definitions, and review.
 
@@ -528,7 +531,7 @@ behaving like the one-dimensional case.
 
 Next, we consider an immediate generalization of the preceding example.
 
-\begin{example}
+\begin{example}[The \(K3^{[n]}\) fibration]
 As before, take \(S\) to be an elliptically fibered K3 surface, and \(\pi: S \to \bbP^1\) 
 the associated Lagrangian fibration. Recall that for a smooth surface \(S\), 
 the Hilbert scheme of \(g\) points \(X := S^{[g]}\) is also smooth. Note that 
@@ -548,7 +551,8 @@ On the other hand, if \(\pi\) was isotrivial with fiber \(E\), then \(f\) is als
 isotrivial, and there are two cases to consider. The general fiber of \(f\) is of the 
 form \(E^g\), so we again have \(\mathbf{MT}(X_b) = \mathbf{MT}(E)\). 
 This is equal to \(\GL_2\) when \(E\) is not CM, and 
-\(\mathrm{Res}_{K/\Q} \mathbb{G}_{m, K}\) when \(E\) is CM with CM field \(K\). \qed
+\(\mathrm{Res}_{K/\Q} \mathbb{G}_{m, K}\) when \(E\) is CM with endomorphism field \(K\). 
+\qed
 \end{example}
 
 If one is to believe the statement of \Cref{general-mt-classification}, the 
@@ -629,8 +633,7 @@ However, if we allow \(X\) to be singular, we can exhibit more exotic Mumford--T
     \[\mathbf{MT}(X_b) = (\mathbb{G}_m \times (\mathrm{Sp}_{2h})^k) / \pm 1. \]
 \end{proposition}
 
-In particular, the non-CM groups appearing in \Cref{mt-classification} are all 
-attainable.
+In particular, the groups appearing in \Cref{mt-classification} are all attainable.
 
 \begin{proof}
 Let \(Y\) be a \(2h\)-dimensional hyper-K\"ahler manifold admitting a Lagrangian fibration 
@@ -840,27 +843,6 @@ Now if \(D = \emptyset\), \(f\) is the trivial fibration and \(X \simeq X_b \tim
 But by Kunneth, we must now have \(H^1(X, \C) \neq 0\), a contradiction.
 \end{proof}
 
-% Now consider the period map \(\cP: B^\circ \to \cA_g\). This extends to a map to the 
-% Satake--Baily--Borel compactification \(\ol{\cP}: B^\mathrm{ls} \to \cA_g^*\), where 
-% \(B^\mathrm{ls} = B^\circ \sqcup D^\mathrm{ls}\) additionally contains the log-smooth 
-% locus of the discriminant. Recall that this compactification is stratified by 
-% \(\cA_g^* = \cA_g \sqcup \cA_{g-1} \sqcup \cdots \sqcup \cA_1 \sqcup \{*\}\), 
-% where the fibers landing in \(\cA_k\) have a local monodromy operator \(T\) with 
-% \(\mathrm{rk} \log(T) = k\). 
-
-% \begin{corollary} \label{rank-one-boundary}
-%     The extended period map takes the smooth locus of the discriminant 
-%     \[\ol{\cP}(D^\mathrm{sm}) \in \cA_{g-1} \subseteq \cA_g^*.\]
-%     This defines a Lagrangian fibration \(g: Y \to D^\mathrm{sm}\), for some non-compact
-%     holomorphic symplectic manifold \(Y\) of dimension \(g-1\).
-% \end{corollary}
-
-% The last statement of the corollary requires some justification. ***
-
-% \begin{remark}
-%     One can extend \(Y \to D^\mathrm{sm}\) to a tubular neighborhood 
-%     \(U \supseteq D^\mathrm{sm}\) ***
-% \end{remark}
 
 \begin{proof}[Proof of \Cref{infinite-monodromy}]
 
@@ -925,7 +907,7 @@ providing a classification and numerics for the derived form of the group \(H\);
 see \Cref{table-of-algebraic-forms}. Now let us work by cases.
 
 \begin{table}
-\tiny
+% \tiny
 \resizebox{1 \textwidth}{!}{
 \begin{tabular}{ |c|c | c  | c |c|c|}
   \hline 
