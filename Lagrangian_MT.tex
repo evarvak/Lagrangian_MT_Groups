@@ -18,7 +18,6 @@
     citecolor=magenta,
     pdftitle={The Mumford--Tate group of the very general Lagrangian fiber},
     pdfauthor={Edward Varvak},
-    % pdfpagemode=FullScreen,
 }
 \urlstyle{same}
 \usepackage{caption} 
@@ -166,9 +165,9 @@ groups which can occur in a Lagrangian fibration's very general fiber.
 \begin{theorem}[=\Cref{mt-classification}] 
     Let \(X\) be a primitive symplectic variety of dimension \(2g\), and let 
     \(f: X \to B\) be a Lagrangian fibration. The Mumford--Tate group of 
-    \(f\) has the form 
+    \(f\) is isogenous to one of 
     \begin{equation*}
-        \mathbf{MT}(X_b) = \begin{cases}
+        \mathbf{MT}(X_b) \sim \begin{cases}
             (\mathbb{G}_m \times \Sp_{2g/k}^k) / \{\pm 1\} & : f \text{ varies maximally, } 
             k \text{ divides g,}\\
             \mathrm{Res}_{K/\Q} \mathbb{G}_{m, K} & : 
@@ -216,13 +215,16 @@ curvature on \(B^\circ\). The following result proves them right.
 
 By \cite[Remark 2.3]{li-tosatti24}, \(\omega_\mathrm{SK}\) having positive holomorphic 
 sectional curvature is equivalent to \(\mathbf{T}\) having non-constant diagonal
-entries, as needed.
+entries, as needed. Furthermore, we will see that the proof of \Cref{constant-diagonal-entry} 
+tells us a fair bit about the existence of any constant entry in the period matrix.
 
-\begin{corollary}
-    If \(f\) is not isotrivial, then \(\omega_\mathrm{SK}\) has positive holomorphic 
-    sectional curvature on \(B^\circ\).
+\begin{corollary}[=\Cref{omega_SK}]
+    Let \(X\) be primitive symplectic, let \(f: X \to B\) be a Lagrangian fibration, 
+    and suppose that \(f\) is not isotrivial. Then \(\omega_\mathrm{SK}\) has positive 
+    holomorphic sectional curvature. If we suppose further that 
+    \(\mathbf{MT}(X_b) = \mathrm{GSp}_{2g}\), then \(\omega_\mathrm{SK}\) has 
+    positive bisectional curvature. 
 \end{corollary}
-
 
 
 It turns out that the deformation space of a  polarized hyper-K\"ahler manifold \((X, H)\)
@@ -289,8 +291,90 @@ therefore fails for primitive symplectic varieties.
 
 
 
+\subsection*{Proof outline}
+
+We use the same notation as above: let \(f: X \to B\) be a Lagrangian fibration, 
+\(X\) a primitive symplectic variety of dimension \(2g\), \(X_b\) a very general fiber.
+Let \(D\) be the discriminant of \(f\), let \(B^\circ = B \smallsetminus D\).
+Let \(V = R^1 f_* \Z_{X^\circ}\) be the variation of Hodge structures underlying the 
+smooth fibers of \(f\), and let \(\cP: B^\circ \to \cA_{g, \eta}\) be its 
+associated period map.
+
+First, we outline the proof of \Cref{mt-classification}. The idea is as follows: 
+our prior results in \cite{varvak25} handle the isotrivial cases, so we may 
+assume that \(f\) is not isotrivial. By \cite{bakker25}, it varies maximally. 
+Thus the image of \(\cP\) is \(g\)-dimensional in \(\cA_{g, \eta}\). Understanding 
+the Mumford--Tate group of \(X_b\) amounts to understanding the image of \(\cP\).
+
+Next we want to show that \(\cP(B^\circ)\) is Hodge-generic inside some product locus 
+\(\cA_{h_1, \eta_1} \times \cdots \times \cA_{h_k, \eta_k} \subseteq \cA_{g, \eta}\).
+In other words, we need to rule out \(\cP\) from landing in the more exotic special 
+subvarieties of \(\cA_{g, \eta}\), such as the loci of real-multiplication 
+Abelian varieties. To best describe our argument, recall that the period map 
+extends to the Baily--Borel compactification of \(\cA_{g, \eta}\): 
+\(\ol{\cP}: B \dashrightarrow \ol{\cA}_{g, \eta}\).
+
+The boundary of \(\ol{\cA}_{g, \eta}\), consisting of degenerations of Abelian varieties, 
+has a natural stratification by the formal logarithm rank of the local monodromy operator 
+corresponding to the degeneration. In \Cref{infinite-monodromy}, we show that 
+there is a component \(D_1 \subseteq D\) and a Zariski open subset 
+\(D_1^\circ \subseteq D\) such that \(\ol\cP\) is defined on \(D_1^\circ\).
+With \Cref{local-monodromy-eigenvalues}, we see that the \(\ol{\cP}\) sends \(D_1^\circ\) 
+to the rank one stratum of the boundary. 
+
+Now the argument is straightforward. We view the \(\Q\)-variation of Hodge structures 
+\(V_\Q\) as a representation of the Mumford--Tate group \(\mathbf{MT}(X_b)\).
+We need to rule out a number of representations. Suppose that \(V_\Q\) 
+were irreducible but \(V_\C = V_\Q \otimes_\Q \C\) split as 
+\(U_1 \oplus \cdots \oplus U_k\). Then the splitting must occur over some 
+number field \(K/\Q\). Since the \(U_i\) comprise a single Galois orbit, 
+they all degenerate simultaneously. In particular, this would force the fibers over 
+\(D_1^\circ\) to be degenerations of rank at least \(k\). This forces \(k = 1\).
+
+Thus any splitting of \(V_\C\) must occur over \(\Q\). In particular, this rules 
+out the loci of Abelian varieties with special endomorphisms, such as 
+the real-multiplication loci of \(\cA_{g, \eta}\). As such, we may prove results 
+about \(V_\Q\) by working with \(V_\C\). By the classification of semisimple Lie groups, 
+the complex derived Mumford--Tate group 
+\([\mathbf{MT}(X_b)(\C), \mathbf{MT}(X_b)(\C)]\) is isogenous to a product of some 
+\(\SL_{2h}(\C)\), \(\Sp_{2h}(\C)\), and \(\mathrm{SO}_{2h}(\C)\). We claim 
+that they cannot act on \(V_\C\) by any tensor representations. Indeed, the argument 
+is analogous to the one above: if \(W_1\) was a weight one variation which degenerated 
+with rank one, \(W_1 \otimes W_2\) would degenerate with rank \(\dim W_2\).
+
+Hence we must have that all but one isogeny factor of \(\mathbf{MT}(X_b)\) act 
+trivially on \(V_\Q = U_1 \oplus \cdots \oplus U_k\). Now because the 
+\(U_i\) correspond to families of Abelian varieties of dimension 
+\(\frac{1}{2}\dim U_i\), we can rule out \(\Q\)-forms of 
+\(\mathrm{SO}_{2h}\) and \(\mathrm{SL}_{2h}\) from occuring as isogeny factors 
+of \(\mathbf{MT}(X_b)\). We therefore only have to worry about 
+\(\mathbf{MT}(X_b) \sim \mathbb{G}_m \cdot (\Sp_{2h_1} \times \cdots \times \Sp_{2h_k}\)), 
+as we had wanted to show. 
+
+Finally, we need to claim that \(h_1 = \cdots = h_k\). By prior work \cite{varvak25}, 
+we know that \(V_\C\) is irreducible as a monodromy representation. By Andr\'e's theorem, 
+we can find a collection of automorphisms of \(V_\C\) permuting the irreducible factors 
+\(U_i\) transitively. Hence if the \(U_i\) had different numerics, we could 
+appeal to the fact that \(V_\Q\) varies maximally to rule them out, as needed.
+
+The proof of the intermediate \Cref{infinite-monodromy} relies on work of 
+\cite{grushevsky-mondello-manni-tsimerman25}. We adopt their style of argument: 
+suppose that \(B^\circ\) lands inside of a compact subvariety of \(\cA_{g, \eta}\). 
+(This is equivalent to \(\cP(B^\circ)\) not meeting the Baily--Borel boundary 
+of \(\cA_{g, \eta}\).) Since the image is \(g\)-dimensional, \cite{grushevsky-mondello-manni-tsimerman25} 
+show that it must land inside of a compact special subvariety of \(\cA_{g, \eta}\). 
+We use the classification result of Satake, listed in \Cref{table-of-algebraic-forms}, 
+to rule out every compact special subvarieties from containing the period image. 
+
+Finally, the proof of \Cref{general-mt-classification} follows from a result 
+of \cite{lehn2016}, which states that a general singular fiber of type 
+\(\mathrm{I}_0^*\) cannot occur in a general deformation of a Lagrangian fibration 
+\(f: X \to B\). We use the local mondromy operator permuting the irreducible factors 
+of \(V_\Q = U_1 \oplus \cdots \oplus U_k\) to show that \(f\) has fibers of type 
+\(\mathrm{I}_0^*\), ruling it out from being general. 
 
 
+Finally, we outline the structure of the paper. 
 In \S2, we review preliminaries on variations of weight one Hodge structures, namely
 Deligne's canonical extension, Mumford--Tate groups, and standard examples of Lagrangian 
 fibrations. We also show that the groups in \Cref{mt-classification} are attainable. 
@@ -531,7 +615,7 @@ behaving like the one-dimensional case.
 
 Next, we consider an immediate generalization of the preceding example.
 
-\begin{example}[The \(K3^{[n]}\) fibration]
+\begin{example}[The \(K3^{[n]}\) fibration] \label{example-K3n}
 As before, take \(S\) to be an elliptically fibered K3 surface, and \(\pi: S \to \bbP^1\) 
 the associated Lagrangian fibration. Recall that for a smooth surface \(S\), 
 the Hilbert scheme of \(g\) points \(X := S^{[g]}\) is also smooth. Note that 
@@ -1542,9 +1626,9 @@ This allows us to easily compute the actual Mumford--Tate group.
 \begin{corollary} \label{mt-classification}
     Let \(X\) be a primitive symplectic variety of dimension \(2g\), and let 
     \(f: X \to B\) be a Lagrangian fibration. The Mumford--Tate group of 
-    \(f\) has the form 
+    \(f\) is isogenous to 
     \begin{equation*}
-        \mathbf{MT}(X_b) = \begin{cases}
+        \mathbf{MT}(X_b) \sim \begin{cases}
             (\mathbb{G}_m \times \Sp_{2g/k}^k) / \{\pm 1\} & : f \text{ varies maximally, } 
             k \text{ divides g,}\\
             \mathrm{Res}_{K/\Q} \mathbb{G}_{m, K} & : 
@@ -1633,18 +1717,44 @@ weakly special subvariety \(Z \subsetneq \cA_{g, \eta}\) containing \(\cP(B^\cir
 Such a subvariety by definition arises from a normal subgroup \(H\) of the 
 Mumford--Tate group \(G = \mathbf{MT}(Z)\) of the very general point of \(Z\).
 Now recall \Cref{mt-classification}; we want to rule out the case where \(G\) is
-isogenous to \((\Sp_{2h})^{g/h}\), for some \(h\) dividing \(g\). 
+isogenous to \(\mathbb{G}_m \cdot (\Sp_{2h})^{g/h}\), for some \(h\) dividing \(g\). 
 
 If \(h = g\), then we are immediately done, since \(G = \mathrm{GSp}_{2g}\) has 
 only \(H = \mathbb{G}_m\) as a non-trivial normal subgroup, forcing \(\cP(C_p)\) to be a 
 single point. This implies that \(f\) does not vary maximally, so it is 
-isotrivial. On the other hand, if \(G\) is isogenous to \((\Sp_{2h})^{g/h}\), 
-for \(h < g\), then \(H\) is isogenous to \((\Sp_{2h})^\ell\), for \(\ell < g/h\).
-Since \(G\) acts by direct sums of the standard representation, there is 
-some factor which admits a trivial action from \(H\). In other words, the VHS 
-\(V_\Q\) has a fixed part. As such, it does not vary maximally, so it is forced to 
-once again be isotrivial. 
+isotrivial. 
+
+On the other hand, if \(G\) is isogenous to \(\mathbb{G}_m \cdot (\Sp_{2h})^{g/h}\), 
+the Mumford--Tate representation splits over \(Q\) as 
+\(V_\Q = U_1 \oplus \cdots \oplus U_k\). Suppose that \(\mathbf{T}\) has a 
+constant diagonal entry, say \(\mathbf{\tau}_{11}\). At least one of the \(U_i\) 
+is such that \(e_1\) has a non-zero projection onto \(U_i\). In particular, 
+this forces the period matrix \(\mathbf{T}_i\) of \(U_i\) to have a constant diagonal 
+entry. But unlike \(V_\Q\), \(U_i\) is Hodge-generic; thus by the argument above, 
+it must be isotrivial. This ensures that \(V_\Q\) does not vary maximally, 
+so it too is isotrivial. 
 \end{proof}
+
+Notice that the proof of \Cref{constant-diagonal-entry} argues something else: 
+the period matrix of \(V\) admits a constant entry if and only if the Mumford--Tate group 
+of the very general fiber fails to be \(\mathrm{GSp}_{2g}\). 
+In terms of \(\omega_{SK}\), we get the following consequence.
+
+\begin{corollary} \label{omega_SK}
+    Let \(X\) be primitive symplectic, let \(f: X \to B\) be a Lagrangian fibration, 
+    and suppose that \(f\) is not isotrivial. Then \(\omega_\mathrm{SK}\) has positive 
+    holomorphic sectional curvature. If we suppose further that 
+    \(\mathbf{MT}(X_b) = \mathrm{GSp}_{2g}\), then \(\omega_\mathrm{SK}\) has 
+    positive bisectional curvature. 
+\end{corollary}
+
+Lagrangian fibrations failing to induce \(\omega_{\mathrm{SK}}\) with positive 
+bisectional curvature are 
+readily realized, say by \Cref{example-K3n}. But in the next section, we will prove in
+\Cref{general-mt-classification} that this can be an uncommon occurance: if \(X\) is a 
+hyper-K\"ahler manifold with \(b_2(X) \geq 7\) such that \(f: X \to B\) is general 
+among Lagrangian fibrations in that deformation class, then 
+\(\mathbf{MT}(X_b) = \mathrm{GSp}_{2g}\). 
 
 
 
